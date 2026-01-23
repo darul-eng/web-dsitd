@@ -10,20 +10,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        // DSITD Specific Colors (Placeholder - we can refine later)
-        primary: {
-            50: '#eff6ff',
-            100: '#dbeafe',
-            200: '#bfdbfe',
-            300: '#93c5fd',
-            400: '#60a5fa',
-            500: '#3b82f6',
-            600: '#2563eb',
-            700: '#1d4ed8', // Main Brand Color
-            800: '#1e40af',
-            900: '#1e3a8a',
-            950: '#172554',
+        dsitd: {
+          blue: {
+            DEFAULT: '#01036f',
+            dark: '#010483',
+            light: '#0205a1',
+          },
+          teal: {
+            DEFAULT: '#1acc8d',
+            dark: '#17b57d',
+            light: '#34e5a6',
+          },
         }
+      },
+      fontFamily: {
+        sans: ['"Open Sans"', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       }
     },
   },

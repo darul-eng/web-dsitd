@@ -8,7 +8,7 @@
 *   **Access Control**: **Custom Native RBAC** (Database-driven Roles & Permissions)
 *   **Media Handling**: Spatie Laravel MediaLibrary (Remains recommended for complex file handling, or Custom Service if strictly no-packages preferred)
 *   **Icons**: Heroicons
-*   **Database**: MySQL / PostgreSQL
+*   **Database**: MySQL
 
 ## 2. Design Patterns & Principles
 
@@ -98,3 +98,172 @@ To ensure the application is robust, scalable, and maintainable, we rigorously a
     *   Enforced Foreign Keys.
     *   Proper Indexing for performance.
     *   Atomic Transactions for critical data mutations.
+
+## 6. Routing Structure & Organization
+
+### A. Route File Organization
+Routes are organized by context and purpose in the `routes/` directory:
+
+```text
+routes/
+├── web.php           # Public-facing web routes
+├── admin.php         # Admin panel routes (prefix: /admin)
+├── api.php           # Public API endpoints (prefix: /api)
+└── channels.php      # Broadcasting channels
+```
+
+### B. Web Routes (`routes/web.php`)
+Public-facing routes for the website:
+
+```php
+// Homepage & Static Pages
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/contact', [PageController::class, 'submitContact'])->name('contact.submit');
+
+// News & Information
+Route::prefix('news')->name('news.')->group(function () {
+    Route::get('/', [NewsController::class, 'index'])->name('index');
+    Route::get('/{slug}', [NewsController::class, 'show'])->name('show');
+});
+
+// Services
+Route::prefix('services')->name('services.')->group(function () {
+    Route::get('/', [ServiceController::class, 'index'])->name('index');
+    Route::get('/{slug}', [ServiceController::class, 'show'])->name('show');
+});
+
+// Gallery
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+
+// FAQ
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
+```
+
+### C. Admin Routes (`routes/admin.php`)
+Protected admin panel routes with authentication and authorization:
+
+```php
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    
+    // Dashboard
+    Route::get('/dashboard', [Admin\DashboardController::class, 'index'])
+        ->name('dashboard');
+    
+    // User Management (Superadmin only)
+    Route::middleware(['role:superadmin'])->group(function () {
+        Route::resource('users', Admin\UserController::class);
+        Route::resource('roles', Admin\RoleController::class);
+        Route::resource('permissions', Admin\PermissionController::class);
+    });
+    
+    // Content Management
+    Route::middleware(['permission:manage-content'])->group(function () {
+        Route::resource('news', Admin\NewsController::class);
+        Route::resource('services', Admin\ServiceController::class);
+        Route::resource('faqs', Admin\FaqController::class);
+        Route::resource('gallery', Admin\GalleryController::class);
+    });
+    
+    // Inbox Management
+    Route::middleware(['permission:manage-inbox'])->group(function () {
+        Route::get('inbox', [Admin\InboxController::class, 'index'])->name('inbox.index');
+        Route::get('inbox/{id}', [Admin\InboxController::class, 'show'])->name('inbox.show');
+        Route::post('inbox/{id}/reply', [Admin\InboxController::class, 'reply'])->name('inbox.reply');
+    });
+    
+    // Profile & Settings
+    Route::get('profile', [Admin\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [Admin\ProfileController::class, 'update'])->name('profile.update');
+});
+```
+
+### D. API Routes (`routes/api.php`)
+RESTful API endpoints (if needed):
+
+```php
+Route::prefix('v1')->group(function () {
+    // Public APIs
+    Route::get('news', [Api\NewsController::class, 'index']);
+    Route::get('news/{id}', [Api\NewsController::class, 'show']);
+    
+    // Authenticated APIs
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::post('contact', [Api\ContactController::class, 'store']);
+    });
+});
+```
+
+### E. Route Naming Conventions
+Follow consistent naming patterns:
+
+1.  **Resource Routes**: Use `{resource}.{action}` format
+    ```php
+    news.index, news.show, news.create, news.store, 
+    news.edit, news.update, news.destroy
+    ```
+
+2.  **Admin Routes**: Prefix with `admin.`
+    ```php
+    admin.dashboard, admin.users.index, admin.news.create
+    ```
+
+3.  **API Routes**: Prefix with `api.` (optional, since /api prefix already exists)
+    ```php
+    api.news.index, api.users.show
+    ```
+
+### F. Route Middleware Strategy
+
+**Authentication Middleware:**
+*   `auth`: Requires authenticated user
+*   `auth:sanctum`: For API authentication
+
+**Authorization Middleware:**
+*   `role:{role_name}`: Checks if user has specific role
+*   `permission:{permission_name}`: Checks if user has specific permission
+*   Custom middleware chain: `['auth', 'role:admin', 'permission:manage-users']`
+
+**Example Implementation:**
+```php
+// Single role check
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    // Admin-only routes
+});
+
+// Permission-based access
+Route::middleware(['auth', 'permission:edit-news'])->group(function () {
+    // Routes for users with edit-news permission
+});
+
+// Multiple permissions (OR logic)
+Route::middleware(['auth', 'permission:edit-news|delete-news'])->group(function () {
+    // Routes for users with either permission
+});
+```
+
+### G. Route Registration Best Practices
+
+1.  **Grouping**: Group related routes for better organization
+2.  **Naming**: Always name routes for easier reference in views and controllers
+3.  **Prefixing**: Use prefixes for logical route segments
+4.  **Middleware**: Apply middleware at group level when possible
+5.  **RESTful**: Follow RESTful conventions for resource routes
+6.  **Versioning**: Version API routes (v1, v2) for backward compatibility
+
+**Example of Well-Organized Routes:**
+```php
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('dashboard', DashboardController::class)->name('dashboard');
+        
+        Route::resource('news', NewsController::class)
+            ->middleware('permission:manage-content');
+            
+        Route::resource('users', UserController::class)
+            ->middleware('permission:manage-users');
+    });
+```
