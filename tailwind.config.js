@@ -3,31 +3,38 @@ export default {
   content: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
-    "./resources/**/*.vue",
-    "./app/Http/Livewire/**/*.php",
-    "./app/View/Components/**/*.php",
+    "./app/Livewire/**/*.php",
   ],
   theme: {
     extend: {
       colors: {
-        dsitd: {
-          blue: {
-            DEFAULT: '#01036f',
-            dark: '#010483',
-            light: '#0205a1',
-          },
-          teal: {
-            DEFAULT: '#1acc8d',
-            dark: '#17b57d',
-            light: '#34e5a6',
-          },
+        primary: {
+          50: '#fff1f2',
+          100: '#ffe4e6',
+          200: '#fecdd3',
+          300: '#fda4af',
+          400: '#fb7185',
+          500: '#f43f5e',
+          600: '#e11d48',
+          700: '#be123c',
+          800: '#9f1239',
+          900: '#881337',
+          950: '#4c0519',
+        },
+        secondary: {
+          50: '#fffbea',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+          950: '#451a03',
         }
       },
-      fontFamily: {
-        sans: ['"Open Sans"', 'sans-serif'],
-        montserrat: ['Montserrat', 'sans-serif'],
-        poppins: ['Poppins', 'sans-serif'],
-      }
     },
   },
   plugins: [],

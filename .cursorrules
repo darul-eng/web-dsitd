@@ -9,15 +9,16 @@ You are working on the **Web-DSITD** project (Laravel 12 + Tailwind + Livewire).
     - Follow the roadmap in `DOCS/DEVELOPMENT_PLAN.md`.
     - Check feature specs in `DOCS/FEATURES.md`.
 
-2.  **Manual Command Execution**:
-    - **NEVER** auto-run complex commands.
-    - Propose the command using the `run_command` tool but ask the user for confirmation or manual execution if it involves sensitive operations (migrations, seeds).
-    - Wait for the user to confirm the command has been run.
+2.  **Command Handling**:
+    - **NEVER** use the `run_command` tool to execute anything.
+    - Always provide the command string in a markdown code block within your response.
+    - **WAIT** for the user to confirm they have run the command and provide the output before proceeding to the next steps or providing subsequent commands. Do not stack multiple command steps in one response if they depend on each other.
+    - Instruct the user to run the command manually.
 
 3.  **No Auto-Running Application**:
     - The user runs the app via **Laravel Herd** at `http://web-dsitd.test`.
-    - **DO NOT** run `php artisan serve` or `npm run dev`.
-    - Instruct the user to refresh their browser to see changes.
+    - **NEVER** attempt to run `php artisan serve`, `npm run dev`, or any build commands.
+    - Ask the user to refresh their browser to see changes.
 
 4.  **Tech Stack Standards**:
     - **Backend**: Laravel 12 (Service/Action Pattern, No fat controllers).
