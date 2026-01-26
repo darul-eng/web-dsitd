@@ -28,6 +28,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
             return view('admin.dashboard'); // Arch suggest resources/views/admin/
         })->name('dashboard');
 
+        // News Management
+        Route::get('/news', \App\Livewire\Admin\News\Index::class)->name('news.index');
+        Route::get('/news/create', \App\Livewire\Admin\News\Editor::class)->name('news.create');
+        Route::get('/news/edit/{uuid}', \App\Livewire\Admin\News\Editor::class)->name('news.edit');
+
         // Logout
         Route::post('/logout', function () {
             Auth::logout();

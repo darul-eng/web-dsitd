@@ -75,5 +75,10 @@ class DatabaseSeeder extends Seeder
 
         // 5. Assign Role to User
         $adminUser->assignRole($superadmin);
+
+        // 6. Content Categories
+        $this->call([
+            NewsCategorySeeder::class,
+        ]);
     }
 }

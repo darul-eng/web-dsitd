@@ -15,6 +15,8 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @livewireStyles
 
     <style>
@@ -24,6 +26,17 @@
 
         [x-cloak] {
             display: none !important;
+        }
+
+        /* Force SweetAlert2 Button Styles */
+        .swal2-styled.swal2-confirm {
+            background-color: #e11d48 !important; /* Red */
+            color: #fff !important;
+            box-shadow: 0 4px 6px -1px rgba(225, 29, 72, 0.2) !important;
+        }
+        .swal2-styled.swal2-cancel {
+            background-color: #94a3b8 !important; /* Slate */
+            color: #fff !important;
         }
     </style>
 </head>
@@ -74,7 +87,8 @@
                     <!-- Add more menu items here -->
                     <p class="px-4 text-[11px] font-semibold text-slate-400 uppercase tracking-wider mt-8 mb-2">CMS Content</p>
 
-                    <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors rounded-xl">
+                    <a href="{{ route('admin.news.index') }}"
+                        class="flex items-center px-4 py-3 text-sm font-medium transition-colors rounded-xl {{ request()->routeIs('admin.news.*') ? 'bg-primary-50 text-primary-700' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                         </svg>
@@ -157,6 +171,44 @@
     </div>
 
     @livewireScripts
+
+    <script>
+        // SweetAlert2 Toast Configuration
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
+        // Listen for standard session flash messages
+        @if(session()->has('message'))
+        Toast.fire({
+            icon: 'success',
+            title: "{{ session('message') }}"
+        });
+        @endif
+
+        @if(session()->has('error'))
+        Toast.fire({
+            icon: 'error',
+            title: "{{ session('error') }}"
+        });
+        @endif
+
+        // Listen for Livewire dispatched events
+        window.addEventListener('swal:success', event => {
+            Toast.fire({
+                icon: 'success',
+                title: event.detail.message
+            });
+        });
+    </script>
 </body>
 
 </html>
