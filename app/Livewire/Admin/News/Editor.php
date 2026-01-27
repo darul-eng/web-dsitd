@@ -6,6 +6,7 @@ namespace App\Livewire\Admin\News;
 
 use App\Models\News;
 use App\Models\NewsCategory;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
@@ -19,6 +20,8 @@ class Editor extends Component
     use WithFileUploads;
 
     public ?News $news = null;
+
+    public bool $isGeneratingAI = false;
 
     #[Validate('required|string|max:255')]
     public $title = '';
@@ -88,6 +91,97 @@ class Editor extends Component
         }
 
         return redirect()->route('admin.news.index');
+    }
+
+    public function generateAI()
+    {
+        if (empty($this->title)) {
+            $this->addError('title', 'Masukkan judul berita terlebih dahulu untuk menggunakan fitur AI.');
+            return;
+        }
+
+        $apiKey = config('services.gemini.key') ?? env('GEMINI_API_KEY');
+        
+        if (!$apiKey) {
+            $this->dispatch('swal:error', message: 'API Key AI belum dikonfigurasi.');
+            return;
+        }
+
+        $this->isGeneratingAI = true;
+
+        try {
+            $model = "gemini-2.5-flash"; // Menggunakan model yang stabil
+
+            $prompt = "Buatkan narasi berita profesional dalam Bahasa Indonesia berdasarkan judul berikut:\n\n" .
+                      "\"{$this->title}\"\n\n" .
+                      "Berikan respon dalam format JSON murni dengan struktur berikut:\n" .
+                      "{\n" .
+                      "  \"content\": \"isi berita dalam format HTML (gunakan <p>, <strong>, dll)\",\n" .
+                      "  \"meta_title\": \"judul untuk SEO (maks 60 karakter)\",\n" .
+                      "  \"meta_description\": \"deskripsi untuk SEO (maks 160 karakter)\",\n" .
+                      "  \"meta_keywords\": \"kata kunci SEO (dipisahkan koma)\",\n" .
+                      "}\n\n" .
+                      "Pastikan content HTML memiliki struktur:\n" .
+                      "1. Paragraf pembuka dengan lokasi dan lead (contoh: <p><strong>Jakarta</strong> — Pembukaan berita...)</p>\n" .
+                      "2. 3-4 paragraf isi berita\n" .
+                      "3. Paragraf penutup dengan ringkasan\n" .
+                      "4. Hashtag relevan di akhir\n\n" .
+                      "Berikan HANYA JSON murni tanpa markdown blocks.";
+
+            $response = Http::timeout(60)
+                ->withoutVerifying()
+                ->post("https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key={$apiKey}", [
+                    'contents' => [
+                        [
+                            'parts' => [
+                                ['text' => $prompt]
+                            ]
+                        ]
+                    ],
+                    'generationConfig' => [
+                        'temperature' => 0.7,
+                        'maxOutputTokens' => 2048,
+                        'response_mime_type' => 'application/json',
+                    ]
+                ]);
+
+            if ($response->successful()) {
+                $data = $response->json();
+                $textResponse = $data['candidates'][0]['content']['parts'][0]['text'] ?? '';
+
+                if (empty($textResponse)) {
+                    $this->dispatch('swal:error', message: 'AI tidak memberikan respon valid.');
+                    return;
+                }
+
+                $jsonResponse = json_decode($textResponse, true);
+                
+                if (isset($jsonResponse['content'])) {
+                    $this->content = $jsonResponse['content'];
+                    $this->meta_title = $jsonResponse['meta_title'] ?? '';
+                    $this->meta_description = $jsonResponse['meta_description'] ?? '';
+                    $this->meta_keywords = $jsonResponse['meta_keywords'] ?? '';
+
+                    $this->dispatch('content-updated', content: $this->content);
+                    $this->dispatch('swal:success', message: 'Narasi berita dan optimasi SEO berhasil disusun oleh AI.');
+                } else {
+                    $this->dispatch('swal:error', message: 'Format respon AI tidak sesuai.');
+                }
+            } else {
+                $statusCode = $response->status();
+                $errorMsg = $response->json('error.message') ?? 'Terjadi kesalahan pada server AI.';
+
+                if ($statusCode === 429) {
+                    $this->dispatch('swal:error', message: 'Rate limit tercapai. Silakan tunggu beberapa menit dan coba lagi.');
+                } else {
+                    $this->dispatch('swal:error', message: 'Gagal memanggil AI (HTTP ' . $statusCode . '): ' . $errorMsg);
+                }
+            }
+        } catch (\Exception $e) {
+            $this->dispatch('swal:error', message: 'Kesalahan sistem AI: ' . $e->getMessage());
+        } finally {
+            $this->isGeneratingAI = false;
+        }
     }
 
     public function render()

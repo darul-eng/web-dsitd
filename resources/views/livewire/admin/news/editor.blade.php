@@ -12,8 +12,30 @@
         <div class="lg:col-span-2 space-y-6">
             <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm space-y-6">
                 <!-- Title -->
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Judul Berita</label>
+                <div class="space-y-2">
+                    <div class="flex items-center gap-3">
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Judul Berita</label>
+                        <button 
+                            type="button" 
+                            wire:click="generateAI"
+                            wire:loading.attr="disabled"
+                            class="inline-flex items-center px-2 py-1 rounded-lg bg-primary-600 text-[10px] font-bold text-white hover:bg-primary-700 transition-all shadow-sm shadow-primary-600/20"
+                        >
+                            <span wire:loading.remove wire:target="generateAI" class="flex items-center gap-1">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                ✨ Generate AI
+                            </span>
+                            <span wire:loading wire:target="generateAI" class="flex items-center gap-1">
+                                <svg class="animate-spin h-3 w-3 text-white" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Sedang Menulis...
+                            </span>
+                        </button>
+                    </div>
                     <input wire:model="title" type="text" class="block w-full px-4 py-3 border border-slate-200 rounded-xl text-sm outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all bg-slate-50/50 font-bold" placeholder="Masukkan judul menarik...">
                     @error('title') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                 </div>
@@ -46,6 +68,11 @@
                                     editor.on('change blur', () => {
                                         this.content = editor.getContent();
                                     });
+
+                                    // Listen for AI generated content
+                                    window.addEventListener('content-updated', event => {
+                                        editor.setContent(event.detail.content);
+                                    });
                                 },
                                 // TinyMCE Image adjustments
                                 image_advtab: true,
@@ -65,30 +92,7 @@
                 </div>
             </div>
 
-            <!-- SEO Settings -->
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm space-y-6">
-                <h3 class="font-bold text-slate-800 flex items-center gap-2">
-                    <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-                    </svg>
-                    Optimasi SEO (Opsional)
-                </h3>
 
-                <div class="grid grid-cols-1 gap-4">
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Meta Title</label>
-                        <input wire:model="meta_title" type="text" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all">
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Meta Keywords</label>
-                        <input wire:model="meta_keywords" type="text" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all" placeholder="kata, kunci, berita">
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Meta Description</label>
-                        <textarea wire:model="meta_description" rows="3" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all"></textarea>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Sidebar Actions -->

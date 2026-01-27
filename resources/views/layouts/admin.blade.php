@@ -208,6 +208,13 @@
                 title: event.detail.message
             });
         });
+
+        window.addEventListener('swal:error', event => {
+            Toast.fire({
+                icon: 'error',
+                title: event.detail.message
+            });
+        });
     </script>
 </body>
 
