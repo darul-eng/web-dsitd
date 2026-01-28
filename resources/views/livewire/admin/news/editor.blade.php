@@ -1,4 +1,4 @@
-<div class="max-w-5xl mx-auto space-y-6">
+<div class="max-w-5xl mx-auto space-y-4">
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-slate-800">{{ $news ? 'Edit Berita' : 'Tambah Berita Baru' }}</h1>
@@ -7,12 +7,12 @@
         <a href="{{ route('admin.news.index') }}" class="text-sm font-bold text-slate-400 hover:text-slate-600 transition-colors">Batal & Kembali</a>
     </div>
 
-    <form wire:submit="save" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <form wire:submit="save" class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <!-- Main Content -->
-        <div class="lg:col-span-2 space-y-6">
-            <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm space-y-6">
+        <div class="lg:col-span-2 space-y-4">
+            <div class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm space-y-4">
                 <!-- Title -->
-                <div class="space-y-2">
+                <div class="space-y-1">
                     <div class="flex items-center gap-3">
                         <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Judul Berita</label>
                         <button 
@@ -36,7 +36,7 @@
                             </span>
                         </button>
                     </div>
-                    <input wire:model="title" type="text" class="block w-full px-4 py-3 border border-slate-200 rounded-xl text-sm outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all bg-slate-50/50 font-bold" placeholder="Masukkan judul menarik...">
+                    <input wire:model="title" type="text" class="block w-full px-4 py-2 border border-slate-200 rounded-xl text-sm outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all bg-slate-50/50 font-bold" placeholder="Masukkan judul menarik...">
                     @error('title') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
                 </div>
 
@@ -84,7 +84,7 @@
                             });
                         }
                     }"
-                    class="space-y-2">
+                    class="space-y-1">
                     <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Isi Berita</label>
                     <p class="text-[10px] text-slate-400 mb-2">Gunakan editor di bawah untuk menulis konten. Anda bisa drag & drop gambar langsung ke editor dan mengatur ukurannya.</p>
                     <textarea x-ref="tinymce" class="block w-full"></textarea>
@@ -96,12 +96,12 @@
         </div>
 
         <!-- Sidebar Actions -->
-        <div class="space-y-6">
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm space-y-6">
+        <div class="space-y-4">
+            <div class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm space-y-4">
                 <!-- Status -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Status Publikasi</label>
-                    <select wire:model="status" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all bg-slate-50/50">
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Status Publikasi</label>
+                    <select wire:model="status" class="block w-full px-4 py-2 border border-slate-200 rounded-xl text-sm outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all bg-slate-50/50">
                         <option value="draft">Simpan sebagai Draft</option>
                         <option value="published">Terbitkan Langsung</option>
                         <option value="archived">Arsipkan</option>
@@ -110,8 +110,8 @@
 
                 <!-- Category -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Kategori</label>
-                    <select wire:model="category_id" class="block w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:ring-primary-500 focus:border-primary-500 transition-all bg-slate-50/50">
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Kategori</label>
+                    <select wire:model="category_id" class="block w-full px-4 py-2 border border-slate-200 rounded-xl text-sm focus:ring-primary-500 focus:border-primary-500 transition-all bg-slate-50/50">
                         <option value="">Pilih Kategori</option>
                         @foreach($categories as $cat)
                         <option value="{{ $cat->id }}">{{ $cat->name }}</option>
@@ -124,11 +124,11 @@
                 <div>
                     <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Gambar Sampul</label>
                     <p class="text-[10px] text-slate-400 mb-2">Gambar utama yang akan muncul di daftar berita dan header detail berita.</p>
-                    <div class="mt-2 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl p-4 transition-all hover:border-primary-300">
+                    <div class="mt-2 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl p-3 transition-all hover:border-primary-300">
                         @if ($cover_image)
-                        <img src="{{ $cover_image->temporaryUrl() }}" class="w-full h-32 object-cover rounded-xl mb-3">
+                        <img src="{{ $cover_image->temporaryUrl() }}" class="w-full h-28 object-cover rounded-xl mb-3">
                         @elseif ($news && $news->cover_image)
-                        <img src="{{ asset('storage/' . $news->cover_image) }}" class="w-full h-32 object-cover rounded-xl mb-3">
+                        <img src="{{ asset('storage/' . $news->cover_image) }}" class="w-full h-28 object-cover rounded-xl mb-3">
                         @endif
 
                         <input type="file" wire:model="cover_image" class="hidden" id="cover-upload">
@@ -142,7 +142,7 @@
 
                 <hr class="border-slate-50">
 
-                <button type="submit" class="w-full py-3 bg-primary-600 hover:bg-primary-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-primary-600/30 flex items-center justify-center gap-2">
+                <button type="submit" class="w-full py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-primary-600/30 flex items-center justify-center gap-2">
                     <span wire:loading.remove>Simpan Berita</span>
                     <span wire:loading class="flex items-center gap-2">
                         <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
