@@ -110,7 +110,26 @@
 
                 <!-- Category -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Kategori</label>
+                    <div class="flex items-center justify-between mb-1">
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Kategori</label>
+                        <button type="button" wire:click="$toggle('showAddCategory')" class="text-[10px] font-bold text-primary-600 hover:text-primary-700 transition-colors">
+                            {{ $showAddCategory ? 'Batal' : '+ Kategori Baru' }}
+                        </button>
+                    </div>
+
+                    @if($showAddCategory)
+                    <div class="flex gap-2">
+                        <input wire:model="new_category_name" type="text" 
+                            class="flex-1 px-4 py-2 border border-slate-200 rounded-xl text-sm outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all bg-slate-50/50" 
+                            placeholder="Nama kategori baru..."
+                            wire:keydown.enter="addCategory"
+                        >
+                        <button type="button" wire:click="addCategory" class="px-3 py-2 bg-primary-600 text-white rounded-xl text-xs font-bold hover:bg-primary-700 transition-all">
+                            Simpan
+                        </button>
+                    </div>
+                    @error('new_category_name') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                    @else
                     <select wire:model="category_id" class="block w-full px-4 py-2 border border-slate-200 rounded-xl text-sm focus:ring-primary-500 focus:border-primary-500 transition-all bg-slate-50/50">
                         <option value="">Pilih Kategori</option>
                         @foreach($categories as $cat)
@@ -118,6 +137,7 @@
                         @endforeach
                     </select>
                     @error('category_id') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+                    @endif
                 </div>
 
                 <!-- Cover Image -->

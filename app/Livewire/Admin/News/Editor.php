@@ -43,6 +43,10 @@ class Editor extends Component
     public $meta_title = '';
     public $meta_description = '';
     public $meta_keywords = '';
+    
+    // Add Category
+    public $showAddCategory = false;
+    public $new_category_name = '';
 
     public function mount(string $uuid = null)
     {
@@ -182,6 +186,24 @@ class Editor extends Component
         } finally {
             $this->isGeneratingAI = false;
         }
+    }
+
+    public function addCategory()
+    {
+        $this->validate([
+            'new_category_name' => 'required|string|max:255|unique:news_categories,name',
+        ]);
+
+        $category = NewsCategory::create([
+            'name' => $this->new_category_name,
+            'slug' => Str::slug($this->new_category_name),
+        ]);
+
+        $this->category_id = $category->id;
+        $this->new_category_name = '';
+        $this->showAddCategory = false;
+        
+        $this->dispatch('swal:success', message: 'Kategori baru berhasil ditambahkan.');
     }
 
     public function render()
