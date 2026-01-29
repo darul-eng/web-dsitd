@@ -2,7 +2,7 @@
     <div class="flex items-center justify-between">
         <div>
             <h1 class="text-2xl font-bold text-slate-800">{{ $news ? 'Edit Berita' : 'Tambah Berita Baru' }}</h1>
-            <p class="text-sm text-slate-500 mt-1">Lengkapi detail berita di bawah ini.</p>
+            <p class="text-sm text-slate-500">Lengkapi detail berita di bawah ini.</p>
         </div>
         <a href="{{ route('admin.news.index') }}" class="text-sm font-bold text-slate-400 hover:text-slate-600 transition-colors">Batal & Kembali</a>
     </div>
@@ -12,7 +12,7 @@
         <div class="lg:col-span-2 space-y-4">
             <div class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm space-y-4">
                 <!-- Title -->
-                <div class="space-y-1">
+                <div class="space-y-1 mt-1">
                     <div class="flex items-center gap-3">
                         <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Judul Berita</label>
                         <button 
@@ -84,7 +84,7 @@
                             });
                         }
                     }"
-                    class="space-y-1">
+                    class="space-y-1 mt-1">
                     <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Isi Berita</label>
                     <p class="text-[10px] text-slate-400 mb-2">Gunakan editor di bawah untuk menulis konten. Anda bisa drag & drop gambar langsung ke editor dan mengatur ukurannya.</p>
                     <textarea x-ref="tinymce" class="block w-full"></textarea>
@@ -100,7 +100,7 @@
             <div class="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-sm space-y-4">
                 <!-- Status -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Status Publikasi</label>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Status Publikasi</label>
                     <select wire:model="status" class="block w-full px-4 py-2 border border-slate-200 rounded-xl text-sm outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all bg-slate-50/50">
                         <option value="draft">Simpan sebagai Draft</option>
                         <option value="published">Terbitkan Langsung</option>
@@ -110,7 +110,7 @@
 
                 <!-- Category -->
                 <div>
-                    <div class="flex items-center justify-between mb-1">
+                    <div class="flex items-center justify-between mt-1">
                         <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Kategori</label>
                         <button type="button" wire:click="$toggle('showAddCategory')" class="text-[10px] font-bold text-primary-600 hover:text-primary-700 transition-colors">
                             {{ $showAddCategory ? 'Batal' : '+ Kategori Baru' }}
@@ -142,7 +142,7 @@
 
                 <!-- Cover Image -->
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Gambar Sampul</label>
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Gambar Sampul</label>
                     <p class="text-[10px] text-slate-400 mb-2">Gambar utama yang akan muncul di daftar berita dan header detail berita.</p>
                     <div class="mt-2 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl p-3 transition-all hover:border-primary-300">
                         @if ($cover_image)
@@ -162,7 +162,7 @@
 
                 <hr class="border-slate-50">
 
-                <button type="submit" class="w-full py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-primary-600/30 flex items-center justify-center gap-2">
+                <button type="submit" class="w-full py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-primary-600/30 flex items-center justify-center gap-2 mt-1">
                     <span wire:loading.remove>Simpan Berita</span>
                     <span wire:loading class="flex items-center gap-2">
                         <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
