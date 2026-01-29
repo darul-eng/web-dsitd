@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Livewire\Auth\Login;
+use App\Livewire\Admin\News\Index;
+use App\Livewire\Admin\News\Editor;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +31,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         })->name('dashboard');
 
         // News Management
-        Route::get('/news', \App\Livewire\Admin\News\Index::class)->name('news.index');
-        Route::get('/news/create', \App\Livewire\Admin\News\Editor::class)->name('news.create');
-        Route::get('/news/edit/{uuid}', \App\Livewire\Admin\News\Editor::class)->name('news.edit');
+        Route::get('/news', Index::class)->name('news.index');
+        Route::get('/news/create', Editor::class)->name('news.create');
+        Route::get('/news/edit/{uuid}', Editor::class)->name('news.edit');
 
         // Logout
         Route::post('/logout', function () {

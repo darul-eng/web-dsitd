@@ -7,7 +7,7 @@
             <p class="hidden xl:block text-xs text-slate-400 font-medium">Kelola konten informasi direktorat</p>
         </div>
 
-        <div class="flex flex-wrap items-center justify-end gap-2 flex-grow lg:flex-grow-0">
+        <div class="flex flex-wrap items-center justify-end gap-3 flex-grow lg:flex-grow-0">
             <!-- Search Box -->
             <div class="relative flex-shrink-0 w-60">
                 <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-500 transition-colors">

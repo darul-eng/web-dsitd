@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -30,116 +31,57 @@
 
         /* Force SweetAlert2 Button Styles */
         .swal2-styled.swal2-confirm {
-            background-color: #e11d48 !important; /* Red */
+            background-color: #e11d48 !important;
             color: #fff !important;
             box-shadow: 0 4px 6px -1px rgba(225, 29, 72, 0.2) !important;
         }
+
         .swal2-styled.swal2-cancel {
-            background-color: #94a3b8 !important; /* Slate */
+            background-color: #94a3b8 !important;
             color: #fff !important;
         }
     </style>
 </head>
 
-<body class="h-full antialiased text-slate-900 overflow-hidden" x-data="{ sidebarOpen: false }">
+<body class="h-full antialiased text-slate-900 overflow-hidden" 
+    x-data="{ 
+        sidebarOpen: true, 
+        mobileOpen: false,
+        isMobile: window.innerWidth < 1024,
+        init() {
+            window.addEventListener('resize', () => {
+                this.isMobile = window.innerWidth < 1024;
+                if (!this.isMobile) this.mobileOpen = false;
+            });
+        }
+    }">
+
     <div class="flex h-screen bg-slate-50">
-        <!-- Sidebar Backdrop -->
-        <div x-show="sidebarOpen"
-            x-transition:enter="transition-opacity ease-linear duration-300"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="transition-opacity ease-linear duration-300"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-            @click="sidebarOpen = false"
-            class="fixed inset-0 z-20 bg-slate-900/50 lg:hidden"
-            x-cloak></div>
-
-        <!-- Sidebar -->
-        <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-            class="fixed inset-y-0 left-0 z-30 w-72 bg-white border-r border-slate-200 transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0">
-            <div class="flex flex-col h-full">
-                <!-- Sidebar Header -->
-                <div class="flex items-center justify-center h-20 border-b border-slate-100 px-6">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary-600/30">
-                            D
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-lg font-bold tracking-tight text-slate-800">DSITD</span>
-                            <span class="text-[10px] font-medium text-slate-400 uppercase tracking-widest leading-none">Admin Panel</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sidebar Content -->
-                <nav class="flex-1 px-4 py-6 space-y-1 overflow-y-auto custom-scrollbar">
-                    <p class="px-4 text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Main Menu</p>
-
-                    <a href="{{ route('admin.dashboard') }}"
-                        class="flex items-center px-4 py-3 text-sm font-medium transition-colors rounded-xl {{ request()->routeIs('admin.dashboard') ? 'bg-primary-50 text-primary-700' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                        </svg>
-                        Dashboard
-                    </a>
-
-                    <!-- Add more menu items here -->
-                    <p class="px-4 text-[11px] font-semibold text-slate-400 uppercase tracking-wider mt-8 mb-2">CMS Content</p>
-
-                    <a href="{{ route('admin.news.index') }}"
-                        class="flex items-center px-4 py-3 text-sm font-medium transition-colors rounded-xl {{ request()->routeIs('admin.news.*') ? 'bg-primary-50 text-primary-700' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                        </svg>
-                        Berita & Info
-                    </a>
-
-                    <a href="#" class="flex items-center px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors rounded-xl">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        Halaman
-                    </a>
-                </nav>
-
-                <!-- Sidebar Footer -->
-                <div class="p-4 border-t border-slate-100">
-                    <div class="bg-slate-50 rounded-2xl p-4">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold">
-                                {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
-                            </div>
-                            <div class="ml-3 truncate">
-                                <p class="text-sm font-semibold text-slate-800 truncate">{{ auth()->user()->name ?? 'Admin' }}</p>
-                                <p class="text-[11px] text-slate-500 truncate">{{ auth()->user()->email ?? 'admin@unhas.ac.id' }}</p>
-                            </div>
-                        </div>
-                        <form method="POST" action="{{ route('admin.logout') }}">
-                            @csrf
-                            <button type="submit" class="mt-4 w-full flex items-center justify-center px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-100 transition-colors">
-                                Logout
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <!-- Sidebar (Desktop Mode) -->
+        <aside x-show="!isMobile"
+            :class="{
+                'w-72': sidebarOpen,
+                'w-20': !sidebarOpen
+            }"
+            class="relative h-full bg-white border-r border-slate-200 shrink-0 transition-all duration-300 ease-in-out hidden lg:block">
+            @include('layouts.sidebar-content')
         </aside>
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
-            <!-- Topbar -->
-            <header class="flex items-center justify-between h-20 bg-white border-b border-slate-200 px-6 shrink-0">
-                <div class="flex items-center lg:hidden">
-                    <button @click="sidebarOpen = true" class="p-2 text-slate-600 hover:bg-slate-50 rounded-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <!-- Main Content Wrapper -->
+        <div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-50">
+            <!-- Topbar (Header) -->
+            <header class="flex items-center justify-between h-20 bg-white border-b border-slate-200 px-6 shrink-0 z-20">
+                <div class="flex items-center space-x-4">
+                    <!-- Toggle Sidebar Button (Common) -->
+                    <button @click.stop="isMobile ? mobileOpen = !mobileOpen : sidebarOpen = !sidebarOpen"
+                        class="flex items-center justify-center p-2.5 bg-white border border-slate-200 text-slate-600 hover:text-primary-600 hover:border-primary-100 hover:bg-primary-50 rounded-xl transition-all shadow-sm group">
+                        <svg class="w-6 h-6 transition-transform duration-300" :class="!sidebarOpen && !isMobile ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path x-show="(!isMobile && sidebarOpen) || (isMobile && !mobileOpen)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            <path x-show="(!isMobile && !sidebarOpen) || (isMobile && mobileOpen)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7" />
                         </svg>
                     </button>
-                </div>
 
-                <div class="flex items-center space-x-4">
-                    <h1 class="text-xl font-bold text-slate-800">@yield('title', 'Dashboard')</h1>
+                    <h1 class="text-xl font-bold text-slate-800 ml-2">@yield('title', 'Dashboard')</h1>
                 </div>
 
                 <div class="flex items-center space-x-3">
@@ -162,7 +104,7 @@
             </header>
 
             <!-- Page Content -->
-            <main class="flex-1 overflow-y-auto bg-slate-50/50 p-6 custom-scrollbar">
+            <main class="flex-1 overflow-y-auto bg-slate-50/50 p-4 custom-scrollbar">
                 <div class="max-w-7xl mx-auto">
                     {{ $slot }}
                 </div>
@@ -170,10 +112,31 @@
         </div>
     </div>
 
+    <!-- Mobile Elements (Placed at the end for ultimate stacking priority) -->
+    <div x-show="mobileOpen"
+        x-transition:enter="transition-opacity ease-linear duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition-opacity ease-linear duration-300"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        @click="mobileOpen = false"
+        class="fixed inset-0 bg-slate-900/50 lg:hidden"
+        style="z-index: 9998 !important;"
+        x-cloak></div>
+
+    <aside x-show="isMobile"
+        :class="mobileOpen ? 'translate-x-0' : '-translate-x-full'"
+        class="fixed inset-y-0 left-0 w-72 bg-white border-r border-slate-200 transition-transform duration-300 ease-in-out lg:hidden"
+        style="z-index: 9999 !important;"
+        @click.away="mobileOpen = false"
+        x-cloak>
+        @include('layouts.sidebar-content')
+    </aside>
+
     @livewireScripts
 
     <script>
-        // SweetAlert2 Toast Configuration
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -186,7 +149,6 @@
             }
         });
 
-        // Listen for standard session flash messages
         @if(session()->has('message'))
         Toast.fire({
             icon: 'success',
@@ -201,7 +163,6 @@
         });
         @endif
 
-        // Listen for Livewire dispatched events
         window.addEventListener('swal:success', event => {
             Toast.fire({
                 icon: 'success',
