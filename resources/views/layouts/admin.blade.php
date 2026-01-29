@@ -12,18 +12,18 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @livewireStyles
-
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+ 
+     <!-- Scripts -->
+     @vite(['resources/css/app.css', 'resources/js/app.js'])
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js" referrerpolicy="origin"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     @livewireStyles
+ 
+     <style>
+         body {
+             font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+         }
 
         [x-cloak] {
             display: none !important;
@@ -104,8 +104,8 @@
             </header>
 
             <!-- Page Content -->
-            <main class="flex-1 overflow-y-auto bg-slate-50/50 p-4 custom-scrollbar">
-                <div class="max-w-7xl mx-auto">
+            <main class="flex-1 overflow-y-auto bg-slate-50/50 p-4 lg:p-8 custom-scrollbar relative">
+                <div class="w-full">
                     {{ $slot }}
                 </div>
             </main>

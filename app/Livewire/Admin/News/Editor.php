@@ -44,6 +44,9 @@ class Editor extends Component
     public $meta_description = '';
     public $meta_keywords = '';
     
+    public $start_at = '';
+    public $end_at = '';
+    
     // Add Category
     public $showAddCategory = false;
     public $new_category_name = '';
@@ -59,6 +62,8 @@ class Editor extends Component
             $this->meta_title = $this->news->meta_title;
             $this->meta_description = $this->news->meta_description;
             $this->meta_keywords = $this->news->meta_keywords;
+            $this->start_at = $this->news->start_at;
+            $this->end_at = $this->news->end_at;
         }
     }
 
@@ -75,6 +80,8 @@ class Editor extends Component
             'meta_description' => $this->meta_description,
             'meta_keywords' => $this->meta_keywords,
             'updated_by' => Auth::user()?->name ?? 'System',
+            'start_at' => $this->start_at,
+            'end_at' => $this->end_at,
         ];
 
         if ($this->cover_image) {

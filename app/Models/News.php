@@ -29,6 +29,10 @@ class News extends Model
         'meta_description',
         'meta_keywords',
         'updated_by',
+        'start_at',
+        'end_at',
+        'publish_at_legacy',
+        'updated_by_legacy',
     ];
 
     protected $casts = [

@@ -1,146 +1,136 @@
-<div class="space-y-3">
-    <!-- Header & Action Row -->
-    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-white/50 p-2 rounded-2xl border border-slate-100/50">
-        <div class="flex items-center gap-4 px-2">
-            <h1 class="text-xl font-bold text-slate-800 tracking-tight whitespace-nowrap">Manajemen Berita</h1>
-            <div class="hidden xl:block h-6 w-px bg-slate-200"></div>
-            <p class="hidden xl:block text-xs text-slate-400 font-medium">Kelola konten informasi direktorat</p>
+<div class="space-y-4 font-inter">
+    <!-- Unified Single-Row Toolbar -->
+    <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex flex-col lg:flex-row items-center gap-4">
+        <!-- Title -->
+        <div class="px-2 shrink-0 border-r border-slate-100 pr-4 hidden xl:block">
+            <h1 class="text-lg font-extrabold text-slate-900 tracking-tight whitespace-nowrap">Berita & Informasi</h1>
+        </div>
+        <div class="xl:hidden shrink-0">
+            <h1 class="text-lg font-extrabold text-slate-900 tracking-tight whitespace-nowrap pr-2">Berita</h1>
         </div>
 
-        <div class="flex flex-wrap items-center justify-end gap-3 flex-grow lg:flex-grow-0">
-            <!-- Search Box -->
-            <div class="relative flex-shrink-0 w-60">
-                <span class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-500 transition-colors">
-                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </span>
-                <input wire:model.live="search" type="text" placeholder="Cari berita..." class="block w-full pl-11 pr-4 py-1.5 border border-slate-200 rounded-xl text-xs outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all bg-white shadow-sm placeholder:text-slate-400 font-medium tracking-tight">
+        <!-- Search Box (Flex Grow) -->
+        <div class="relative flex-grow w-full group">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 group-focus-within:text-red-500 transition-colors"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
+            <input wire:model.live="search" type="text" placeholder="Cari berita..." 
+                   class="block w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none focus:ring-4 focus:ring-red-500/5 focus:border-red-500 transition-all font-medium tracking-tight">
+        </div>
 
+        <!-- Filters & Action Group -->
+        <div class="flex items-center gap-2 w-full lg:w-auto shrink-0">
             <!-- Category -->
-            <div class="flex-shrink-0 w-48">
-                <select wire:model.live="category" class="block w-full py-1.5 border border-slate-200 rounded-xl text-xs outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all bg-white shadow-sm text-slate-600 font-medium cursor-pointer">
+            <div class="relative w-full lg:w-40">
+                <select wire:model.live="category" 
+                        class="block w-full appearance-none pl-3 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-lg text-[11px] outline-none focus:border-red-500 transition-all text-slate-600 font-bold cursor-pointer">
                     <option value="">Semua Kategori</option>
                     @foreach($categories as $cat)
                     <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                     @endforeach
                 </select>
+                <div class="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
             </div>
 
             <!-- Status -->
-            <div class="flex-shrink-0 w-32">
-                <select wire:model.live="status" class="block w-full py-1.5 border border-slate-200 rounded-xl text-xs outline-none focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 transition-all bg-white shadow-sm text-slate-600 font-medium cursor-pointer">
+            <div class="relative w-full lg:w-32">
+                <select wire:model.live="status" 
+                        class="block w-full appearance-none pl-3 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-lg text-[11px] outline-none focus:border-red-500 transition-all text-slate-600 font-bold cursor-pointer">
                     <option value="">Status</option>
                     <option value="published">Published</option>
                     <option value="draft">Draft</option>
                     <option value="archived">Archived</option>
                 </select>
+                <div class="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
             </div>
 
             <!-- Add Button -->
-            <a href="{{ route('admin.news.create') }}" class="flex-shrink-0 group inline-flex items-center justify-center px-4 py-1.5 bg-primary-600 hover:bg-primary-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-primary-600/20 whitespace-nowrap">
-                <svg class="w-3.5 h-3.5 mr-1.5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
-                Baru
+            <a href="{{ route('admin.news.create') }}" 
+               class="inline-flex items-center gap-1.5 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold rounded-lg transition-all shadow-md shadow-red-600/20 shrink-0 whitespace-nowrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>Baru</span>
             </a>
         </div>
     </div>
 
-    <!-- Table Card -->
-    <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
+    <!-- Dense Data Table -->
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left">
-                <thead class="bg-slate-50/50 text-slate-400 uppercase text-[10px] font-bold tracking-widest border-b border-slate-50">
-                    <tr>
-                        <th class="px-6 py-4">Informasi Berita</th>
-                        <th class="px-6 py-4 text-center">Status</th>
-                        <th class="px-6 py-4 text-center w-24">Views</th>
-                        <th class="px-6 py-4 text-right w-28">Opsi</th>
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-50/50">
+                    <tr class="border-b border-slate-200">
+                        <th class="px-5 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Konten Berita</th>
+                        <th class="px-5 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center">Status</th>
+                        <th class="px-5 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center">Engagement</th>
+                        <th class="px-5 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest text-right">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-50">
+                <tbody class="divide-y divide-slate-100">
                     @forelse($newsItems as $item)
-                    <tr class="hover:bg-slate-50/30 transition-colors group">
-                        <td class="px-6 py-3">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200 shadow-sm">
+                    <tr class="hover:bg-slate-50/50 transition-all group">
+                        <td class="px-5 py-2.5">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-slate-100 flex-shrink-0 overflow-hidden border border-slate-200">
                                     @if($item->cover_image)
-                                    <img src="{{ asset('storage/' . $item->cover_image) }}" class="w-full h-full object-cover">
+                                    <img src="{{ asset('storage/' . $item->cover_image) }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                     @else
                                     <div class="w-full h-full flex items-center justify-center text-slate-300">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
                                     </div>
                                     @endif
                                 </div>
                                 <div class="min-w-0">
-                                    <h4 class="font-bold text-slate-800 line-clamp-1 group-hover:text-primary-600 transition-colors text-sm">{{ $item->title }}</h4>
-                                    <div class="flex items-center gap-2 mt-1">
-                                        <span class="text-primary-600 font-extrabold text-[9px] uppercase tracking-wider bg-primary-50 px-1.5 py-0.5 rounded">{{ $item->category->name }}</span>
-                                        <span class="text-slate-300">•</span>
-                                        <span class="text-slate-400 text-[10px] font-medium italic">oleh {{ $item->author->name }}</span>
+                                    <h4 class="font-bold text-slate-800 group-hover:text-red-600 transition-colors text-xs truncate leading-snug">{{ $item->title }}</h4>
+                                    <div class="flex items-center gap-2 mt-0.5">
+                                        <span class="text-[9px] font-extrabold text-red-600 uppercase tracking-tight">{{ $item->category->name }}</span>
+                                        <span class="text-slate-300 text-[10px]">•</span>
+                                        <span class="text-slate-400 text-[9px] font-medium tracking-tight truncate max-w-[120px]">{{ $item->author->name }}</span>
                                     </div>
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-3 text-center">
+                        <td class="px-5 py-2.5 text-center">
                             @if($item->status === 'published')
-                            <span class="inline-flex px-2 py-0.5 bg-emerald-50 text-emerald-600 rounded-md text-[10px] font-bold border border-emerald-100">Published</span>
+                            <span class="inline-flex items-center px-2 py-0.5 bg-green-50 text-green-700 rounded-full text-[9px] font-bold border border-green-100">Published</span>
                             @elseif($item->status === 'draft')
-                            <span class="inline-flex px-2 py-0.5 bg-amber-50 text-amber-600 rounded-md text-[10px] font-bold border border-amber-100">Draft</span>
+                            <span class="inline-flex items-center px-2 py-0.5 bg-slate-50 text-slate-600 rounded-full text-[9px] font-bold border border-slate-200">Draft</span>
                             @else
-                            <span class="inline-flex px-2 py-0.5 bg-slate-100 text-slate-500 rounded-md text-[10px] font-bold border border-slate-200">Archived</span>
+                            <span class="inline-flex items-center px-2 py-0.5 bg-amber-50 text-amber-700 rounded-full text-[9px] font-bold border border-amber-100">Archived</span>
                             @endif
                         </td>
-                        <td class="px-6 py-3 text-center">
-                            <span class="text-xs font-bold text-slate-600">{{ number_format($item->views_count) }}</span>
-                            <p class="text-[9px] text-slate-400 uppercase font-bold tracking-tighter">Views</p>
+                        <td class="px-5 py-2.5 text-center">
+                            <div class="flex flex-col items-center">
+                                <span class="text-xs font-extrabold text-slate-700">{{ number_format($item->views_count) }}</span>
+                                <span class="text-[8px] text-slate-400 font-bold uppercase tracking-tighter">Views</span>
+                            </div>
                         </td>
-                        <td class="px-6 py-3">
-                            <div class="flex justify-end gap-1">
-                                <a href="{{ route('admin.news.edit', $item->uuid) }}" class="p-2 text-slate-400 hover:text-primary-600 hover:bg-primary-50 rounded-xl transition-all group/btn">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg>
+                        <td class="px-5 py-2.5">
+                            <div class="flex items-center justify-end gap-1">
+                                <a href="{{ route('admin.news.edit', $item->uuid) }}" 
+                                   class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                                 </a>
-                                <button
-                                    x-on:click="
-                                        Swal.fire({
-                                            title: 'Hapus Berita?',
-                                            text: 'Data yang dihapus tidak dapat dikembalikan!',
+                                <button x-on:click="Swal.fire({
+                                            title: 'Hapus?',
                                             icon: 'warning',
                                             showCancelButton: true,
-                                            confirmButtonText: 'Ya, Hapus!',
-                                            cancelButtonText: 'Batal',
-                                        }).then((result) => {
-                                            if (result.isConfirmed) {
-                                                $wire.delete('{{ $item->uuid }}')
-                                            }
-                                        })
-                                    "
-                                    class="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all group/btn">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
+                                            confirmButtonColor: '#e11d48',
+                                            confirmButtonText: 'Hapus'
+                                        }).then((r) => r.isConfirmed && $wire.delete('{{ $item->uuid }}'))"
+                                        class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                                 </button>
                             </div>
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" class="px-6 py-16 text-center">
-                            <div class="flex flex-col items-center">
-                                <div class="w-20 h-20 bg-slate-50 rounded-[2rem] flex items-center justify-center text-slate-200 mb-4 border border-slate-100">
-                                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                                    </svg>
-                                </div>
-                                <h5 class="text-slate-800 font-bold text-lg">Data Berita Kosong</h5>
-                                <p class="text-slate-500 text-sm max-w-xs mx-auto mt-2">Belum ada berita yang sesuai dengan kriteria pencarian atau filter Anda saat ini.</p>
-                            </div>
+                        <td colspan="4" class="px-6 py-12 text-center">
+                            <p class="text-sm font-bold text-slate-400 tracking-tight italic">Data tidak ditemukan...</p>
                         </td>
                     </tr>
                     @endforelse
@@ -149,7 +139,7 @@
         </div>
 
         @if($newsItems->hasPages())
-        <div class="px-6 py-4 bg-slate-50/30 border-t border-slate-50">
+        <div class="px-5 py-3 bg-slate-50/50 border-t border-slate-200">
             {{ $newsItems->links() }}
         </div>
         @endif

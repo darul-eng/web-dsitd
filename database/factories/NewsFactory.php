@@ -16,8 +16,19 @@ class NewsFactory extends Factory
      */
     public function definition(): array
     {
+        $title = $this->faker->sentence(mt_rand(6, 10));
         return [
-            //
+            'news_category_id' => \App\Models\NewsCategory::inRandomOrder()->first()?->id ?? 1,
+            'user_id' => \App\Models\User::inRandomOrder()->first()?->id ?? 1,
+            'title' => $title,
+            'slug' => \Illuminate\Support\Str::slug($title),
+            'content' => '<p>' . implode('</p><p>', $this->faker->paragraphs(mt_rand(5, 10))) . '</p>',
+            'status' => $this->faker->randomElement(['published', 'published', 'published', 'draft', 'archived']),
+            'published_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'views_count' => mt_rand(50, 2500),
+            'meta_title' => $title,
+            'meta_description' => $this->faker->sentence(20),
+            'meta_keywords' => 'unhas, dsitd, berita, ' . $this->faker->word(),
         ];
     }
 }
