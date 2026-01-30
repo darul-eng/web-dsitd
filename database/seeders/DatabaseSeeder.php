@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
@@ -80,6 +78,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
             NewsCategorySeeder::class,
             NewsSeeder::class,
+            ServiceSeeder::class,
+            FaqSeeder::class,
+            JumbotronSeeder::class,
+            PageSeeder::class,
+            MemberSeeder::class,
+            GallerySeeder::class,
+            DocumentSeeder::class,
+            LinkSeeder::class,
         ]);
     }
 }

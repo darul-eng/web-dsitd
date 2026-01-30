@@ -67,8 +67,10 @@ class Editor extends Component
             'user_id' => Auth::id(),
         ];
 
+        $galleryInstance = $this->galleryModel ?? new Gallery();
+        
         if ($this->cover_image) {
-            $data['cover_image'] = $this->cover_image->store('galleries/covers', 'public');
+            $data['cover_image'] = $galleryInstance->uploadAsset($this->cover_image, 'galleries/covers', $galleryInstance->cover_image);
         }
 
         if ($this->galleryModel) {
@@ -82,7 +84,7 @@ class Editor extends Component
 
         if ($this->images) {
             foreach ($this->images as $file) {
-                $path = $file->store('galleries/photos', 'public');
+                $path = $gallery->uploadAsset($file, 'galleries/photos');
                 GalleryImage::create([
                     'gallery_id' => $gallery->id,
                     'image_path' => $path,
@@ -96,7 +98,7 @@ class Editor extends Component
     public function removeImage(int $id)
     {
         $img = GalleryImage::findOrFail($id);
-        \Illuminate\Support\Facades\Storage::disk('public')->delete($img->image_path);
+        $this->galleryModel->deleteAsset($img->image_path);
         $img->delete();
         $this->galleryModel->load('images');
     }

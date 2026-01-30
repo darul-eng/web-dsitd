@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
+use App\Traits\HasAssets;
+
 class Service extends Model
 {
-    use HasFactory;
+    use HasFactory, HasAssets;
 
     protected $fillable = [
         'uuid',

@@ -18,6 +18,7 @@ class NewsFactory extends Factory
     {
         $title = $this->faker->sentence(mt_rand(6, 10));
         return [
+            'uuid' => (string) \Illuminate\Support\Str::uuid(),
             'news_category_id' => \App\Models\NewsCategory::inRandomOrder()->first()?->id ?? 1,
             'user_id' => \App\Models\User::inRandomOrder()->first()?->id ?? 1,
             'title' => $title,

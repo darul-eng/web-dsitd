@@ -10,9 +10,11 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+use App\Traits\HasAssets;
+
 class Gallery extends Model
 {
-    use HasFactory;
+    use HasFactory, HasAssets;
 
     protected $fillable = [
         'uuid',

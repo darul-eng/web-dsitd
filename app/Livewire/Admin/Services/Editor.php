@@ -80,8 +80,10 @@ class Editor extends Component
             'meta_keywords' => $this->meta_keywords,
         ];
 
+        $service = $this->serviceModel ?? new Service();
+        
         if ($this->icon) {
-            $data['icon'] = $this->icon->store('service-icons', 'public');
+            $data['icon'] = $service->uploadAsset($this->icon, 'services', $service->icon);
         }
 
         if ($this->serviceModel) {
