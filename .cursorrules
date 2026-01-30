@@ -8,6 +8,7 @@ You are working on the **Web-DSITD** project (Laravel 12 + Tailwind + Livewire).
     - Always strictly align architectural decisions with `DOCS/ARCHITECTURE.md`.
     - Follow the roadmap in `DOCS/DEVELOPMENT_PLAN.md`.
     - Check feature specs in `DOCS/FEATURES.md`.
+    - **Legacy Source of Truth**: This project is a migration from `web-dsti`. Always check migrations, and structures in the `web-dsti` project directory to ensure the new implementation is compatible with the existing database.
 
 2.  **Command Handling**:
     - **NEVER** use the `run_command` tool to execute anything.
