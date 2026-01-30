@@ -9,6 +9,9 @@ use App\Livewire\Admin\Pages\Index as PageIndex;
 use App\Livewire\Admin\Pages\Editor as PageEditor;
 use App\Livewire\Admin\Jumbotrons\Index as JumbotronIndex;
 use App\Livewire\Admin\Links\Index as LinkIndex;
+use App\Livewire\Admin\Services\Index as ServiceIndex;
+use App\Livewire\Admin\Services\Editor as ServiceEditor;
+use App\Livewire\Admin\Documents\Index as DocumentIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +52,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Link Management
         Route::get('/links', LinkIndex::class)->name('links.index');
+
+        // Service Management
+        Route::get('/services', ServiceIndex::class)->name('services.index');
+        Route::get('/services/create', ServiceEditor::class)->name('services.create');
+        Route::get('/services/edit/{uuid}', ServiceEditor::class)->name('services.edit');
+
+        // Document Management
+        Route::get('/documents', DocumentIndex::class)->name('documents.index');
 
         // Logout
         Route::post('/logout', function () {

@@ -47,6 +47,28 @@
             <span x-show="sidebarOpen || isMobile" class="whitespace-nowrap tracking-tight">Berita & Info</span>
         </a>
 
+        <a href="{{ route('admin.services.index') }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.services.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
+            title="Layanan">
+            <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            <span x-show="sidebarOpen || isMobile" class="whitespace-nowrap tracking-tight">Layanan & Fasilitas</span>
+        </a>
+
+        <a href="{{ route('admin.documents.index') }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.documents.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
+            title="Dokumen">
+            <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span x-show="sidebarOpen || isMobile" class="whitespace-nowrap tracking-tight">E-Dokumen</span>
+        </a>
+
         <a href="{{ route('admin.pages.index') }}"
             class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.pages.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
             :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
