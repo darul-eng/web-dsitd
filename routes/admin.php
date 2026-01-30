@@ -12,6 +12,8 @@ use App\Livewire\Admin\Links\Index as LinkIndex;
 use App\Livewire\Admin\Services\Index as ServiceIndex;
 use App\Livewire\Admin\Services\Editor as ServiceEditor;
 use App\Livewire\Admin\Documents\Index as DocumentIndex;
+use App\Livewire\Admin\Members\Index as MemberIndex;
+use App\Livewire\Admin\Members\Editor as MemberEditor;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +62,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Document Management
         Route::get('/documents', DocumentIndex::class)->name('documents.index');
+
+        // Member Management
+        Route::get('/members', MemberIndex::class)->name('members.index');
+        Route::get('/members/create', MemberEditor::class)->name('members.create');
+        Route::get('/members/edit/{uuid}', MemberEditor::class)->name('members.edit');
 
         // Logout
         Route::post('/logout', function () {
