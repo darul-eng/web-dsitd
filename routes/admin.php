@@ -14,6 +14,10 @@ use App\Livewire\Admin\Services\Editor as ServiceEditor;
 use App\Livewire\Admin\Documents\Index as DocumentIndex;
 use App\Livewire\Admin\Members\Index as MemberIndex;
 use App\Livewire\Admin\Members\Editor as MemberEditor;
+use App\Livewire\Admin\Galleries\Index as GalleryIndex;
+use App\Livewire\Admin\Galleries\Editor as GalleryEditor;
+use App\Livewire\Admin\Faqs\Index as FaqIndex;
+use App\Livewire\Admin\Faqs\Editor as FaqEditor;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +71,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/members', MemberIndex::class)->name('members.index');
         Route::get('/members/create', MemberEditor::class)->name('members.create');
         Route::get('/members/edit/{uuid}', MemberEditor::class)->name('members.edit');
+
+        // Gallery Management
+        Route::get('/galleries', GalleryIndex::class)->name('galleries.index');
+        Route::get('/galleries/create', GalleryEditor::class)->name('galleries.create');
+        Route::get('/galleries/edit/{uuid}', GalleryEditor::class)->name('galleries.edit');
+
+        // FAQ Management
+        Route::get('/faqs', FaqIndex::class)->name('faqs.index');
+        Route::get('/faqs/create', FaqEditor::class)->name('faqs.create');
+        Route::get('/faqs/edit/{id}', FaqEditor::class)->name('faqs.edit');
 
         // Logout
         Route::post('/logout', function () {
