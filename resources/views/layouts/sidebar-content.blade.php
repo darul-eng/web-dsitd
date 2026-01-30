@@ -130,33 +130,8 @@
         </a>
     </nav>
 
-    <!-- Sidebar Footer -->
-    <div class="p-4 border-t border-slate-100">
-        <div class="bg-slate-50 rounded-2xl transition-all overflow-hidden" :class="sidebarOpen || isMobile ? 'p-4' : 'p-2'">
-            <div class="flex items-center" :class="!sidebarOpen && !isMobile && 'justify-center'">
-                <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold shrink-0">
-                    {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
-                </div>
-                <div class="ml-3 truncate" x-show="sidebarOpen || isMobile">
-                    <p class="text-sm font-semibold text-slate-800 truncate">{{ auth()->user()->name ?? 'Admin' }}</p>
-                    <p class="text-[11px] text-slate-500 truncate">{{ auth()->user()->email ?? 'admin@unhas.ac.id' }}</p>
-                </div>
-            </div>
-            <form method="POST" action="{{ route('admin.logout') }}" x-show="sidebarOpen || isMobile">
-                @csrf
-                <button type="submit" class="mt-4 w-full flex items-center justify-center px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-100 transition-colors">
-                    Logout
-                </button>
-            </form>
-            <!-- Simple logout button for mini sidebar -->
-            <form method="POST" action="{{ route('admin.logout') }}" x-show="!sidebarOpen && !isMobile" class="mt-2 text-center">
-                @csrf
-                <button type="submit" class="inline-flex items-center justify-center p-2 text-slate-400 hover:text-red-500">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                    </svg>
-                </button>
-            </form>
-        </div>
+    <!-- Sidebar Footer (Version Info or similar if needed) -->
+    <div class="px-8 py-6 border-t border-slate-50 mt-auto">
+        <p class="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] text-center">v2.0 Beta</p>
     </div>
 </div>
