@@ -374,4 +374,5 @@
             easing: 'ease-out-expo'
         });
     </script>
+    <livewire:public.chat-bot />
 </div>
