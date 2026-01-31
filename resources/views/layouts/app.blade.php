@@ -73,6 +73,7 @@
             text-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
         }
     </style>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
 <body class="antialiased text-slate-900 bg-white selection:bg-red-100 selection:text-red-700">

@@ -20,6 +20,7 @@
             <nav class="hidden md:flex items-center gap-8">
                 <a href="#layanan" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Layanan</a>
                 <a href="#profil" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Profil</a>
+                <a href="#dokumen" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Dokumen</a>
                 <a href="#berita" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Warta</a>
                 <a href="#kontak" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Kontak</a>
             </nav>
@@ -50,7 +51,7 @@
         </div>
 
         <div class="container mx-auto px-6 text-center z-10">
-            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/20 to-rose-500/20 text-red-500 border border-red-500/30 mb-10 backdrop-blur-xl animate-bounce-slow">
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/20 to-rose-500/20 text-red-500 border border-red-500/30 mb-10 backdrop-blur-xl">
                 <span class="relative flex h-2.5 w-2.5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
@@ -58,16 +59,16 @@
                 <span class="text-[11px] font-black uppercase tracking-[0.2em] text-white">Modern Digital Infrastructure 2.0</span>
             </div>
 
-            <h1 class="text-6xl md:text-9xl font-black text-white tracking-tighter leading-[0.9] mb-10 animate-fade-up">
+            <h1 class="text-6xl md:text-9xl font-black text-white tracking-tighter leading-[0.9] mb-10">
                 Transformasi Digital<br/>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-orange-400 filter drop-shadow-[0_0_15px_rgba(239,68,68,0.3)]">Tanpa Batas.</span>
             </h1>
 
-            <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-300/80 font-medium leading-relaxed mb-14 animate-fade-up delay-150">
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-300/80 font-medium leading-relaxed mb-14">
                 Pusat Teknologi Informasi dan Komunikasi yang mengelola infrastruktur jaringan, pengembangan aplikasi, dan transformasi data untuk ekosistem pendidikan masa depan.
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 animate-fade-up delay-300">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
                 <a href="#layanan" class="group relative px-12 py-5 bg-red-600 text-white text-xs font-black rounded-2xl hover:bg-red-700 transition-all shadow-[0_20px_50px_rgba(239,68,68,0.4)] uppercase tracking-widest overflow-hidden">
                     <span class="relative z-10">Eksplorasi Layanan</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
@@ -114,17 +115,8 @@
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                 @foreach($services as $index => $service)
-                <div data-aos="fade-up" data-aos-delay="{{ $index * 50 }}" class="{{ $loop->first || $loop->last ? 'md:col-span-6' : 'md:col-span-4' }} group">
+                <div class="{{ in_array($index, [3, 4]) ? 'md:col-span-6' : 'md:col-span-4' }} group">
                     <div class="h-full glass p-8 rounded-[2rem] hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 border border-slate-100 relative overflow-hidden">
-                        <div class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center mb-12 shadow-xl shadow-slate-900/20 group-hover:rotate-6 transition-transform">
-                            @if($service->icon)
-                                <img src="{{ asset('storage/' . $service->icon) }}" alt="{{ $service->title }} Icon" class="w-7 h-7 object-contain brightness-0 invert" loading="lazy">
-                            @else
-                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            @endif
-                        </div>
                         <h3 class="text-xl font-black text-slate-900 tracking-tight mb-4">{{ $service->title }}</h3>
                         <p class="text-xs text-slate-500 font-medium leading-relaxed mb-8">
                             {{ Str::limit(strip_tags($service->content), 120) }}
@@ -173,18 +165,8 @@
                 <div data-aos="fade-left" class="relative">
                     <div class="glass p-4 rounded-[3rem] shadow-2xl">
                         <div class="bg-white rounded-[2.5rem] p-10 relative overflow-hidden border border-slate-50">
-                            <!-- Simple Network Diagram SVG Placeholder -->
-                            <svg class="w-full h-auto text-slate-100" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="200" cy="150" r="100" stroke="currentColor" stroke-width="1" stroke-dasharray="8 8"/>
-                                <circle cx="200" cy="150" r="60" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4"/>
-                                <circle cx="200" cy="150" r="5" fill="#ef4444"/>
-                                <path d="M200 150 L280 80" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M200 150 L120 220" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
-                                <path d="M200 150 L270 230" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
-                                <rect x="270" y="60" width="20" height="20" rx="4" fill="#0f172a"/>
-                                <rect x="100" y="210" width="20" height="20" rx="4" fill="#0f172a"/>
-                                <rect x="260" y="220" width="20" height="20" rx="4" fill="#0f172a"/>
-                            </svg>
+                            <!-- Lottie Network Animation -->
+                            <lottie-player src="{{ asset('lottie/network.json') }}" background="transparent" speed="1" style="width: 100%; height: auto;" loop autoplay></lottie-player>
                             <div class="mt-8 grid grid-cols-2 gap-4">
                                 <div class="p-4 bg-slate-50 rounded-2xl">
                                     <span class="block text-2xl font-black text-slate-900 tracking-tighter">10Gbps</span>
@@ -201,6 +183,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- News & Blog -->
     <section id="berita" class="py-32 bg-white">
@@ -239,6 +222,49 @@
                         Baca Selengkapnya
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></svg>
                     </a>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <!-- Public Documents Section -->
+    <section id="dokumen" class="py-32 bg-slate-50 border-y border-slate-100 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+                <div class="max-w-xl">
+                    <h2 class="text-xs font-black text-red-600 uppercase tracking-widest mb-4">Resource Center</h2>
+                    <h1 class="text-4xl font-black text-slate-900 tracking-tighter">Dokumen Publik & Panduan.</h1>
+                </div>
+                <a href="#" class="text-[10px] font-black text-slate-400 hover:text-red-600 transition-colors uppercase tracking-[0.2em] border-b border-slate-200 pb-1">Lihat Semua Dokumen</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                @foreach($publicDocuments as $doc)
+                <div data-aos="fade-up" class="group">
+                    <div class="bg-white border border-slate-100 p-8 rounded-[2rem] hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 flex items-center justify-between">
+                        <div class="flex items-center gap-6">
+                            <div class="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100 group-hover:bg-red-50 group-hover:border-red-100 transition-colors">
+                                <svg class="w-7 h-7 text-slate-400 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-[8px] font-bold text-red-600 uppercase tracking-widest">{{ $doc->category->name ?? 'Umum' }}</span>
+                                <h3 class="text-lg font-bold text-slate-900 tracking-tight mt-1">{{ $doc->title }}</h3>
+                                <div class="flex items-center gap-4 mt-2">
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{{ $doc->file_type ?? 'PDF' }}</span>
+                                    <div class="w-1 h-1 bg-slate-200 rounded-full"></div>
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{{ number_format($doc->file_size / 1024, 1) }} KB</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ asset('storage/' . $doc->file_path) }}" download class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300 group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
                 @endforeach
             </div>
