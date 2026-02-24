@@ -24,3 +24,68 @@ The legacy application (**web-dsti**) is a Content Management System (CMS) for t
 3.  **Modern UI/UX**: Move to **Tailwind CSS** with a consistent Design System for both Front-end and Back-end.
 4.  **Maintainability**: Implement **Service Classes** and **Action Classes** to separate business logic from controllers.
 5.  **Security**: Native Laravel 12 security features, better sanitization, and robust custom RBAC middleware.
+
+## 4. Detailed Legacy System Breakdown (Web-DSTI)
+*Detailed inventory of features from the legacy app to be migrated.*
+
+### A. Public Frontend Modules
+1.  **Landing Page**: Jumbotron/Sliders, Latest News, Quick Links, Useful Links.
+2.  **Profile & Organization**:
+    *   Static/Dynamic Pages (Vision, Mission, History, etc.).
+    *   **Organizational Structure**: Dedicated view for structure.
+    *   **Director Profile**: Specific page for the director.
+    *   **Membership List**: List of personnel with sorting.
+3.  **Informations (Berita)**:
+    *   Categorized News/Articles (Pengumuman, Berita Utama, etc).
+    *   Search/Filter functionality.
+    *   Detail View with Rich Text & Images.
+4.  **Services (Layanan)**:
+    *   Service directory grouped by Categories.
+    *   Detail pages for specific services.
+5.  **Documents & Downloads**:
+    *   Public document repository (PDF, Docx, etc).
+    *   Categorized filtering for files.
+    *   **Forms**: Downloadable form templates for services.
+6.  **Media**:
+    *   **Gallery**: Photo/Activity albums.
+7.  **FAQ**:
+    *   Frequently Asked Questions with Category filter.
+8.  **Interaction**:
+    *   **Contact Page**: Address, Maps, and Contact Info.
+    *   **Contact Form**: Direct messaging to admin.
+
+### B. Admin Dashboard Features (Backoffice)
+1.  **Dashboard**:
+    *   **Quick Statistics**: Summary of news, services, and inbox.
+    *   **Profile Management**: Update admin credentials.
+2.  **Content Management (CMS)**:
+    *   **Jumbotron Manager**: Manage homepage sliders.
+    *   **Page Manager**: CRUD for static/profile pages (Vision, Mission, etc).
+    *   **News Editor**: Full CRUD + Image Uploads (Integrated).
+    *   **Service Manager**: CRUD for Services & Categories.
+    *   **FAQ Manager**: CRUD for Q&A pairs.
+    *   **Link Manager**: Manage external/partner links.
+3.  **Resource Management**:
+    *   **Document Manager**: Centralized file uploads.
+    *   **Gallery Manager**: Image album management.
+    *   **Membership Manager**: CRUD for personnel with **Order/Sorting** feature.
+4.  **Communication**:
+    *   **Inbox Manager**: Read and manage messages from frontend.
+    *   **Response System**: Mark as read or reply to inquiries.
+
+---
+
+## 5. Migration Strategy & Checklist
+*Use this checklist to track the development of the new app based on legacy requirements.*
+
+- [ ] **Core Auth & RBAC** (Superadmin vs Admin)
+- [ ] **Dashboard Admin** (Modern UI + Stats)
+- [ ] **CMS - News Module** (With SEO & Draft states)
+- [ ] **CMS - Page Builder/Static Content** (For Vision/Mission/Director)
+- [ ] **CMS - Service Directory**
+- [ ] **Resource - Document & Form Center**
+- [ ] **Resource - Image Gallery**
+- [ ] **Organization - Membership & Structure** (With custom ordering)
+- [ ] **Communication - Inbox & Contact System**
+- [ ] **General - Useful Links & FAQ**
+- [ ] **Public - Frontend Implementation** (Tailwind + Responsive Design)
