@@ -14,11 +14,11 @@
         </div>
 
         <div class="flex items-center gap-2">
-            <a href="{{ route('admin.services.index') }}" 
+            <a href="{{ route('admin.services.index') }}"
                class="px-4 py-2 text-[11px] font-bold text-slate-500 hover:text-slate-900 bg-white border border-slate-200 rounded-full transition-all hover:bg-slate-50 uppercase tracking-tight">
                 Batal
             </a>
-            <button type="submit" form="service-form" 
+            <button type="submit" form="service-form"
                     class="px-6 py-2 text-[11px] font-bold text-white bg-red-600 rounded-full shadow-md shadow-red-600/20 hover:bg-red-700 transition-all uppercase tracking-tight group">
                 <span wire:loading.remove wire:target="save" class="flex items-center gap-1.5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
@@ -38,15 +38,15 @@
             <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
                 <label for="title" class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Nama Layanan</label>
-                <input wire:model="title" type="text" id="title" 
-                       class="w-full px-4 py-2.5 text-sm font-bold text-slate-900 bg-slate-50 border border-slate-200 rounded-lg focus:ring-4 focus:ring-red-500/5 focus:border-red-500 transition-all outline-none placeholder:text-slate-400 tracking-tight" 
+                <input wire:model="title" type="text" id="title"
+                       class="w-full px-4 py-2.5 text-sm font-bold text-slate-900 bg-slate-50 border border-slate-200 rounded-lg focus:ring-4 focus:ring-red-500/5 focus:border-red-500 transition-all outline-none placeholder:text-slate-400 tracking-tight"
                        placeholder="Misal: Hosting Web UNHAS...">
                 @error('title') <p class="mt-1.5 text-[10px] font-bold text-rose-500 italic">{{ $message }}</p> @enderror
             </div>
 
             <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
                 <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Deskripsi & Prosedur Layanan</label>
-                <div wire:ignore 
+                <div wire:ignore
                      x-data="{
                         content: @entangle('content'),
                         init() {
@@ -80,7 +80,7 @@
         <div class="space-y-6 lg:sticky lg:top-24">
             <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
                 <h3 class="text-[10px] font-bold text-slate-300 uppercase tracking-[0.2em] mb-2">Properti Layanan</h3>
-                
+
                 <div class="space-y-1.5">
                     <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Kategori</label>
                     <div class="flex items-center justify-between mb-1">
@@ -90,8 +90,8 @@
                     </div>
                     @if($showAddCategory)
                         <div class="flex items-stretch gap-1.5">
-                            <input wire:model="new_category_name" type="text" 
-                                class="w-full px-3 py-1.5 text-[11px] bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-red-500 transition-all font-bold" 
+                            <input wire:model="new_category_name" type="text"
+                                class="w-full px-3 py-1.5 text-[11px] bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-red-500 transition-all font-bold"
                                 placeholder="Nama kategori..."
                                 wire:keydown.enter="addCategory">
                             <button type="button" wire:click="addCategory" class="shrink-0 px-2.5 bg-red-600 text-white rounded-lg text-[9px] font-bold hover:bg-red-700 transition-all">OK</button>
@@ -118,10 +118,13 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
+                    @if($serviceModel)
                     <div class="space-y-1.5">
                         <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Urutan</label>
-                        <input wire:model="order" type="number" class="w-full px-3 py-2 text-xs font-bold bg-slate-50 border border-slate-200 rounded-lg focus:border-red-500 outline-none">
+                        <input wire:model="order" type="number" min="1" max="{{ $maxOrder }}" class="w-full px-3 py-2 text-xs font-bold bg-slate-50 border border-slate-200 rounded-lg focus:border-red-500 outline-none">
+                        <p class="text-[9px] text-slate-400 italic mt-1">Range: 1 - {{ $maxOrder }}</p>
                     </div>
+                    @endif
                     <div class="space-y-1.5">
                         <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status</label>
                         <select wire:model="is_active" class="w-full px-3 py-2 text-xs font-bold bg-slate-50 border border-slate-200 rounded-lg focus:border-red-500 outline-none">
