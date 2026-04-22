@@ -1,17 +1,17 @@
 <div x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
     <!-- Navigation Overlay -->
-    <header :class="scrolled ? 'glass h-16' : 'bg-transparent h-24'" 
+    <header :class="scrolled ? 'glass h-16' : 'bg-transparent h-24'"
             class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 md:px-12 flex items-center justify-between">
         <div class="flex items-center gap-12">
             <a href="/" wire:navigate class="flex items-center gap-3 group">
                 <!-- Smart Logo Switching -->
-                <img :src="scrolled ? '{{ asset('img/logo-dark.png') }}' : '{{ asset('img/logo.png') }}'" 
-                    alt="Logo DSITD UNHAS" 
-                    class="h-8 md:h-10 transition-all duration-500 group-hover:scale-105" 
+                <img :src="scrolled ? '{{ asset('img/logo-dark.png') }}' : '{{ asset('img/logo.png') }}'"
+                    alt="Logo DSITD UNHAS"
+                    class="h-8 md:h-10 transition-all duration-500 group-hover:scale-105"
                     loading="lazy">
-                
+
                 <div class="flex flex-col">
-                    <span :class="scrolled ? 'text-slate-900' : 'text-white'" 
+                    <span :class="scrolled ? 'text-slate-900' : 'text-white'"
                         class="text-sm font-black tracking-tighter leading-none transition-colors duration-500">DSITD</span>
                     <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest leading-none mt-0.5">UNHAS</span>
                 </div>
@@ -106,11 +106,25 @@
             <div class="flex flex-col md:flex-row items-end justify-between mb-20 gap-6">
                 <div class="max-w-xl">
                     <h2 class="text-xs font-black text-red-600 uppercase tracking-widest mb-4">Core Infrastructure</h2>
-                    <h1 class="text-4xl font-black text-slate-900 tracking-tighter">Ekosistem Digital Terintegrasi.</h1>
+                    <h1 class="text-4xl font-black text-slate-900 tracking-tighter">Layanan Unggulan Untuk Aktivitas Digital.</h1>
                 </div>
                 <p class="max-w-md text-sm text-slate-500 font-medium leading-relaxed">
-                    Kami menyediakan pondasi teknologi yang stabil untuk mendukung kegiatan akademik, riset, dan administrasi di lingkungan universitas.
+                    Halaman ini menampilkan layanan prioritas agar Anda cepat menemukan yang paling dibutuhkan. Jelajahi katalog untuk melihat seluruh layanan aktif.
                 </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-slate-50 border border-slate-100">
+                    <span class="text-[10px] font-black text-slate-700 uppercase tracking-widest">{{ $totalServices }} layanan aktif</span>
+                    @if($hasMoreServices)
+                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">8 ditampilkan di beranda</span>
+                    @endif
+                </div>
+
+                <a href="{{ route('services.index') }}" wire:navigate class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-900 text-white text-[10px] font-black rounded-xl hover:bg-slate-800 transition-all uppercase tracking-widest">
+                    Lihat Semua Layanan
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></svg>
+                </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -129,6 +143,15 @@
                 </div>
                 @endforeach
             </div>
+
+            @if($hasMoreServices)
+                <div class="mt-10 text-center">
+                    <a href="{{ route('services.index') }}" wire:navigate class="inline-flex items-center gap-2 text-[11px] font-black text-red-600 uppercase tracking-widest hover:text-red-700 transition-colors">
+                        Telusuri {{ $totalServices - $services->count() }} layanan lainnya
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></svg>
+                    </a>
+                </div>
+            @endif
         </div>
     </section>
 
