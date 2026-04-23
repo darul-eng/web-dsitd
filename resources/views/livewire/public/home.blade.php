@@ -251,8 +251,10 @@
         </div>
     </section>
 
+    <livewire:public.gallery-showcase />
+
     <!-- Public Documents Section -->
-    <section id="dokumen" class="py-32 bg-slate-50 border-y border-slate-100 relative overflow-hidden">
+    <section id="dokumen" class="py-32 bg-white relative overflow-hidden">
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
                 <div class="max-w-xl">
@@ -295,7 +297,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-24 bg-white px-6">
+    <section class="py-24 bg-slate-50 px-6 border-t border-slate-100">
         <div class="container mx-auto">
             <div data-aos="zoom-in" class="bg-slate-900 rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden group">
                 <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,rgba(225,29,72,0.15),transparent_50%)]"></div>
