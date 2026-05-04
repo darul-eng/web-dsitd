@@ -151,26 +151,51 @@
             </div>
         </div>
 
-        <div class="mt-24 w-full max-w-5xl px-6 relative" data-aos="zoom-in-up" data-aos-delay="400">
-             <div class="glass p-2 rounded-[2.5rem] shadow-2xl shadow-slate-200/50">
-                <div class="bg-slate-900 rounded-[2rem] p-6 md:p-12 text-white relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-red-600 filter blur-[100px] opacity-20 transition-all group-hover:opacity-40"></div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
-                        <div class="flex flex-col">
-                            <span class="text-4xl font-black tracking-tighter">{{ $uptimeRate }}%</span>
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-2">Uptime Jaringan</span>
+        <!-- Stats Section: Floating Cards -->
+        <div class="mt-20 w-full max-w-6xl px-6 relative z-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Stat Card 1 -->
+                <div class="group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-orange-500 rounded-[2rem] opacity-20 group-hover:opacity-100 transition duration-500 blur"></div>
+                    <div class="relative flex items-center gap-6 bg-slate-900/40 backdrop-blur-3xl border border-white/10 p-8 rounded-[2rem] hover:bg-slate-900/60 transition-all duration-500">
+                        <div class="flex-shrink-0 w-14 h-14 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-500 group-hover:scale-110 transition-transform duration-500">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-4xl font-black tracking-tighter">120+</span>
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-2">Aplikasi Terintegrasi</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-4xl font-black tracking-tighter">45K+</span>
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-2">Pengguna Aktif</span>
+                            <span class="text-4xl font-black text-white tracking-tighter leading-none mb-1">{{ $uptimeRate }}%</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Uptime Jaringan</span>
                         </div>
                     </div>
                 </div>
-             </div>
+
+                <!-- Stat Card 2 -->
+                <div class="group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-[2rem] opacity-20 group-hover:opacity-100 transition duration-500 blur"></div>
+                    <div class="relative flex items-center gap-6 bg-slate-900/40 backdrop-blur-3xl border border-white/10 p-8 rounded-[2rem] hover:bg-slate-900/60 transition-all duration-500">
+                        <div class="flex-shrink-0 w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform duration-500">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-4xl font-black text-white tracking-tighter leading-none mb-1">120+</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Aplikasi Terintegrasi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 3 -->
+                <div class="group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-[2rem] opacity-20 group-hover:opacity-100 transition duration-500 blur"></div>
+                    <div class="relative flex items-center gap-6 bg-slate-900/40 backdrop-blur-3xl border border-white/10 p-8 rounded-[2rem] hover:bg-slate-900/60 transition-all duration-500">
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform duration-500">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-4xl font-black text-white tracking-tighter leading-none mb-1">45K+</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Pengguna Aktif</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -235,45 +260,88 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div data-aos="fade-right">
-                    <h2 class="text-xs font-black text-red-600 uppercase tracking-widest mb-4">Digital Transparency</h2>
-                    <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter leading-tight mb-8">Keandalan Infrastruktur adalah Prioritas Kami.</h1>
+                    <h2 class="text-xs font-black text-red-600 uppercase tracking-widest mb-4 flex items-center gap-3">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                        </span>
+                        Digital Transparency
+                    </h2>
+                    <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter leading-snug mb-8">Keandalan Infrastruktur adalah Prioritas Kami.</h1>
                     <div class="space-y-8">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></svg>
+                        <div class="flex items-start gap-5">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center shrink-0 shadow-sm border border-emerald-100">
+                                <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></svg>
                             </div>
-                            <div>
-                                <h4 class="text-sm font-black text-slate-800 uppercase tracking-tight">24/7 Monitoring Center</h4>
-                                <p class="text-xs text-slate-500 font-medium mt-1">Sistem kami dipantau secara real-time untuk menjamin ketersediaan layanan.</p>
+                            <div class="pt-1">
+                                <h4 class="text-sm font-black text-slate-800 uppercase tracking-tight flex items-center gap-2">
+                                    24/7 Monitoring Center
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                </h4>
+                                <p class="text-xs text-slate-500 font-medium mt-2 leading-relaxed">Sistem kami dipantau secara real-time untuk menjamin ketersediaan layanan tanpa interupsi di seluruh ekosistem universitas.</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09m8.19.893c2.827-2.73 4.69-6.439 4.69-10.538V12m-6.57 9.503A12.062 12.062 0 0112 21M9 11l3 3L22 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                        <div class="flex items-start gap-5">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0 shadow-sm border border-blue-100">
+                                <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09m8.19.893c2.827-2.73 4.69-6.439 4.69-10.538V12m-6.57 9.503A12.062 12.062 0 0112 21M9 11l3 3L22 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
                             </div>
-                            <div>
-                                <h4 class="text-sm font-black text-slate-800 uppercase tracking-tight">Cyber Security First</h4>
-                                <p class="text-xs text-slate-500 font-medium mt-1">Perlindungan data sensitif universitas dengan standar keamanan tingkat tinggi.</p>
+                            <div class="pt-1">
+                                <h4 class="text-sm font-black text-slate-800 uppercase tracking-tight flex items-center gap-2">
+                                    Cyber Security First
+                                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                </h4>
+                                <p class="text-xs text-slate-500 font-medium mt-2 leading-relaxed">Perlindungan data sensitif universitas dengan standar keamanan tingkat tinggi dan protokol enkripsi termutakhir.</p>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats with Counter -->
+                    <div x-data="{ count1: 0, count2: 0 }" 
+                         x-init="
+                            let observer = new IntersectionObserver((entries) => {
+                                if(entries[0].isIntersecting) {
+                                    let c1 = 0; let c2 = 0;
+                                    let i1 = setInterval(() => { c1++; count1 = c1; if(c1>=10) clearInterval(i1); }, 100);
+                                    let i2 = setInterval(() => { c2+=3.33; if(c2>=99.9) { c2=99.9; clearInterval(i2); } count2 = c2.toFixed(1); }, 30);
+                                    observer.disconnect();
+                                }
+                            }, { threshold: 0.5 });
+                            observer.observe($el);
+                         "
+                         class="mt-12 grid grid-cols-2 gap-6 w-full max-w-[480px]">
+                        <!-- Stat 1 -->
+                        <div class="p-6 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 flex flex-col items-center text-center relative group hover:-translate-y-1 transition-all duration-300">
+                            <span class="relative block text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-2"><span x-text="count1">0</span><span class="text-red-600 text-2xl md:text-3xl ml-1">Gbps</span></span>
+                            <span class="relative text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                                <span class="relative flex h-1.5 w-1.5">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-600"></span>
+                                </span>
+                                Backbone Speed
+                            </span>
+                        </div>
+                        <!-- Stat 2 -->
+                        <div class="p-6 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 flex flex-col items-center text-center relative group hover:-translate-y-1 transition-all duration-300">
+                            <span class="relative block text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-2"><span x-text="count2">0.0</span><span class="text-red-600 text-2xl md:text-3xl ml-1">%</span></span>
+                            <span class="relative text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                                <span class="relative flex h-1.5 w-1.5">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-600"></span>
+                                </span>
+                                SLA Guarantee
+                            </span>
                         </div>
                     </div>
                 </div>
 
                 <div data-aos="fade-left" class="relative">
-                    <div class="glass p-4 rounded-[3rem] shadow-2xl">
-                        <div class="bg-white rounded-[2.5rem] p-10 relative overflow-hidden border border-slate-50">
-                            <!-- Lottie Network Animation -->
-                            <lottie-player src="{{ asset('lottie/network.json') }}" background="transparent" speed="1" style="width: 100%; height: auto;" loop autoplay></lottie-player>
-                            <div class="mt-8 grid grid-cols-2 gap-4">
-                                <div class="p-4 bg-slate-50 rounded-2xl">
-                                    <span class="block text-2xl font-black text-slate-900 tracking-tighter">10Gbps</span>
-                                    <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-1">Backbone Speed</span>
-                                </div>
-                                <div class="p-4 bg-slate-50 rounded-2xl">
-                                    <span class="block text-2xl font-black text-slate-900 tracking-tighter">99.9%</span>
-                                    <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-1">SLA Guarantee</span>
-                                </div>
-                            </div>
+                    <!-- Soft Glow behind the globe -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-red-600/10 via-transparent to-blue-600/10 filter blur-[80px] rounded-full pointer-events-none"></div>
+                    
+                    <div class="relative z-10 flex flex-col items-center">
+                        <!-- 3D Network Globe Animation with floating effect -->
+                        <div class="animate-bounce-slow w-full max-w-[420px] aspect-square rounded-[2rem] overflow-hidden relative shadow-[0_20px_50px_rgba(3,3,8,0.2)] bg-[#030308] ring-1 ring-white/10" wire:ignore>
+                            <div id="network-globe-container" class="w-full h-full"></div>
                         </div>
                     </div>
                 </div>
@@ -387,5 +455,281 @@
         </div>
     </section>
 
+    <script data-navigate-once>
+        function initGlobeNetwork() {
+            const container = document.getElementById('network-globe-container');
+            if (!container || container.dataset.initialized) return;
+            container.dataset.initialized = 'true';
+
+            const loadScript = (src) => new Promise(resolve => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                document.head.appendChild(script);
+            });
+
+            const startScene = () => {
+                const scene = new THREE.Scene();
+                scene.fog = new THREE.FogExp2(0x030308, 0.015);
+
+                const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+                camera.position.set(0, 8, 28);
+
+                const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                renderer.setPixelRatio(window.devicePixelRatio);
+                container.appendChild(renderer.domElement);
+
+                const controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.05;
+                controls.minDistance = 20;
+                controls.maxDistance = 100;
+                controls.enablePan = false;
+
+                const R = 10;
+                const textureLoader = new THREE.TextureLoader();
+                const earthTexture = textureLoader.load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg');
+
+                const globeGeometry = new THREE.SphereGeometry(R, 64, 64);
+                const globeMaterial = new THREE.MeshPhongMaterial({
+                    map: earthTexture,
+                    color: 0xffffff,
+                    emissive: 0x111111,
+                    specular: 0x222222,
+                    shininess: 15
+                });
+                const globe = new THREE.Mesh(globeGeometry, globeMaterial);
+                globe.rotation.y = 1.8;
+                scene.add(globe);
+
+                const wireframeGeometry = new THREE.SphereGeometry(R + 0.1, 32, 32);
+                const wireframeMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x004466,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.3
+                });
+                const wireframe = new THREE.Mesh(wireframeGeometry, wireframeMaterial);
+                globe.add(wireframe);
+
+                const nodes = [];
+                function latLongToVector3(lat, lon, radius) {
+                    const phi = (90 - lat) * (Math.PI / 180);
+                    const theta = (lon + 180) * (Math.PI / 180);
+                    const x = -(radius * Math.sin(phi) * Math.cos(theta));
+                    const z = (radius * Math.sin(phi) * Math.sin(theta));
+                    const y = (radius * Math.cos(phi));
+                    return new THREE.Vector3(x, y, z);
+                }
+
+                function getRandomSpherePoint(radius) {
+                    const u = Math.random();
+                    const v = Math.random();
+                    const theta = u * 2.0 * Math.PI;
+                    const phi = Math.acos(2.0 * v - 1.0);
+                    const x = radius * Math.sin(phi) * Math.cos(theta);
+                    const y = radius * Math.sin(phi) * Math.sin(theta);
+                    const z = radius * Math.cos(phi);
+                    return new THREE.Vector3(x, y, z);
+                }
+
+                const indoCities = [
+                    { lat: -6.2088, lon: 106.8456 },
+                    { lat: -7.2504, lon: 112.7688 },
+                    { lat: -5.1476, lon: 119.4327 },
+                    { lat: 3.5952, lon: 98.6722 },
+                    { lat: -8.6500, lon: 115.2167 },
+                    { lat: -1.2653, lon: 116.8312 },
+                    { lat: -2.5337, lon: 140.7181 }
+                ];
+
+                indoCities.forEach(city => {
+                    nodes.push(latLongToVector3(city.lat, city.lon, R + 0.15));
+                });
+
+                for (let i = 0; i < 73; i++) {
+                    nodes.push(getRandomSpherePoint(R + 0.15));
+                }
+
+                const dataPackets = [];
+                const pathCount = 80;
+
+                function createRandomCurve() {
+                    const startNode = nodes[Math.floor(Math.random() * nodes.length)];
+                    let endNode = nodes[Math.floor(Math.random() * nodes.length)];
+                    while (startNode === endNode) {
+                        endNode = nodes[Math.floor(Math.random() * nodes.length)];
+                    }
+                    const midPoint = startNode.clone().lerp(endNode, 0.5);
+                    const dist = startNode.distanceTo(endNode);
+                    midPoint.normalize().multiplyScalar(R + dist * 0.45);
+                    return new THREE.QuadraticBezierCurve3(startNode, midPoint, endNode);
+                }
+
+                const tailLength = 0.35;
+                const tailSegments = 40;
+
+                for (let i = 0; i < pathCount; i++) {
+                    const curve = createRandomCurve();
+                    const colors = [0x00ffff, 0xff00ff, 0x00ffaa, 0xffcc00];
+                    const pColor = colors[Math.floor(Math.random() * colors.length)];
+                    const colorObj = new THREE.Color(pColor);
+
+                    const headGeometry = new THREE.SphereGeometry(0.1, 8, 8);
+                    const headMaterial = new THREE.MeshBasicMaterial({ color: pColor });
+                    const headMesh = new THREE.Mesh(headGeometry, headMaterial);
+                    globe.add(headMesh);
+
+                    const tailGeometry = new THREE.BufferGeometry();
+                    const tailPositions = new Float32Array(tailSegments * 3);
+                    const tailColors = new Float32Array(tailSegments * 3);
+
+                    for (let j = 0; j < tailSegments; j++) {
+                        const alpha = 1.0 - (j / (tailSegments - 1));
+                        const mixedColor = colorObj.clone().lerp(new THREE.Color(0x000000), 1 - alpha);
+                        tailColors[j * 3] = mixedColor.r;
+                        tailColors[j * 3 + 1] = mixedColor.g;
+                        tailColors[j * 3 + 2] = mixedColor.b;
+                    }
+
+                    tailGeometry.setAttribute('position', new THREE.BufferAttribute(tailPositions, 3));
+                    tailGeometry.setAttribute('color', new THREE.BufferAttribute(tailColors, 3));
+
+                    const tailMaterial = new THREE.LineBasicMaterial({
+                        vertexColors: true,
+                        transparent: true,
+                        opacity: 1,
+                        blending: THREE.AdditiveBlending,
+                        depthWrite: false
+                    });
+                    const tailLine = new THREE.Line(tailGeometry, tailMaterial);
+                    globe.add(tailLine);
+
+                    dataPackets.push({
+                        curve: curve,
+                        head: headMesh,
+                        tail: tailLine,
+                        progress: -Math.random(),
+                        speed: 0.004 + Math.random() * 0.006
+                    });
+                }
+
+                const starsGeometry = new THREE.BufferGeometry();
+                const starsCount = 2000;
+                const posArray = new Float32Array(starsCount * 3);
+
+                for (let i = 0; i < starsCount * 3; i++) {
+                    posArray[i] = (Math.random() - 0.5) * 200;
+                }
+
+                starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                const starsMaterial = new THREE.PointsMaterial({
+                    size: 0.1,
+                    color: 0x88ccff,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                const starsMesh = new THREE.Points(starsGeometry, starsMaterial);
+                scene.add(starsMesh);
+
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+                scene.add(ambientLight);
+
+                const pointLight1 = new THREE.PointLight(0x00ffff, 0.8, 100);
+                pointLight1.position.set(20, 20, 20);
+                scene.add(pointLight1);
+
+                const pointLight2 = new THREE.PointLight(0xff00ff, 0.8, 100);
+                pointLight2.position.set(-20, -20, -20);
+                scene.add(pointLight2);
+
+                let animationFrameId;
+
+                function animate() {
+                    animationFrameId = requestAnimationFrame(animate);
+
+                    globe.rotation.y += 0.001;
+                    starsMesh.rotation.y -= 0.0002;
+                    starsMesh.rotation.x += 0.0001;
+
+                    dataPackets.forEach(packet => {
+                        packet.progress += packet.speed;
+
+                        if (packet.progress >= 1 + tailLength) {
+                            packet.progress = 0;
+                            packet.curve = createRandomCurve();
+                        }
+
+                        if (packet.progress > 0) {
+                            packet.head.visible = true;
+                            packet.tail.visible = true;
+
+                            let headProg = Math.min(1, packet.progress);
+                            const headPoint = packet.curve.getPoint(headProg);
+                            packet.head.position.copy(headPoint);
+
+                            if (packet.progress > 1) packet.head.visible = false;
+
+                            const positions = packet.tail.geometry.attributes.position.array;
+                            for (let i = 0; i < tailSegments; i++) {
+                                let p = packet.progress - (i / tailSegments) * tailLength;
+                                p = Math.max(0, Math.min(1, p));
+                                const point = packet.curve.getPoint(p);
+
+                                positions[i * 3] = point.x;
+                                positions[i * 3 + 1] = point.y;
+                                positions[i * 3 + 2] = point.z;
+                            }
+                            packet.tail.geometry.attributes.position.needsUpdate = true;
+                        } else {
+                            packet.head.visible = false;
+                            packet.tail.visible = false;
+                        }
+                    });
+
+                    controls.update();
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                const resizeHandler = () => {
+                    if(!container) return;
+                    camera.aspect = container.clientWidth / container.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                };
+                window.addEventListener('resize', resizeHandler, false);
+                
+                document.addEventListener('livewire:navigating', () => {
+                    cancelAnimationFrame(animationFrameId);
+                    window.removeEventListener('resize', resizeHandler);
+                }, {once: true});
+            };
+
+            const init = async () => {
+                if (!window.THREE) {
+                    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js');
+                }
+                if (!window.THREE.OrbitControls) {
+                    await loadScript('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js');
+                }
+                startScene();
+            };
+
+            init();
+        }
+
+        document.addEventListener('livewire:navigated', () => {
+            initGlobeNetwork();
+        });
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initGlobeNetwork);
+        } else {
+            initGlobeNetwork();
+        }
+    </script>
     @include('livewire.public.partials.public-footer')
 </div>
