@@ -1,4 +1,4 @@
-<div class="fixed bottom-8 right-8 z-[60]" x-data="{ isOpen: @entangle('isOpen') }">
+<div class="fixed bottom-8 right-8 z-[60]" x-data="{ isOpen: $wire.entangle('isOpen') }">
     <!-- Floating Action Button -->
     <button @click="isOpen = !isOpen" 
             class="w-16 h-16 rounded-full bg-slate-900 border border-slate-800 text-white shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 group overflow-hidden">

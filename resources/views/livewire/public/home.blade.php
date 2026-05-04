@@ -1,4 +1,4 @@
-<div x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
+<div x-data="{ scrolled: false, profileOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
     <!-- Navigation Overlay -->
     <header :class="scrolled ? 'glass h-16' : 'bg-transparent h-24'"
             class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 md:px-12 flex items-center justify-between">
@@ -19,7 +19,29 @@
 
             <nav class="hidden md:flex items-center gap-8">
                 <a href="#layanan" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Layanan</a>
-                <a href="#profil" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Profil</a>
+                <div class="relative" @click.outside="profileOpen = false">
+                    <button @click="profileOpen = !profileOpen"
+                        :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'"
+                        class="inline-flex items-center gap-1 text-[11px] font-bold transition-all uppercase tracking-widest">
+                        Profil
+                        <svg class="w-3 h-3 transition-transform" :class="profileOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div x-show="profileOpen" x-cloak
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 translate-y-2"
+                        class="absolute top-8 left-0 min-w-[220px] rounded-2xl bg-white border border-slate-200 shadow-xl p-2 z-50">
+                        <a href="{{ route('profile.vision-mission') }}" wire:navigate class="block px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-700 hover:bg-slate-100">Visi & Misi</a>
+                        <a href="{{ route('profile.history') }}" wire:navigate class="block px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-700 hover:bg-slate-100">Sejarah</a>
+                        <a href="{{ route('profile.organization') }}" class="block px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-700 hover:bg-slate-100">Tim Kami</a>
+                    </div>
+                </div>
                 <a href="#dokumen" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Dokumen</a>
                 <a href="#berita" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Warta</a>
                 <a href="#kontak" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Kontak</a>
@@ -73,7 +95,7 @@
                     <span class="relative z-10">Eksplorasi Layanan</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </a>
-                <a href="#profil" class="px-12 py-5 bg-white/5 text-white text-xs font-black rounded-2xl hover:bg-white/10 transition-all border border-white/10 backdrop-blur-md uppercase tracking-widest">Dokumentasi Profil</a>
+                <a href="{{ route('profile.vision-mission') }}" wire:navigate class="px-12 py-5 bg-white/5 text-white text-xs font-black rounded-2xl hover:bg-white/10 transition-all border border-white/10 backdrop-blur-md uppercase tracking-widest">Dokumentasi Profil</a>
             </div>
         </div>
 
@@ -313,91 +335,5 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="kontak" class="bg-white border-t border-slate-100 pt-24 pb-12">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
-                <div class="md:col-span-4">
-                    <a href="/" class="flex items-center gap-3 mb-8">
-                        <img src="{{ asset('img/logo-dark.png') }}" alt="Logo DSITD UNHAS" class="h-10" loading="lazy">
-                        <div class="flex flex-col">
-                            <span class="text-base font-black tracking-tighter leading-none">DSITD</span>
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mt-1">Universitas Hasanuddin</span>
-                        </div>
-                    </a>
-                    <p class="text-sm text-slate-500 font-medium leading-relaxed mb-8 max-w-xs">
-                        Direktorat Sistem Teknologi Informasi dan Digitalisasi adalah unit pengelola TIK di lingkungan Universitas Hasanuddin.
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="md:col-span-2">
-                    <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-8">Layanan</h4>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">Email UNHAS</a></li>
-                        <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">Web Hosting</a></li>
-                        <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">SIAKAD</a></li>
-                        <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">VPN Access</a></li>
-                    </ul>
-                </div>
-
-                <div class="md:col-span-2">
-                    <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-8">Tautan</h4>
-                    <ul class="space-y-4">
-                        <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">Pusat Bantuan</a></li>
-                        <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">Status Layanan</a></li>
-                        <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <div class="md:col-span-4">
-                    <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-8">Lokasi Kami</h4>
-                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 italic text-xs text-slate-600 font-medium leading-loose">
-                        Lantai 1, Gedung Perpustakaan Pusat,<br/>
-                        Kampus UNHAS Tamalanrea,<br/>
-                        Jl. Perintis Kemerdekaan KM.10,<br/>
-                        Makassar, Sulawesi Selatan.
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-slate-100 pt-12">
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">© 2024 DSITD Universitas Hasanuddin. All rights reserved.</p>
-                <div class="flex items-center gap-8">
-                    <a href="#" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-slate-600 transition-colors">Term of Service</a>
-                    <a href="#" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-slate-600 transition-colors">Digital Guidelines</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- AOS Library for Scroll Animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        document.addEventListener('livewire:navigated', () => {
-            AOS.init({
-                duration: 1000,
-                once: true,
-                offset: 100,
-                easing: 'ease-out-expo'
-            });
-        });
-
-        // Fallback for initial load
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100,
-            easing: 'ease-out-expo'
-        });
-    </script>
-    <livewire:public.chat-bot />
+    @include('livewire.public.partials.public-footer')
 </div>

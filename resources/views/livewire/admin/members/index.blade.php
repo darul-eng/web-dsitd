@@ -5,17 +5,17 @@
             <h1 class="text-xl font-extrabold text-slate-900 tracking-tight text-center md:text-left">Struktur Organisasi & SDM</h1>
             <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1 text-center md:text-left">Kelola pimpinan, staf, dan pengelola</p>
         </div>
-        
+
         <div class="flex items-center gap-2 w-full md:w-auto">
             <div class="relative flex-grow md:w-64">
-                <input wire:model.live="search" type="text" placeholder="Cari nama/NIP..." 
+                <input wire:model.live="search" type="text" placeholder="Cari nama/NIP..."
                        class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold outline-none focus:border-red-500 transition-all">
                 <div class="absolute inset-y-0 left-3 flex items-center text-slate-400 pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </div>
             </div>
 
-            <a href="{{ route('admin.members.create') }}" 
+            <a href="{{ route('admin.members.create') }}"
                class="inline-flex items-center gap-2 px-6 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg transition-all shadow-md shadow-red-600/20 shrink-0 uppercase tracking-widest">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 <span>Baru</span>
@@ -25,14 +25,21 @@
 
     <!-- Group Filters -->
     <div class="flex flex-wrap items-center gap-2 px-1">
-        <button wire:click="$set('group', '')" 
+        <button wire:click="$set('group', '')"
                 class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all {{ $group === '' ? 'bg-slate-900 text-white border-slate-900 shadow-lg shadow-slate-900/10' : 'bg-white text-slate-400 border-slate-200 hover:border-slate-400' }}">
             Semua
         </button>
-        @foreach(['pimpinan', 'pengelola', 'staff', 'teknisi'] as $cat)
-            <button wire:click="$set('group', '{{ $cat }}')" 
+        @foreach([
+            'direktur' => 'Direktur',
+            'kasubdit' => 'Kasubdit',
+            'kepala-seksi' => 'Kepala Seksi',
+            'tim-jaringan' => 'Tim Jaringan',
+            'tim-helpdesk' => 'Tim Helpdesk',
+            'tim-programmer' => 'Tim Programmer',
+        ] as $cat => $label)
+            <button wire:click="$set('group', '{{ $cat }}')"
                     class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all {{ $group === $cat ? 'bg-red-600 text-white border-red-600 shadow-lg shadow-red-600/10' : 'bg-white text-slate-400 border-slate-200 hover:border-red-200 hover:text-red-500' }}">
-                {{ $cat }}
+                {{ $label }}
             </button>
         @endforeach
     </div>
@@ -80,7 +87,7 @@
                 <p class="text-[10px] text-slate-400 font-bold mt-1 italic tracking-tight uppercase">{{ $item->position }}</p>
             </div>
 
-            <button wire:click="toggleStatus('{{ $item->uuid }}')" 
+            <button wire:click="toggleStatus('{{ $item->uuid }}')"
                     class="absolute bottom-0 left-0 w-full h-1 {{ $item->is_active ? 'bg-green-500' : 'bg-slate-300' }} transition-colors"></button>
         </div>
         @empty

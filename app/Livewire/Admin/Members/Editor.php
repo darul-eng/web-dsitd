@@ -26,8 +26,8 @@ class Editor extends Component
     #[Validate('required|string|max:255')]
     public $position = '';
 
-    #[Validate('required|string')]
-    public $position_group = 'staff';
+    #[Validate('required|in:direktur,kasubdit,kepala-seksi,tim-jaringan,tim-helpdesk,tim-programmer')]
+    public $position_group = 'tim-helpdesk';
 
     #[Validate('nullable|email|max:255')]
     public $email = '';
@@ -66,7 +66,7 @@ class Editor extends Component
             $this->fullname = $this->memberModel->fullname;
             $this->nip = $this->memberModel->nip;
             $this->position = $this->memberModel->position;
-            $this->position_group = $this->memberModel->position_group;
+            $this->position_group = $this->mapLegacyPositionGroup($this->memberModel->position_group);
             $this->email = $this->memberModel->email;
             $this->phone = $this->memberModel->phone;
             $this->address = $this->memberModel->address;
@@ -77,6 +77,24 @@ class Editor extends Component
             $this->order = $this->memberModel->order;
             $this->is_active = $this->memberModel->is_active;
         }
+    }
+
+    private function mapLegacyPositionGroup(string $positionGroup): string
+    {
+        return match ($positionGroup) {
+            'pimpinan' => 'direktur',
+            'pengelola' => 'kasubdit',
+            'staff' => 'tim-helpdesk',
+            'teknisi' => 'tim-programmer',
+            default => in_array($positionGroup, [
+                'direktur',
+                'kasubdit',
+                'kepala-seksi',
+                'tim-jaringan',
+                'tim-helpdesk',
+                'tim-programmer',
+            ], true) ? $positionGroup : 'tim-jaringan',
+        };
     }
 
     public function save()
