@@ -74,7 +74,7 @@
                 <div class="fixed inset-0 bg-black/40 backdrop-blur-sm" @click="closeGallery()"></div>
 
                 <!-- Area Slider Diperkecil -->
-                <div class="relative w-full max-w-4xl h-[60vh] min-h-[300px] max-h-[600px] rounded-none overflow-hidden">
+                <div class="relative w-full max-w-4xl h-[70vh] md:h-[60vh] min-h-[400px] max-h-[700px] rounded-[2rem] overflow-hidden">
 
                     <!-- Close Modal -->
                     <button type="button" @click="closeGallery()" class="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-black/80 backdrop-blur-md text-white rounded-full flex items-center justify-center z-50 transition-all hover:scale-110" aria-label="Tutup">

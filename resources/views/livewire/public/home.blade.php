@@ -1,4 +1,4 @@
-<div x-data="{ scrolled: false, profileOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
+<div x-data="{ scrolled: false, profileOpen: false, mobileMenuOpen: false, mobileProfileOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
     <!-- Navigation Overlay -->
     <header :class="scrolled ? 'glass h-16' : 'bg-transparent h-24'"
             class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 md:px-12 flex items-center justify-between">
@@ -49,16 +49,68 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <div class="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
+            <div :class="scrolled ? 'bg-slate-100/50 border-slate-200/50' : 'bg-white/5 border-white/10'" 
+                class="hidden lg:flex items-center gap-2 px-3 py-1.5 border rounded-full backdrop-blur-md transition-colors duration-500">
                 <div class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full {{ $systemOperational ? 'bg-emerald-400' : 'bg-rose-400' }} opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 {{ $systemOperational ? 'bg-emerald-500' : 'bg-rose-500' }}"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                        :class="scrolled ? '{{ ($systemOperational ?? true) ? 'bg-emerald-500' : 'bg-rose-500' }}' : '{{ ($systemOperational ?? true) ? 'bg-emerald-400' : 'bg-rose-400' }}'"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2"
+                        :class="scrolled ? '{{ ($systemOperational ?? true) ? 'bg-emerald-600' : 'bg-rose-600' }}' : '{{ ($systemOperational ?? true) ? 'bg-emerald-500' : 'bg-rose-500' }}'"></span>
                 </div>
-                <span class="text-[9px] font-black {{ $systemOperational ? 'text-emerald-400' : 'text-rose-400' }} uppercase tracking-tighter">
-                    {{ $systemOperational ? 'System Operational' : 'Under Maintenance' }}
+                <span class="text-[9px] font-black uppercase tracking-tighter transition-colors duration-500"
+                    :class="scrolled ? '{{ ($systemOperational ?? true) ? 'text-emerald-600' : 'text-rose-600' }}' : '{{ ($systemOperational ?? true) ? 'text-emerald-400' : 'text-rose-400' }}'">
+                    {{ ($systemOperational ?? true) ? 'System Operational' : 'Under Maintenance' }}
                 </span>
             </div>
             <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="hidden sm:inline-flex px-5 py-2 bg-red-600 border border-red-500 text-white text-[10px] font-black rounded-lg hover:bg-red-700 transition-all uppercase tracking-widest shadow-xl shadow-red-600/20">Tanya IT Helpdesk</a>
+            
+            <!-- Mobile Menu Toggle -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                :class="scrolled ? 'text-slate-900' : 'text-white'"
+                class="flex md:hidden p-2 rounded-xl transition-colors hover:bg-white/10">
+                <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                <svg x-show="mobileMenuOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div x-show="mobileMenuOpen" x-cloak
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-95"
+            class="absolute top-20 left-6 right-6 bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 md:hidden z-50">
+            <nav class="flex flex-col gap-6">
+                <a @click="mobileMenuOpen = false" href="#layanan" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Layanan</a>
+                
+                <div class="space-y-3">
+                    <button @click="mobileProfileOpen = !mobileProfileOpen" 
+                        class="flex items-center justify-between w-full text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">
+                        Profile
+                        <svg class="w-3 h-3 transition-transform" :class="mobileProfileOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    
+                    <div x-show="mobileProfileOpen" x-cloak 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        class="grid grid-cols-1 gap-2 mt-2">
+                        <a href="{{ route('profile.vision-mission') }}" wire:navigate class="px-4 py-2.5 bg-slate-50 rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-600 hover:bg-red-50 hover:text-red-600 transition-all">Visi & Misi</a>
+                        <a href="{{ route('profile.history') }}" wire:navigate class="px-4 py-2.5 bg-slate-50 rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-600 hover:bg-red-50 hover:text-red-600 transition-all">Sejarah</a>
+                        <a href="{{ route('profile.organization') }}" class="px-4 py-2.5 bg-slate-50 rounded-xl text-[9px] font-black uppercase tracking-widest text-slate-600 hover:bg-red-50 hover:text-red-600 transition-all">Tim Kami</a>
+                    </div>
+                </div>
+
+                <a @click="mobileMenuOpen = false" href="#dokumen" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Dokumen</a>
+                <a @click="mobileMenuOpen = false" href="#berita" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Warta</a>
+                <a @click="mobileMenuOpen = false" href="#kontak" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Kontak</a>
+                
+                <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="w-full py-4 bg-red-600 text-white text-center text-xs font-black rounded-xl uppercase tracking-widest shadow-xl shadow-red-600/20 mt-4">Tanya IT Helpdesk</a>
+            </nav>
         </div>
     </header>
 
@@ -81,12 +133,12 @@
                 <span class="text-[11px] font-black uppercase tracking-[0.2em] text-white">Modern Digital Infrastructure 2.0</span>
             </div>
 
-            <h1 class="text-6xl md:text-9xl font-black text-white tracking-tighter leading-[0.9] mb-10">
+            <h1 class="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter leading-[0.9] mb-10">
                 Transformasi Digital<br/>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-orange-400 filter drop-shadow-[0_0_15px_rgba(239,68,68,0.3)]">Tanpa Batas.</span>
             </h1>
 
-            <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-300/80 font-medium leading-relaxed mb-14">
+            <p class="max-w-2xl mx-auto text-base md:text-xl text-slate-300/80 font-medium leading-relaxed mb-14">
                 Pusat Teknologi Informasi dan Komunikasi yang mengelola infrastruktur jaringan, pengembangan aplikasi, dan transformasi data untuk ekosistem pendidikan masa depan.
             </p>
 

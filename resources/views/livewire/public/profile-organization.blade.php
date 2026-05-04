@@ -53,6 +53,14 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 
     <div class="plus-jakarta bg-white min-h-screen">
@@ -141,13 +149,13 @@
                         <span class="w-6 h-1 bg-[#8b0000] mr-3 rounded-full"></span>
                         Tim Transformasi Digital
                     </h2>
-                    <div class="flex flex-wrap gap-2">
+                    <div class="flex items-center overflow-x-auto pb-4 md:pb-0 no-scrollbar -mx-6 px-6 md:mx-0 md:px-0 gap-2">
                         @php
                             $groups = $members->whereNotIn('position_group', ['direktur', 'pimpinan', 'kasubdit', 'pengelola'])->pluck('position_group')->unique();
                         @endphp
-                        <button class="filter-btn active text-[10px] font-bold px-4 py-2 rounded-full transition-all uppercase tracking-wider">Semua</button>
+                        <button class="filter-btn active text-[10px] font-bold px-4 py-2 rounded-full transition-all uppercase tracking-wider whitespace-nowrap">Semua</button>
                         @foreach($groups as $group)
-                            <button class="filter-btn bg-white text-slate-500 text-[10px] font-bold px-4 py-2 rounded-full border border-slate-100 transition-all uppercase tracking-wider">
+                            <button class="filter-btn bg-white text-slate-500 text-[10px] font-bold px-4 py-2 rounded-full border border-slate-100 transition-all uppercase tracking-wider whitespace-nowrap">
                                 {{ str_replace('-', ' ', $group) }}
                             </button>
                         @endforeach
