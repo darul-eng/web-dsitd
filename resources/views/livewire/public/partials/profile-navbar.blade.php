@@ -1,19 +1,30 @@
-<header x-data="{ profileOpen: false, mobileMenuOpen: false, mobileProfileOpen: false }" class="fixed top-0 left-0 right-0 z-50 glass h-16 px-6 md:px-12 flex items-center justify-between border-b border-white/40">
+<header x-data="{ scrolled: false, profileOpen: false, mobileMenuOpen: false, mobileProfileOpen: false }" 
+    @scroll.window="scrolled = (window.pageYOffset > 20)"
+    :class="scrolled ? 'glass h-16 border-white/40' : 'bg-transparent h-24 border-transparent'"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 md:px-12 flex items-center justify-between border-b">
     <div class="flex items-center gap-10">
         <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-3 group">
-            <img src="{{ asset('img/logo-dark.png') }}" alt="Logo DSITD UNHAS" class="h-8 md:h-10 transition-all duration-500 group-hover:scale-105" loading="lazy">
+            <img :src="scrolled ? '{{ asset('img/logo-dark.png') }}' : '{{ asset('img/logo.png') }}'" 
+                alt="Logo DSITD UNHAS" 
+                class="h-8 md:h-10 transition-all duration-500 group-hover:scale-105" 
+                loading="lazy">
 
             <div class="flex flex-col">
-                <span class="text-sm font-black tracking-tighter leading-none text-slate-900">DSITD</span>
+                <span :class="scrolled ? 'text-slate-900' : 'text-white'"
+                    class="text-sm font-black tracking-tighter leading-none transition-colors duration-500">DSITD</span>
                 <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest leading-none mt-0.5">UNHAS</span>
             </div>
         </a>
 
         <nav class="hidden md:flex items-center gap-8">
-            <a href="{{ route('home') }}#layanan" class="text-[11px] font-bold text-slate-500 hover:text-red-600 transition-all uppercase tracking-widest">Layanan</a>
+            <a href="{{ route('home') }}#layanan" 
+                :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'"
+                class="text-[11px] font-bold transition-all uppercase tracking-widest">Layanan</a>
 
             <div class="relative" @click.outside="profileOpen = false">
-                <button @click="profileOpen = !profileOpen" class="inline-flex items-center gap-1 text-[11px] font-bold text-red-600 transition-all uppercase tracking-widest">
+                <button @click="profileOpen = !profileOpen" 
+                    :class="scrolled ? 'text-red-600' : 'text-white hover:text-red-400'"
+                    class="inline-flex items-center gap-1 text-[11px] font-bold transition-all uppercase tracking-widest">
                     Profile
                     <svg class="w-3 h-3 transition-transform" :class="profileOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -34,26 +45,36 @@
                 </div>
             </div>
 
-            <a href="{{ route('home') }}#dokumen" class="text-[11px] font-bold text-slate-500 hover:text-red-600 transition-all uppercase tracking-widest">Dokumen</a>
-            <a href="{{ route('home') }}#berita" class="text-[11px] font-bold text-slate-500 hover:text-red-600 transition-all uppercase tracking-widest">Warta</a>
-            <a href="{{ route('home') }}#kontak" class="text-[11px] font-bold text-slate-500 hover:text-red-600 transition-all uppercase tracking-widest">Kontak</a>
+            <a href="{{ route('home') }}#dokumen" 
+                :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'"
+                class="text-[11px] font-bold transition-all uppercase tracking-widest">Dokumen</a>
+            <a href="{{ route('home') }}#berita" 
+                :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'"
+                class="text-[11px] font-bold transition-all uppercase tracking-widest">Warta</a>
+            <a href="{{ route('home') }}#kontak" 
+                :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'"
+                class="text-[11px] font-bold transition-all uppercase tracking-widest">Kontak</a>
         </nav>
     </div>
 
     <div class="flex items-center gap-4">
-        <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-slate-100/50 border border-slate-200/50 rounded-full backdrop-blur-md">
+        <div :class="scrolled ? 'bg-slate-100/50 border-slate-200/50' : 'bg-white/5 border-white/10'"
+            class="hidden lg:flex items-center gap-2 px-3 py-1.5 border rounded-full backdrop-blur-md transition-colors duration-500">
             <div class="relative flex h-2 w-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full {{ ($systemOperational ?? true) ? 'bg-emerald-500' : 'bg-rose-500' }} opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 {{ ($systemOperational ?? true) ? 'bg-emerald-600' : 'bg-rose-600' }}"></span>
             </div>
-            <span class="text-[9px] font-black {{ ($systemOperational ?? true) ? 'text-emerald-600' : 'text-rose-600' }} uppercase tracking-tighter">
+            <span :class="scrolled ? '{{ ($systemOperational ?? true) ? 'text-emerald-600' : 'text-rose-600' }}' : '{{ ($systemOperational ?? true) ? 'text-emerald-400' : 'text-rose-400' }}'"
+                class="text-[9px] font-black uppercase tracking-tighter transition-colors duration-500">
                 {{ ($systemOperational ?? true) ? 'System Operational' : 'Under Maintenance' }}
             </span>
         </div>
         <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="hidden sm:inline-flex px-5 py-2 bg-red-600 border border-red-500 text-white text-[10px] font-black rounded-lg hover:bg-red-700 transition-all uppercase tracking-widest shadow-xl shadow-red-600/20">Tanya IT Helpdesk</a>
         
         <!-- Mobile Menu Toggle -->
-        <button @click="mobileMenuOpen = !mobileMenuOpen" class="flex md:hidden p-2 rounded-xl text-slate-900 transition-colors hover:bg-slate-100">
+        <button @click="mobileMenuOpen = !mobileMenuOpen" 
+            :class="scrolled ? 'text-slate-900' : 'text-white'"
+            class="flex md:hidden p-2 rounded-xl transition-colors hover:bg-white/10">
             <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
             <svg x-show="mobileMenuOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>

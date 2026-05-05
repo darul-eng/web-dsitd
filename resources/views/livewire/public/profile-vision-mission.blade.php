@@ -42,11 +42,8 @@
         {{-- Navbar --}}
         @include('livewire.public.partials.profile-navbar')
 
-        {{-- Navbar Spacer --}}
-        <div class="h-16"></div>
-
         {{-- Hero Header Section --}}
-        <section class="relative py-6 overflow-hidden mesh-gradient">
+        <section class="relative pt-24 pb-12 overflow-hidden mesh-gradient">
             {{-- Background Pattern --}}
             <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">

@@ -340,7 +340,7 @@
                     
                     <div class="relative z-10 flex flex-col items-center">
                         <!-- 3D Network Globe Animation with floating effect -->
-                        <div class="animate-bounce-slow w-full max-w-[420px] aspect-square rounded-[2rem] overflow-hidden relative shadow-[0_20px_50px_rgba(3,3,8,0.2)] bg-[#030308] ring-1 ring-white/10" wire:ignore>
+                        <div class="animate-bounce-slow w-full max-w-[420px] aspect-square relative" wire:ignore>
                             <div id="network-globe-container" class="w-full h-full"></div>
                         </div>
                     </div>
@@ -470,7 +470,6 @@
 
             const startScene = () => {
                 const scene = new THREE.Scene();
-                scene.fog = new THREE.FogExp2(0x030308, 0.015);
 
                 const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
                 camera.position.set(0, 8, 28);
@@ -615,23 +614,7 @@
                     });
                 }
 
-                const starsGeometry = new THREE.BufferGeometry();
-                const starsCount = 2000;
-                const posArray = new Float32Array(starsCount * 3);
 
-                for (let i = 0; i < starsCount * 3; i++) {
-                    posArray[i] = (Math.random() - 0.5) * 200;
-                }
-
-                starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-                const starsMaterial = new THREE.PointsMaterial({
-                    size: 0.1,
-                    color: 0x88ccff,
-                    transparent: true,
-                    opacity: 0.6
-                });
-                const starsMesh = new THREE.Points(starsGeometry, starsMaterial);
-                scene.add(starsMesh);
 
                 const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
                 scene.add(ambientLight);
@@ -650,8 +633,6 @@
                     animationFrameId = requestAnimationFrame(animate);
 
                     globe.rotation.y += 0.001;
-                    starsMesh.rotation.y -= 0.0002;
-                    starsMesh.rotation.x += 0.0001;
 
                     dataPackets.forEach(packet => {
                         packet.progress += packet.speed;
