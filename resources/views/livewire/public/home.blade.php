@@ -18,7 +18,7 @@
             </a>
 
             <nav class="hidden md:flex items-center gap-8">
-                <a href="#layanan" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Layanan</a>
+                <a href="{{ route('services.index') }}" wire:navigate :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Layanan</a>
                 <div class="relative" @click.outside="profileOpen = false">
                     <button @click="profileOpen = !profileOpen"
                         :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'"
@@ -42,8 +42,9 @@
                         <a href="{{ route('profile.organization') }}" class="block px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-700 hover:bg-slate-100">Tim Kami</a>
                     </div>
                 </div>
-                <a href="#dokumen" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Dokumen</a>
-                <a href="#berita" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Warta</a>
+                <a href="{{ route('documents.index') }}" wire:navigate :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Dokumen</a>
+                <a href="{{ route('news.index') }}" wire:navigate :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Warta</a>
+                <a href="{{ route('gallery.index') }}" wire:navigate :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Galeri</a>
                 <a href="#kontak" :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'" class="text-[11px] font-bold transition-all uppercase tracking-widest">Kontak</a>
             </nav>
         </div>
@@ -83,7 +84,7 @@
             x-transition:leave-end="opacity-0 scale-95"
             class="absolute top-20 left-6 right-6 bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 md:hidden z-50">
             <nav class="flex flex-col gap-6">
-                <a @click="mobileMenuOpen = false" href="#layanan" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Layanan</a>
+                <a @click="mobileMenuOpen = false" href="{{ route('services.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Layanan</a>
                 
                 <div class="space-y-3">
                     <button @click="mobileProfileOpen = !mobileProfileOpen" 
@@ -105,8 +106,9 @@
                     </div>
                 </div>
 
-                <a @click="mobileMenuOpen = false" href="#dokumen" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Dokumen</a>
-                <a @click="mobileMenuOpen = false" href="#berita" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Warta</a>
+                <a @click="mobileMenuOpen = false" href="{{ route('documents.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Dokumen</a>
+                <a @click="mobileMenuOpen = false" href="{{ route('news.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Warta</a>
+                <a @click="mobileMenuOpen = false" href="{{ route('gallery.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Galeri</a>
                 <a @click="mobileMenuOpen = false" href="#kontak" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Kontak</a>
                 
                 <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="w-full py-4 bg-red-600 text-white text-center text-xs font-black rounded-xl uppercase tracking-widest shadow-xl shadow-red-600/20 mt-4">Tanya IT Helpdesk</a>
@@ -143,7 +145,7 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-                <a href="#layanan" class="group relative px-12 py-5 bg-red-600 text-white text-xs font-black rounded-2xl hover:bg-red-700 transition-all shadow-[0_20px_50px_rgba(239,68,68,0.4)] uppercase tracking-widest overflow-hidden">
+                <a href="{{ route('services.index') }}" wire:navigate class="group relative px-12 py-5 bg-red-600 text-white text-xs font-black rounded-2xl hover:bg-red-700 transition-all shadow-[0_20px_50px_rgba(239,68,68,0.4)] uppercase tracking-widest overflow-hidden">
                     <span class="relative z-10">Eksplorasi Layanan</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </a>
@@ -198,7 +200,7 @@
             </div>
         </div>
     </section>
-
+    {{-- 
     <!-- Services Grid -->
     <section id="layanan" class="py-32 bg-white relative overflow-hidden">
         <div class="container mx-auto px-6">
@@ -253,6 +255,81 @@
             @endif
         </div>
     </section>
+    --}}
+
+    {{-- 
+    <!-- News & Blog -->
+    <section id="berita" class="py-32 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+                <div class="max-w-xl">
+                    <h2 class="text-xs font-black text-red-600 uppercase tracking-widest mb-4">Update & Inovasi</h2>
+                    <h1 class="text-4xl font-black text-slate-900 tracking-tighter">Warta Transformasi Digital.</h1>
+                </div>
+                <a href="{{ route('news.index') }}" wire:navigate class="inline-flex items-center gap-2 text-[10px] font-black text-red-600 uppercase tracking-widest hover:gap-3 transition-all">
+                    Lihat Seluruh Warta
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></svg>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                @foreach($latestNews as $news)
+                    <article class="group flex flex-col">
+                        <div class="relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6">
+                            <img src="{{ asset('storage/' . $news->cover_image) }}" alt="{{ $news->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-slate-100 text-[8px] font-black text-slate-500 uppercase tracking-widest">{{ $news->category->name ?? 'Update' }}</span>
+                            <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest">{{ $news->published_at?->format('d M Y') }}</span>
+                        </div>
+                        <h3 class="text-xl font-black text-slate-900 tracking-tight leading-snug group-hover:text-red-600 transition-colors">
+                            <a href="{{ route('news.show', $news->slug) }}" wire:navigate>{{ $news->title }}</a>
+                        </h3>
+                    </article>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <livewire:public.gallery-showcase />
+
+    <!-- Public Documents Section -->
+    <section id="dokumen" class="py-32 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-5">
+                    <h2 class="text-xs font-black text-red-600 uppercase tracking-widest mb-4">Resource Center</h2>
+                    <h1 class="text-4xl font-black text-slate-900 tracking-tighter mb-8">Akses Dokumen & Panduan Publik.</h1>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-10">Unduh berbagai dokumen resmi, regulasi TIK, dan panduan penggunaan layanan digital Universitas Hasanuddin dalam satu pintu.</p>
+                    <a href="{{ route('documents.index') }}" wire:navigate class="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white text-[10px] font-black rounded-xl hover:bg-red-600 transition-all uppercase tracking-widest">
+                        Buka Pusat Dokumen
+                    </a>
+                </div>
+                <div class="lg:col-span-7">
+                    <div class="space-y-4">
+                        @foreach($featuredDocuments as $doc)
+                            <div class="group bg-white border border-slate-100 p-6 rounded-[1.5rem] hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 flex items-center justify-between">
+                                <div class="flex items-center gap-5">
+                                    <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-red-600">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-black text-slate-800 tracking-tight">{{ $doc->title }}</h4>
+                                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{{ strtoupper($doc->file_type) }} • {{ number_format($doc->file_size / 1024 / 1024, 2) }} MB</span>
+                                    </div>
+                                </div>
+                                <a href="{{ asset('storage/' . $doc->file_path) }}" target="_blank" class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></svg>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    --}}
 
     <!-- Visual Trust / Stats -->
     <section class="py-32 bg-slate-50 border-y border-slate-100 relative overflow-hidden">
@@ -350,94 +427,6 @@
     </section>
 
 
-    <!-- News & Blog -->
-    <section id="berita" class="py-32 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-end justify-between mb-20 gap-6">
-                <div class="max-w-xl">
-                    <h2 class="text-xs font-black text-red-600 uppercase tracking-widest mb-4">Latest Insights</h2>
-                    <h1 class="text-4xl font-black text-slate-900 tracking-tighter">Warta Transformasi.</h1>
-                </div>
-                <button class="px-8 py-3 bg-slate-50 text-slate-900 text-xs font-black rounded-lg hover:bg-slate-100 transition-all border border-slate-200 uppercase tracking-widest">Lihat Semua Berita</button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                @foreach($latestNews as $news)
-                <div data-aos="fade-up" class="group">
-                    <div class="relative aspect-video rounded-3xl overflow-hidden mb-6">
-                        @if($news->image)
-                            <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
-                        @else
-                            <div class="w-full h-full bg-slate-100 flex items-center justify-center">
-                                <svg class="w-12 h-12 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/></svg>
-                            </div>
-                        @endif
-                        <div class="absolute top-4 left-4">
-                            <span class="px-3 py-1 bg-white/90 backdrop-blur text-[9px] font-black text-slate-900 rounded-full uppercase tracking-widest">{{ $news->category->name ?? 'Update' }}</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{{ $news->created_at->format('d M Y') }}</span>
-                        <div class="w-1 h-1 bg-red-600 rounded-full"></div>
-                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{{ $news->author->name ?? 'Admin' }}</span>
-                    </div>
-                    <h3 class="text-xl font-black text-slate-900 tracking-tight group-hover:text-red-600 transition-colors cursor-pointer mb-3 leading-tight">{{ $news->title }}</h3>
-                    <p class="text-xs text-slate-500 font-medium leading-relaxed mb-6">{{ Str::limit(strip_tags($news->content), 100) }}</p>
-                    <a href="{{ route('news.show', $news->slug) }}" class="inline-flex items-center gap-2 text-[10px] font-black text-slate-900 uppercase tracking-widest hover:text-red-600 transition-colors">
-                        Baca Selengkapnya
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></svg>
-                    </a>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    <livewire:public.gallery-showcase />
-
-    <!-- Public Documents Section -->
-    <section id="dokumen" class="py-32 bg-white relative overflow-hidden">
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
-                <div class="max-w-xl">
-                    <h2 class="text-xs font-black text-red-600 uppercase tracking-widest mb-4">Resource Center</h2>
-                    <h1 class="text-4xl font-black text-slate-900 tracking-tighter">Dokumen Publik & Panduan.</h1>
-                </div>
-                <a href="#" class="text-[10px] font-black text-slate-400 hover:text-red-600 transition-colors uppercase tracking-[0.2em] border-b border-slate-200 pb-1">Lihat Semua Dokumen</a>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                @foreach($publicDocuments as $doc)
-                <div data-aos="fade-up" class="group">
-                    <div class="bg-white border border-slate-100 p-8 rounded-[2rem] hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 flex items-center justify-between">
-                        <div class="flex items-center gap-6">
-                            <div class="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100 group-hover:bg-red-50 group-hover:border-red-100 transition-colors">
-                                <svg class="w-7 h-7 text-slate-400 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <span class="text-[8px] font-bold text-red-600 uppercase tracking-widest">{{ $doc->category->name ?? 'Umum' }}</span>
-                                <h3 class="text-lg font-bold text-slate-900 tracking-tight mt-1">{{ $doc->title }}</h3>
-                                <div class="flex items-center gap-4 mt-2">
-                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{{ $doc->file_type ?? 'PDF' }}</span>
-                                    <div class="w-1 h-1 bg-slate-200 rounded-full"></div>
-                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{{ number_format($doc->file_size / 1024, 1) }} KB</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ asset('storage/' . $doc->file_path) }}" download class="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-300 group-hover:scale-110">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
     <!-- CTA Section -->
     <section class="py-24 bg-slate-50 px-6 border-t border-slate-100">
         <div class="container mx-auto">
@@ -448,7 +437,7 @@
                     <p class="text-slate-400 font-medium md:text-lg mb-12">Konsultasikan kebutuhan infrastruktur dan pengembangan platform digital unit kerja Anda bersama tim ahli kami.</p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
                         <a href="mailto:it@unhas.ac.id" class="px-10 py-5 bg-red-600 text-white text-xs font-black rounded-xl hover:bg-red-700 transition-all shadow-2xl shadow-red-600/40 uppercase tracking-widest">Hubungi Kami</a>
-                        <a href="#layanan" class="text-white text-xs font-black uppercase tracking-widest border-b-2 border-white/20 hover:border-white transition-all pb-1">Lihat Dokumentasi</a>
+                        <a href="{{ route('services.index') }}" wire:navigate class="text-white text-xs font-black uppercase tracking-widest border-b-2 border-white/20 hover:border-white transition-all pb-1">Lihat Dokumentasi</a>
                     </div>
                 </div>
             </div>

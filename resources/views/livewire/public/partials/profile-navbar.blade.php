@@ -17,15 +17,18 @@
         </a>
 
         <nav class="hidden md:flex items-center gap-8">
-            <a href="{{ route('home') }}#layanan" 
-                :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'"
+            <a href="{{ route('services.index') }}" wire:navigate
+                :class="scrolled ? '{{ request()->routeIs('services.*') ? 'text-red-600' : 'text-slate-500 hover:text-red-600' }}' : 'text-slate-300 hover:text-white'"
                 class="text-[11px] font-bold transition-all uppercase tracking-widest">Layanan</a>
 
             <div class="relative" @click.outside="profileOpen = false">
+                @php
+                    $isProfileRoute = request()->routeIs('profile.*');
+                @endphp
                 <button @click="profileOpen = !profileOpen" 
-                    :class="scrolled ? 'text-red-600' : 'text-white hover:text-red-400'"
+                    :class="scrolled ? '{{ $isProfileRoute ? 'text-red-600' : 'text-slate-500 hover:text-red-600' }}' : 'text-slate-300 hover:text-white'"
                     class="inline-flex items-center gap-1 text-[11px] font-bold transition-all uppercase tracking-widest">
-                    Profile
+                    Profil
                     <svg class="w-3 h-3 transition-transform" :class="profileOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -45,15 +48,17 @@
                 </div>
             </div>
 
-            <a href="{{ route('home') }}#dokumen" 
-                :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'"
+            <a href="{{ route('documents.index') }}" wire:navigate
+                :class="scrolled ? '{{ request()->routeIs('documents.*') ? 'text-red-600' : 'text-slate-500 hover:text-red-600' }}' : 'text-slate-300 hover:text-white'"
                 class="text-[11px] font-bold transition-all uppercase tracking-widest">Dokumen</a>
-            <a href="{{ route('home') }}#berita" 
-                :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'"
+
+            <a href="{{ route('news.index') }}" wire:navigate
+                :class="scrolled ? '{{ request()->routeIs('news.*') ? 'text-red-600' : 'text-slate-500 hover:text-red-600' }}' : 'text-slate-300 hover:text-white'"
                 class="text-[11px] font-bold transition-all uppercase tracking-widest">Warta</a>
-            <a href="{{ route('home') }}#kontak" 
-                :class="scrolled ? 'text-slate-500 hover:text-red-600' : 'text-slate-300 hover:text-white'"
-                class="text-[11px] font-bold transition-all uppercase tracking-widest">Kontak</a>
+
+            <a href="{{ route('gallery.index') }}" wire:navigate
+                :class="scrolled ? '{{ request()->routeIs('gallery.*') ? 'text-red-600' : 'text-slate-500 hover:text-red-600' }}' : 'text-slate-300 hover:text-white'"
+                class="text-[11px] font-bold transition-all uppercase tracking-widest">Galeri</a>
         </nav>
     </div>
 
@@ -90,12 +95,12 @@
         x-transition:leave-end="opacity-0 scale-95"
         class="absolute top-20 left-6 right-6 bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 md:hidden z-50">
         <nav class="flex flex-col gap-6">
-            <a @click="mobileMenuOpen = false" href="{{ route('home') }}#layanan" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Layanan</a>
+            <a @click="mobileMenuOpen = false" href="{{ route('services.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Layanan</a>
             
             <div class="space-y-3">
                 <button @click="mobileProfileOpen = !mobileProfileOpen" 
                     class="flex items-center justify-between w-full text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">
-                    Profile
+                    Profil
                     <svg class="w-3 h-3 transition-transform" :class="mobileProfileOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -112,9 +117,9 @@
                 </div>
             </div>
 
-            <a @click="mobileMenuOpen = false" href="{{ route('home') }}#dokumen" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Dokumen</a>
-            <a @click="mobileMenuOpen = false" href="{{ route('home') }}#berita" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Warta</a>
-            <a @click="mobileMenuOpen = false" href="{{ route('home') }}#kontak" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Kontak</a>
+            <a @click="mobileMenuOpen = false" href="{{ route('documents.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Dokumen</a>
+            <a @click="mobileMenuOpen = false" href="{{ route('news.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Warta</a>
+            <a @click="mobileMenuOpen = false" href="{{ route('gallery.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Galeri</a>
             
             <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="w-full py-4 bg-red-600 text-white text-center text-xs font-black rounded-xl uppercase tracking-widest shadow-xl shadow-red-600/20 mt-4">Tanya IT Helpdesk</a>
         </nav>

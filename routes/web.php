@@ -9,6 +9,11 @@ use App\Livewire\Public\ProfileVisionMission;
 use App\Livewire\Public\ServiceShow;
 use App\Livewire\Public\ServicesIndex;
 use App\Livewire\Public\ProfileOrganizationV2;
+use App\Livewire\Public\NewsIndex;
+use App\Livewire\Public\DocumentsIndex;
+use App\Livewire\Public\GalleryIndex;
+use App\Livewire\Public\NewsShow;
+
 
 
 Route::get('/', Home::class)->name('home');
@@ -19,6 +24,10 @@ Route::get('/profil/struktur-organisasi', ProfileOrganization::class)->name('pro
 // Placeholder for other public pages
 Route::get('/layanan', ServicesIndex::class)->name('services.index');
 Route::get('/layanan/{service:slug}', ServiceShow::class)->name('services.show');
-Route::get('/warta/{slug}', function($slug) { return "Warta: $slug"; })->name('news.show');
+Route::get('/warta', NewsIndex::class)->name('news.index');
+Route::get('/warta/{news:slug}', NewsShow::class)->name('news.show');
+Route::get('/dokumen', DocumentsIndex::class)->name('documents.index');
+Route::get('/galeri', GalleryIndex::class)->name('gallery.index');
+
 
 require __DIR__.'/admin.php';
