@@ -3,7 +3,7 @@
         @include('livewire.public.partials.profile-navbar')
 
         {{-- Hero Header --}}
-        <section class="relative pt-24 pb-12 overflow-hidden mesh-gradient">
+        <section class="relative pt-24 pb-8 overflow-hidden mesh-gradient">
             <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                     <defs><pattern id="grid-service-show" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="black" stroke-width="1"/></pattern></defs>
@@ -11,12 +11,12 @@
                 </svg>
             </div>
 
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="flex items-start justify-between gap-8">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                     <div class="max-w-3xl flex-1">
-                        <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[0.95]">{{ $service->title }}</h1>
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tighter leading-tight">{{ $service->title }}</h1>
                         @if($service->meta_description)
-                            <p class="mt-6 text-slate-300/90 text-sm md:text-base leading-relaxed">{{ $service->meta_description }}</p>
+                            <p class="mt-4 text-slate-300/90 text-sm leading-relaxed">{{ $service->meta_description }}</p>
                         @endif
                     </div>
 
@@ -30,17 +30,17 @@
         </section>
 
         {{-- Content --}}
-        <section class="py-16 flex-grow flex flex-col">
-            <div class="container mx-auto px-6 flex flex-col flex-grow">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 flex-grow">
-                    <article class="lg:col-span-8 rounded-[2rem] border border-slate-100 bg-white p-8 md:p-12 shadow-sm">
+        <section class="py-5 sm:py-12 flex-grow flex flex-col">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col flex-grow">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow">
+                    <article class="lg:col-span-8 rounded-xl sm:rounded-[1.5rem] border border-slate-100 bg-white p-4 sm:p-6 md:p-10 shadow-sm">
                         <div class="prose prose-slate max-w-none prose-headings:font-black prose-headings:tracking-tight prose-p:text-slate-600 prose-p:leading-relaxed">
                             {!! $service->content !!}
                         </div>
 
                         @if($service->external_link)
-                            <div class="mt-10">
-                                <a href="{{ $service->external_link }}" target="_blank" class="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-red-600 text-white text-[10px] font-black uppercase tracking-widest hover:bg-red-700 transition-colors">
+                            <div class="mt-4 sm:mt-8">
+                                <a href="{{ $service->external_link }}" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-red-600 text-white text-[10px] font-black uppercase tracking-widest hover:bg-red-700 transition-colors">
                                     Buka Akses Layanan
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/></svg>
                                 </a>
@@ -49,10 +49,10 @@
                     </article>
 
                     <aside class="lg:col-span-4 flex flex-col justify-end">
-                        <div class="rounded-[2rem] border border-slate-100 bg-slate-50 p-8">
-                            <h3 class="text-[10px] font-black text-slate-600 uppercase tracking-widest mb-4">Butuh Pendampingan?</h3>
+                        <div class="rounded-[1.5rem] border border-slate-100 bg-slate-50 p-6">
+                            <h3 class="text-[10px] font-black text-slate-600 uppercase tracking-widest mb-3">Butuh Pendampingan?</h3>
                             <p class="text-sm text-slate-500 leading-relaxed">Tim DSITD siap membantu implementasi layanan untuk unit kerja Anda.</p>
-                            <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="mt-6 inline-flex items-center gap-2 text-[10px] font-black text-red-600 uppercase tracking-widest hover:text-red-700 transition-colors">
+                            <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="mt-5 inline-flex items-center gap-2 text-[10px] font-black text-red-600 uppercase tracking-widest hover:text-red-700 transition-colors">
                                 Hubungi IT Helpdesk
                             </a>
                         </div>
@@ -60,5 +60,7 @@
                 </div>
             </div>
         </section>
+
+        @include('livewire.public.partials.public-footer')
     </div>
 </div>
