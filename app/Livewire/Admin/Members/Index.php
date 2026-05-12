@@ -22,8 +22,19 @@ class Index extends Component
         'group' => ['except' => ''],
     ];
 
+    public function mount(): void
+    {
+        $this->group = $this->normalizeGroupFilter($this->group);
+    }
+
     public function updatingSearch()
     {
+        $this->resetPage();
+    }
+
+    public function updatingGroup(string $value): void
+    {
+        $this->group = $this->normalizeGroupFilter($value);
         $this->resetPage();
     }
 
@@ -44,6 +55,8 @@ class Index extends Component
 
     public function render()
     {
+        $groupFilterValues = $this->groupFilterValues($this->group);
+
         $members = Member::query()
             ->when($this->search, function ($query) {
                 $query->where(function($q) {
@@ -51,8 +64,8 @@ class Index extends Component
                       ->orWhere('nip', 'like', '%' . $this->search . '%');
                 });
             })
-            ->when($this->group, function ($query) {
-                $query->where('position_group', $this->group);
+            ->when(!empty($groupFilterValues), function ($query) use ($groupFilterValues) {
+                $query->whereIn('position_group', $groupFilterValues);
             })
             ->orderBy('order')
             ->orderBy('fullname')
@@ -64,5 +77,29 @@ class Index extends Component
             'members' => $members,
             'groups' => $groups,
         ]);
+    }
+
+    private function normalizeGroupFilter(string $group): string
+    {
+        return match ($group) {
+            'pimpinan' => 'direktur',
+            'pengelola' => 'kasubdit',
+            'staff' => 'tim-helpdesk',
+            'teknisi' => 'tim-programmer',
+            default => $group,
+        };
+    }
+
+    private function groupFilterValues(string $group): array
+    {
+        return match ($group) {
+            'direktur' => ['direktur', 'pimpinan'],
+            'kasubdit' => ['kasubdit', 'pengelola'],
+            'kepala-seksi' => ['kepala-seksi'],
+            'tim-jaringan' => ['tim-jaringan'],
+            'tim-helpdesk' => ['tim-helpdesk', 'staff'],
+            'tim-programmer' => ['tim-programmer', 'teknisi'],
+            default => [],
+        };
     }
 }

@@ -41,7 +41,7 @@
 
         .mesh-gradient {
             background-color: #020617;
-            background-image: 
+            background-image:
                 radial-gradient(at 0% 0%, hsla(220, 100%, 50%, 0.15) 0px, transparent 50%),
                 radial-gradient(at 100% 0%, hsla(0, 100%, 50%, 0.1) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, hsla(220, 100%, 50%, 0.1) 0px, transparent 50%),
@@ -80,8 +80,6 @@
     {{ $slot }}
 
     @livewireScripts
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
 </body>
 
 </html>

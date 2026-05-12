@@ -6,6 +6,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 use App\Traits\HasAssets;
@@ -16,6 +18,7 @@ class Member extends Model
 
     protected $fillable = [
         'uuid',
+        'parent_id',
         'fullname',
         'nip',
         'position',
@@ -45,5 +48,22 @@ class Member extends Model
         static::creating(function ($member) {
             $member->uuid = (string) Str::uuid();
         });
+    }
+
+    // ─── Hierarchical relationships ───────────────────────────
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function children(): HasMany
+    {
+        return $this->hasMany(self::class, 'parent_id')->orderBy('order');
+    }
+
+    public function childrenRecursive(): HasMany
+    {
+        return $this->children()->with('childrenRecursive');
     }
 }

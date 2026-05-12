@@ -31,7 +31,7 @@
         <div class="space-y-6">
             <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
                 <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-6">Foto Profil Personnel</h3>
-                
+
                 <div class="relative w-48 h-64 mx-auto group cursor-pointer">
                     <div class="absolute inset-0 rounded-2xl border-4 border-dashed border-slate-100 group-hover:border-red-200 transition-all overflow-hidden flex items-center justify-center bg-slate-50">
                         @if ($image)
@@ -53,7 +53,7 @@
 
             <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5">
                 <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Urutan & Visibilitas</h3>
-                
+
                 <div class="space-y-1.5">
                     <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Urutan Tampilan</label>
                     <input wire:model="order" type="number" class="w-full px-4 py-2 text-sm font-bold bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-red-500 transition-all">
@@ -74,7 +74,7 @@
         <div class="lg:col-span-2 space-y-6">
             <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-6">
                 <h3 class="text-xs font-black text-slate-800 uppercase tracking-widest border-b border-slate-100 pb-4">Informasi Utama</h3>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-1.5 md:col-span-2">
                         <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Nama Lengkap & Gelar</label>
@@ -84,7 +84,7 @@
 
                     <div class="space-y-1.5">
                         <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">NIP / ID Pegawai</label>
-                        <input wire:model="nip" type="text" class="w-full px-4 py-2.5 text-sm font-bold bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-red-500" placeholder="Opsional...">
+                        <input wire:model="nip" type="text" class="w-full px-4 py-2.5 text-sm font-bold bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-red-500" placeholder="NIK...">
                         @error('nip') <p class="text-[10px] font-bold text-rose-500 italic">{{ $message }}</p> @enderror
                     </div>
 
@@ -97,11 +97,12 @@
                     <div class="space-y-1.5">
                         <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Grup Struktur</label>
                         <select wire:model="position_group" class="w-full px-4 py-2.5 text-sm font-bold bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-red-500">
-                            <option value="pimpinan">Pimpinan</option>
-                            <option value="pengelola">Pengelola (Manajerial)</option>
-                            <option value="staff">Staf Administrasi</option>
-                            <option value="teknisi">Tim Teknis / Teknisi</option>
-                            <option value="others">Lainnya</option>
+                            <option value="direktur">Direktur</option>
+                            <option value="kasubdit">Kasubdit</option>
+                            <option value="kepala-seksi">Kepala Seksi</option>
+                            <option value="tim-jaringan">Tim Jaringan</option>
+                            <option value="tim-helpdesk">Tim Helpdesk</option>
+                            <option value="tim-programmer">Tim Programmer</option>
                         </select>
                     </div>
                 </div>

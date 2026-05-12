@@ -24,13 +24,17 @@ class Home extends Component
 
     public function render()
     {
-        $services = Service::where('is_active', true)->orderBy('order')->take(8)->get();
+        $services = Service::with('category')->where('is_active', true)->orderBy('order')->take(8)->get();
+        $totalServices = Service::where('is_active', true)->count();
+        $hasMoreServices = $totalServices > $services->count();
         $banners = Jumbotron::where('is_active', true)->orderBy('order')->get();
         $latestNews = News::published()->latest()->take(3)->get();
         $publicDocuments = Document::with('category')->where('is_public', true)->latest()->take(4)->get();
 
         return view('livewire.public.home', [
             'services' => $services,
+            'totalServices' => $totalServices,
+            'hasMoreServices' => $hasMoreServices,
             'banners' => $banners,
             'latestNews' => $latestNews,
             'publicDocuments' => $publicDocuments,
