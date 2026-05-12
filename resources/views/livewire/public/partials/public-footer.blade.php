@@ -1,15 +1,15 @@
-<footer id="kontak" class="bg-white border-t border-slate-100 pt-24 pb-12">
-    <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
+<footer id="kontak" class="bg-white border-t border-slate-100 pt-10 sm:pt-16 pb-6 sm:pb-10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-10 mb-8 sm:mb-16">
             <div class="md:col-span-4">
-                <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-3 mb-8">
+                <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-3 mb-4 sm:mb-6">
                     <img src="{{ asset('img/logo-dark.png') }}" alt="Logo DSITD UNHAS" class="h-10" loading="lazy">
                     <div class="flex flex-col">
                         <span class="text-base font-black tracking-tighter leading-none">DSITD</span>
                         <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mt-1">Universitas Hasanuddin</span>
                     </div>
                 </a>
-                <p class="text-sm text-slate-500 font-medium leading-relaxed mb-8 max-w-xs">
+                <p class="text-sm text-slate-500 font-medium leading-relaxed mb-4 sm:mb-6 max-w-xs">
                     Direktorat Sistem Teknologi Informasi dan Digitalisasi adalah unit pengelola TIK di lingkungan Universitas Hasanuddin.
                 </p>
                 <div class="flex items-center gap-4">
@@ -23,8 +23,8 @@
             </div>
 
             <div class="md:col-span-2">
-                <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-8">Layanan</h4>
-                <ul class="space-y-4">
+                <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-4 sm:mb-6">Layanan</h4>
+                <ul class="space-y-2 sm:space-y-3">
                     <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">Email UNHAS</a></li>
                     <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">Web Hosting</a></li>
                     <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">SIAKAD</a></li>
@@ -33,8 +33,8 @@
             </div>
 
             <div class="md:col-span-2">
-                <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-8">Tautan</h4>
-                <ul class="space-y-4">
+                <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-4 sm:mb-6">Tautan</h4>
+                <ul class="space-y-3">
                     <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">Pusat Bantuan</a></li>
                     <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">Status Layanan</a></li>
                     <li><a href="#" class="text-sm font-bold text-slate-500 hover:text-red-600 transition-colors tracking-tight">Privacy Policy</a></li>
@@ -42,8 +42,8 @@
             </div>
 
             <div class="md:col-span-4">
-                <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-8">Lokasi Kami</h4>
-                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 italic text-xs text-slate-600 font-medium leading-loose">
+                <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-4 sm:mb-6">Lokasi Kami</h4>
+                <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 italic text-xs text-slate-600 font-medium leading-loose">
                     Lantai 1, Gedung Perpustakaan Pusat,<br/>
                     Kampus UNHAS Tamalanrea,<br/>
                     Jl. Perintis Kemerdekaan KM.10,<br/>
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-slate-100 pt-12">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-3 border-t border-slate-100 pt-5 sm:pt-8">
             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">© 2024 DSITD Universitas Hasanuddin. All rights reserved.</p>
             <div class="flex items-center gap-8">
                 <a href="#" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-slate-600 transition-colors">Term of Service</a>

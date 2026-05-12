@@ -1,7 +1,8 @@
 <div x-data="{ scrolled: false, profileOpen: false, mobileMenuOpen: false, mobileProfileOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 20)">
     <!-- Navigation Overlay -->
     <header :class="scrolled ? 'glass h-16' : 'bg-transparent h-24'"
-            class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 md:px-12 flex items-center justify-between">
+            class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         <div class="flex items-center gap-12">
             <a href="/" wire:navigate class="flex items-center gap-3 group">
                 <!-- Smart Logo Switching -->
@@ -73,6 +74,7 @@
                 <svg x-show="mobileMenuOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
         </div>
+        </div>{{-- end container --}}
 
         <!-- Mobile Menu Overlay -->
         <div x-show="mobileMenuOpen" x-cloak
@@ -82,7 +84,7 @@
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-95"
-            class="absolute top-20 left-6 right-6 bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 md:hidden z-50">
+            class="absolute top-20 left-4 right-4 sm:left-6 sm:right-6 bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 md:hidden z-50">
             <nav class="flex flex-col gap-6">
                 <a @click="mobileMenuOpen = false" href="{{ route('services.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Layanan</a>
                 
@@ -117,7 +119,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex flex-col items-center justify-center pt-24 overflow-hidden mesh-gradient">
+    <section class="relative min-h-[80vh] sm:min-h-[90vh] flex flex-col items-center justify-center pt-20 sm:pt-24 overflow-hidden mesh-gradient">
         <!-- Background SVG Pattern -->
         <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -126,7 +128,7 @@
             </svg>
         </div>
 
-        <div class="container mx-auto px-6 text-center z-10">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
             <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/20 to-rose-500/20 text-red-500 border border-red-500/30 mb-10 backdrop-blur-xl">
                 <span class="relative flex h-2.5 w-2.5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -154,8 +156,8 @@
         </div>
 
         <!-- Stats Section: Floating Cards -->
-        <div class="mt-20 w-full max-w-6xl px-6 relative z-20">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div class="mt-8 sm:mt-16 w-full container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 <!-- Stat Card 1 -->
                 <div class="group relative">
                     <div class="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-orange-500 rounded-t-[2rem] opacity-20 group-hover:opacity-100 transition duration-500 blur"></div>
@@ -164,7 +166,7 @@
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-4xl font-black text-white tracking-tighter leading-none mb-1">{{ $uptimeRate }}%</span>
+                            <span class="text-3xl sm:text-4xl font-black text-white tracking-tighter leading-none mb-1">{{ $uptimeRate }}%</span>
                             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Uptime Jaringan</span>
                         </div>
                     </div>
@@ -178,7 +180,7 @@
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-4xl font-black text-white tracking-tighter leading-none mb-1">120+</span>
+                            <span class="text-3xl sm:text-4xl font-black text-white tracking-tighter leading-none mb-1">120+</span>
                             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Aplikasi Terintegrasi</span>
                         </div>
                     </div>
@@ -192,7 +194,7 @@
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-4xl font-black text-white tracking-tighter leading-none mb-1">45K+</span>
+                            <span class="text-3xl sm:text-4xl font-black text-white tracking-tighter leading-none mb-1">45K+</span>
                             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">Pengguna Aktif</span>
                         </div>
                     </div>
@@ -202,7 +204,7 @@
     </section>
     {{-- 
     <!-- Services Grid -->
-    <section id="layanan" class="py-32 bg-white relative overflow-hidden">
+    <section id="layanan" class="py-14 sm:py-32 bg-white relative overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-end justify-between mb-20 gap-6">
                 <div class="max-w-xl">
@@ -259,7 +261,7 @@
 
     {{-- 
     <!-- News & Blog -->
-    <section id="berita" class="py-32 bg-white">
+    <section id="berita" class="py-14 sm:py-32 bg-white">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
                 <div class="max-w-xl">
@@ -295,7 +297,7 @@
     <livewire:public.gallery-showcase />
 
     <!-- Public Documents Section -->
-    <section id="dokumen" class="py-32 bg-white relative overflow-hidden">
+    <section id="dokumen" class="py-14 sm:py-32 bg-white relative overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
                 <div class="lg:col-span-5">
@@ -309,7 +311,7 @@
                 <div class="lg:col-span-7">
                     <div class="space-y-4">
                         @foreach($featuredDocuments as $doc)
-                            <div class="group bg-white border border-slate-100 p-6 rounded-[1.5rem] hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 flex items-center justify-between">
+                            <div class="group bg-white border border-slate-100 p-4 sm:p-6 rounded-xl sm:rounded-[1.5rem] hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 flex items-center justify-between">
                                 <div class="flex items-center gap-5">
                                     <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-red-600">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
@@ -332,10 +334,10 @@
     --}}
 
     <!-- Visual Trust / Stats -->
-    <section class="py-32 bg-slate-50 border-y border-slate-100 relative overflow-hidden">
+    <section class="py-14 sm:py-32 bg-slate-50 border-y border-slate-100 relative overflow-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full max-h-2xl bg-red-600/5 filter blur-[120px] rounded-full pointer-events-none"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-20 items-center">
                 <div data-aos="fade-right">
                     <h2 class="text-xs font-black text-red-600 uppercase tracking-widest mb-4 flex items-center gap-3">
                         <span class="relative flex h-2 w-2">
@@ -428,12 +430,12 @@
 
 
     <!-- CTA Section -->
-    <section class="py-24 bg-slate-50 px-6 border-t border-slate-100">
-        <div class="container mx-auto">
-            <div data-aos="zoom-in" class="bg-slate-900 rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden group">
+    <section class="py-12 sm:py-24 bg-slate-50 px-6 border-t border-slate-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div data-aos="zoom-in" class="bg-slate-900 rounded-[3rem] p-7 sm:p-12 md:p-24 text-center relative overflow-hidden group">
                 <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,rgba(225,29,72,0.15),transparent_50%)]"></div>
                 <div class="relative z-10 max-w-3xl mx-auto">
-                    <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none mb-8">Siap Memulai Transformasi?</h1>
+                    <h1 class="text-2xl sm:text-4xl md:text-6xl font-black text-white tracking-tighter leading-none mb-8">Siap Memulai Transformasi?</h1>
                     <p class="text-slate-400 font-medium md:text-lg mb-12">Konsultasikan kebutuhan infrastruktur dan pengembangan platform digital unit kerja Anda bersama tim ahli kami.</p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
                         <a href="mailto:it@unhas.ac.id" class="px-10 py-5 bg-red-600 text-white text-xs font-black rounded-xl hover:bg-red-700 transition-all shadow-2xl shadow-red-600/40 uppercase tracking-widest">Hubungi Kami</a>

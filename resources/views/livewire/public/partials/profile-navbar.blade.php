@@ -1,7 +1,8 @@
 <header x-data="{ scrolled: false, profileOpen: false, mobileMenuOpen: false, mobileProfileOpen: false }" 
     @scroll.window="scrolled = (window.pageYOffset > 20)"
     :class="scrolled ? 'glass h-16 border-white/40' : 'bg-transparent h-24 border-transparent'"
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 md:px-12 flex items-center justify-between border-b">
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out border-b">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
     <div class="flex items-center gap-10">
         <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-3 group">
             <img :src="scrolled ? '{{ asset('img/logo-dark.png') }}' : '{{ asset('img/logo.png') }}'" 
@@ -85,6 +86,8 @@
         </button>
     </div>
 
+    </div>{{-- end container --}}
+
     <!-- Mobile Menu Overlay -->
     <div x-show="mobileMenuOpen" x-cloak
         x-transition:enter="transition ease-out duration-300"
@@ -93,8 +96,8 @@
         x-transition:leave="transition ease-in duration-200"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
-        class="absolute top-20 left-6 right-6 bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 md:hidden z-50">
-        <nav class="flex flex-col gap-6">
+        class="absolute top-16 sm:top-20 left-3 right-3 sm:left-6 sm:right-6 bg-white rounded-2xl sm:rounded-[2rem] shadow-2xl border border-slate-100 p-5 sm:p-8 md:hidden z-50">
+        <nav class="flex flex-col gap-4 sm:gap-6">
             <a @click="mobileMenuOpen = false" href="{{ route('services.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Layanan</a>
             
             <div class="space-y-3">
