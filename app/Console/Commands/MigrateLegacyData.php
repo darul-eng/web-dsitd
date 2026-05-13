@@ -66,7 +66,7 @@ class MigrateLegacyData extends Command
                         'title' => $info->title,
                         'slug' => $info->slug,
                         'content' => $info->content,
-                        'cover_image' => $info->cover,
+                        'cover_image' => $info->cover ? 'news-covers/' . $info->cover : null,
                         'start_at' => $info->start_at,
                         'end_at' => $info->end_at,
                         'publish_at_legacy' => $info->publish_at,
@@ -116,8 +116,7 @@ class MigrateLegacyData extends Command
             }
         });
 
-        // 6. Galleries (from information_images to 'Kegiatan' category)
-        $this->info('Migrating information_images to galleries (Kegiatan)...');
+        $this->info('Migrating information_images to galleries and gallery_images...');
         
         // Ensure 'Kegiatan' category exists
         $kegiatanCat = $newDb->table('gallery_categories')->where('slug', 'kegiatan')->first();
@@ -132,30 +131,65 @@ class MigrateLegacyData extends Command
             $catId = $kegiatanCat->id;
         }
 
-        $oldDb->table('information_images')->orderBy('id')->chunk(100, function ($images) use ($newDb, $catId) {
-            foreach ($images as $img) {
-                // Determine user_id from the original information if available
-                $info = DB::connection('mysql_old')->table('information')->where('id', $img->information_id)->first();
-                $userId = $info ? $info->user_id : null;
+        // Group by title and information_id to handle both linked and standalone images
+        $groups = $oldDb->table('information_images')
+            ->select('information_id', 'title')
+            ->groupBy('information_id', 'title')
+            ->get();
 
-                $newDb->table('galleries')->updateOrInsert(
-                    ['id' => $img->id], // Assuming IDs don't clash with other gallery inserts. If they do, we should not use the same ID. Wait.
-                    // Better to find by uuid
+        foreach ($groups as $group) {
+            $title = $group->title ?: 'Dokumentasi Tanpa Judul';
+            $infoId = $group->information_id;
+
+            // Get all images for this specific group
+            $query = $oldDb->table('information_images')->where('title', $group->title);
+            if ($infoId) {
+                $query->where('information_id', $infoId);
+            } else {
+                $query->whereNull('information_id');
+            }
+            $images = $query->get();
+            
+            if ($images->isEmpty()) continue;
+
+            // Get original information for title/description if linked
+            $info = $infoId ? $oldDb->table('information')->where('id', $infoId)->first() : null;
+            $firstImg = $images->first();
+
+            $galleryTitle = $info ? $info->title : $title;
+            $slug = Str::slug($galleryTitle) . ($infoId ? '-' . $infoId : '-' . $firstImg->id);
+
+            // Create/Update Gallery
+            $newDb->table('galleries')->updateOrInsert(
+                ['slug' => $slug],
+                [
+                    'uuid' => Str::uuid(),
+                    'gallery_category_id' => $catId,
+                    'title' => $galleryTitle,
+                    'description' => $info ? $info->content : $firstImg->desc,
+                    'cover_image' => 'galleries/covers/' . $firstImg->img,
+                    'is_published' => 1,
+                    'user_id' => $info ? $info->user_id : null,
+                    'created_at' => $firstImg->created_at,
+                    'updated_at' => $firstImg->updated_at,
+                ]
+            );
+            
+            $gallery = $newDb->table('galleries')->where('slug', $slug)->first();
+
+            // Insert all images into gallery_images
+            foreach ($images as $img) {
+                $newDb->table('gallery_images')->updateOrInsert(
+                    ['image_path' => 'galleries/photos/' . $img->img, 'gallery_id' => $gallery->id],
                     [
-                        'uuid' => $img->uuid ?: Str::uuid(),
-                        'gallery_category_id' => $catId,
-                        'title' => $img->title ?: 'Dokumentasi Kegiatan',
-                        'slug' => Str::slug($img->title ?: 'dokumentasi-kegiatan') . '-' . $img->id,
-                        'description' => $img->desc,
-                        'cover_image' => $img->img,
-                        'is_published' => 1,
-                        'user_id' => $userId,
+                        'uuid' => Str::uuid(),
+                        'caption' => $img->title,
                         'created_at' => $img->created_at,
                         'updated_at' => $img->updated_at,
                     ]
                 );
             }
-        });
+        }
 
         // Other basic mappings
         $this->info('Migrating other tables (documents, faqs, services, jumbotrons, links, members)...');
@@ -216,7 +250,7 @@ class MigrateLegacyData extends Command
                         'uuid' => Str::uuid(),
                         'title' => $row->title,
                         'description' => $row->desc,
-                        'image_path' => $row->img,
+                        'image_path' => $row->img ? 'banners/' . $row->img : null,
                         'is_active' => 1,
                         'created_at' => $row->created_at,
                         'updated_at' => $row->updated_at,
@@ -241,7 +275,7 @@ class MigrateLegacyData extends Command
                         'position' => $row->position,
                         'religion' => $row->religion,
                         'email' => $row->email,
-                        'image' => $row->img,
+                        'image' => $row->img ? 'members/' . $row->img : null,
                         'order' => $row->level ?? 0,
                         'created_at' => $row->created_at,
                         'updated_at' => $row->updated_at,
@@ -278,7 +312,7 @@ class MigrateLegacyData extends Command
                         'document_category_id' => $row->document_category_id,
                         'title' => $row->title,
                         'description' => $row->desc ?? null,
-                        'file_path' => $row->content ?? null, // old db used content
+                        'file_path' => $row->content ? 'documents/' . $row->content : null,
                         'is_public' => 1,
                         'created_at' => $row->created_at,
                         'updated_at' => $row->updated_at,
