@@ -34,6 +34,12 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col flex-grow">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 flex-grow">
                     <article class="lg:col-span-8 rounded-xl sm:rounded-[1.5rem] border border-slate-100 bg-white p-4 sm:p-6 md:p-10 shadow-sm">
+                        @if($service->icon)
+                            <div class="mb-6 rounded-xl overflow-hidden border border-slate-100 shadow-sm">
+                                <img src="{{ $service->getAssetUrl($service->icon) }}" alt="{{ $service->title }}" class="w-full h-auto object-cover max-h-[500px]">
+                            </div>
+                        @endif
+
                         <div class="prose prose-slate max-w-none prose-headings:font-black prose-headings:tracking-tight prose-p:text-slate-600 prose-p:leading-relaxed">
                             {!! $service->content !!}
                         </div>
