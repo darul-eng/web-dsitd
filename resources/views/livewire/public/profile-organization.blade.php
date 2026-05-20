@@ -100,7 +100,7 @@
                             </div>
                             <h3 class="text-2xl font-bold text-slate-800">{{ $coord->fullname }}</h3>
                             <p class="{{ $coord->position_group == 'direktur' ? 'text-red-700' : 'text-slate-600' }} font-semibold text-sm mb-4">{{ $coord->position }}</p>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-6">{{ $coord->nip ?? 'Anggota Strategis DSITD UNHAS' }}</p>
+                            <p class="text-slate-500 text-sm leading-relaxed mb-6">{{ $coord->nip ?? '' }}</p>
                             <div class="flex space-x-3">
                                 @if($coord->email)
                                     <a href="mailto:{{ $coord->email }}" class="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-red-700 hover:text-white transition-all">

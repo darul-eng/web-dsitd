@@ -120,7 +120,7 @@
                         })->values()->all();
                     @endphp
 
-                    <div x-data="galleryShowcase({{ \Illuminate\Support\Js::from($galleriesPayload) }})" class="space-y-6">
+                    <div wire:key="gallery-page-{{ $galleries->currentPage() }}" x-data="galleryShowcase({{ \Illuminate\Support\Js::from($galleriesPayload) }})" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
                             <template x-for="(gallery, index) in galleries" :key="gallery.uuid">
                                 <button type="button" class="group text-left" @click="openGallery(index)" :disabled="!gallery.imagesCount">
