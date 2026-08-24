@@ -32,7 +32,7 @@
         {{-- Navbar --}}
         @include('livewire.public.partials.profile-navbar', ['forceLight' => true])
 
-        <main class="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 sm:pt-28">
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 sm:pt-24">
             <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8 sm:mb-12">
                 <div class="flex-1">
                     <nav class="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 sm:mb-6">
@@ -69,7 +69,7 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     @php
-                        $leadershipKeywords = ['Direktur', 'Kasubdit', 'Kepala', 'Sekretaris'];
+                        $leadershipKeywords = ['Direktur', 'Kasubdit', 'Kepala', 'Sekretaris', 'Ketua'];
                         $coordinators = $members->filter(fn ($m) => Str::contains($m->position, $leadershipKeywords, true));
                     @endphp
 

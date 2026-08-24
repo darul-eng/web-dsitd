@@ -5,7 +5,7 @@
         {{-- Navbar --}}
         @include('livewire.public.partials.profile-navbar', ['forceLight' => true])
 
-        <main class="relative z-10 pt-24 pb-5 sm:pt-28 sm:pb-12">
+        <main class="relative z-10 pt-20 pb-5 sm:pt-24 sm:pb-12">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
                 <nav class="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 sm:mb-6">
