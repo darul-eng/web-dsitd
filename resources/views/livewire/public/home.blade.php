@@ -45,8 +45,6 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="hidden sm:inline-flex px-5 py-2 bg-red-600 border border-red-500 text-white text-[10px] font-black rounded-lg hover:bg-red-700 transition-all uppercase tracking-widest shadow-xl shadow-red-600/20">Tanya IT Helpdesk</a>
-
             <!-- Mobile Menu Toggle -->
             <button @click="mobileMenuOpen = !mobileMenuOpen"
                 :class="scrolled ? 'text-slate-900' : 'text-white'"
@@ -93,8 +91,6 @@
                 <a @click="mobileMenuOpen = false" href="{{ route('news.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Warta</a>
                 <a @click="mobileMenuOpen = false" href="{{ route('gallery.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Galeri</a>
                 <a @click="mobileMenuOpen = false" href="#kontak" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Kontak</a>
-
-                <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="w-full py-4 bg-red-600 text-white text-center text-xs font-black rounded-xl uppercase tracking-widest shadow-xl shadow-red-600/20 mt-4">Tanya IT Helpdesk</a>
             </nav>
         </div>
     </header>
