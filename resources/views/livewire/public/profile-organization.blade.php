@@ -69,19 +69,19 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     @php
-                        $coordinators = $members->whereIn('position_group', ['direktur', 'pimpinan', 'kasubdit', 'pengelola']);
+                        $coordinators = $members->filter(fn ($m) => Str::contains($m->position, ['Direktur', 'Kasubdit'], true));
                     @endphp
 
                     @foreach($coordinators as $coord)
                         <div class="card-shimmer bg-white p-4 sm:p-6 rounded-xl sm:rounded-[1.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group">
                             <div class="relative w-24 h-24 mb-6 group-hover:scale-110 transition-transform duration-500">
-                                <div class="absolute inset-0 {{ $coord->position_group == 'direktur' ? 'bg-[#213369]' : 'bg-slate-800' }} rounded-3xl rotate-6 group-hover:rotate-12 transition-transform opacity-10">
+                                <div class="absolute inset-0 {{ Str::contains($coord->position, 'Direktur', true) ? 'bg-[#213369]' : 'bg-slate-800' }} rounded-3xl rotate-6 group-hover:rotate-12 transition-transform opacity-10">
                                 </div>
                                 <img src="{{ $this->memberImage($coord) }}"
                                     alt="{{ $coord->fullname }}" class="relative z-10 w-full h-full rounded-3xl object-cover shadow-md">
                             </div>
                             <h3 class="text-2xl font-bold text-slate-800">{{ $coord->fullname }}</h3>
-                            <p class="{{ $coord->position_group == 'direktur' ? 'text-red-700' : 'text-slate-600' }} font-semibold text-sm mb-4">{{ $coord->position }}</p>
+                            <p class="{{ Str::contains($coord->position, 'Direktur', true) ? 'text-red-700' : 'text-slate-600' }} font-semibold text-sm mb-4">{{ $coord->position }}</p>
                             <p class="text-slate-500 text-sm leading-relaxed mb-6">{{ $coord->nip ?? '' }}</p>
                             <div class="flex space-x-3">
                                 @if($coord->email)
@@ -107,36 +107,37 @@
                     </h2>
                     <div class="flex items-center overflow-x-auto pb-4 md:pb-0 no-scrollbar -mx-6 px-6 md:mx-0 md:px-0 gap-2">
                         @php
-                            $groups = $members->whereNotIn('position_group', ['direktur', 'pimpinan', 'kasubdit', 'pengelola'])->pluck('position_group')->unique();
+                            $squad = $members->reject(fn ($m) => Str::contains($m->position, ['Direktur', 'Kasubdit'], true));
+                            $positions = $squad->pluck('position')->unique();
                         @endphp
                         <button class="filter-btn active text-[10px] font-bold px-4 py-2 rounded-full transition-all uppercase tracking-wider whitespace-nowrap">Semua</button>
-                        @foreach($groups as $group)
+                        @foreach($positions as $pos)
                             <button class="filter-btn bg-white text-slate-500 text-[10px] font-bold px-4 py-2 rounded-full border border-slate-100 transition-all uppercase tracking-wider whitespace-nowrap">
-                                {{ str_replace('-', ' ', $group) }}
+                                {{ $pos }}
                             </button>
                         @endforeach
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" id="memberGrid">
-                    @foreach($members->whereNotIn('position_group', ['direktur', 'pimpinan', 'kasubdit', 'pengelola']) as $member)
+                    @foreach($squad as $member)
                         @php
                             $bgClass = 'bg-red-50';
                             $textClass = 'text-red-700';
                             $badgeClass = 'bg-red-100';
 
-                            if (Str::contains($member->position_group, ['jaringan', 'infra', 'network'])) {
+                            if (Str::contains($member->position, ['Jaringan', 'Infra', 'Network'], true)) {
                                 $bgClass = 'bg-amber-50';
                                 $textClass = 'text-amber-700';
                                 $badgeClass = 'bg-amber-100';
-                            } elseif (Str::contains($member->position_group, ['security', 'keamanan'])) {
+                            } elseif (Str::contains($member->position, ['Security', 'Keamanan'], true)) {
                                 $bgClass = 'bg-slate-900';
                                 $textClass = 'text-white';
                                 $badgeClass = 'bg-slate-800';
                             }
                         @endphp
                         <div class="group bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:border-red-200 transition-all cursor-pointer"
-                            data-squad="{{ str_replace('-', ' ', $member->position_group) }}">
+                            data-squad="{{ $member->position }}">
                             <div class="flex items-center space-x-4 mb-4">
                                 <div class="w-14 h-14 {{ $bgClass }} rounded-2xl flex items-center justify-center {{ $textClass }} font-bold text-xl overflow-hidden">
                                     @if($member->image)
@@ -148,12 +149,11 @@
                                 <div>
                                     <h4 class="font-bold text-slate-800 line-clamp-1">{{ $member->fullname }}</h4>
                                     <span class="text-[9px] {{ $badgeClass }} {{ $textClass }} px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">
-                                        {{ str_replace('-', ' ', $member->position_group) }}
+                                        {{ $member->position }}
                                     </span>
                                 </div>
                             </div>
-                            <p class="text-xs text-slate-500 leading-relaxed mb-4 line-clamp-2">{{ $member->position }}</p>
-                            <div class="flex justify-between items-center pt-2 border-t border-slate-50">
+                            <div class="flex justify-between items-center mt-4 pt-2 border-t border-slate-50">
                                 <span class="text-[10px] font-semibold text-slate-400">{{ $member->nip ?? 'LTDKA UNHAS' }}</span>
                                 <i class="fas fa-arrow-right text-red-700 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                             </div>
