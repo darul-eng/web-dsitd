@@ -29,17 +29,10 @@
                 class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all {{ $group === '' ? 'bg-slate-900 text-white border-slate-900 shadow-lg shadow-slate-900/10' : 'bg-white text-slate-400 border-slate-200 hover:border-slate-400' }}">
             Semua
         </button>
-        @foreach([
-            'direktur' => 'Direktur',
-            'kasubdit' => 'Kasubdit',
-            'kepala-seksi' => 'Kepala Seksi',
-            'tim-jaringan' => 'Tim Jaringan',
-            'tim-helpdesk' => 'Tim Helpdesk',
-            'tim-programmer' => 'Tim Programmer',
-        ] as $cat => $label)
-            <button wire:click="$set('group', '{{ $cat }}')"
-                    class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all {{ $group === $cat ? 'bg-red-600 text-white border-red-600 shadow-lg shadow-red-600/10' : 'bg-white text-slate-400 border-slate-200 hover:border-red-200 hover:text-red-500' }}">
-                {{ $label }}
+        @foreach($groups as $pos)
+            <button wire:click="$set('group', '{{ $pos }}')"
+                    class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border transition-all {{ $group === $pos ? 'bg-red-600 text-white border-red-600 shadow-lg shadow-red-600/10' : 'bg-white text-slate-400 border-slate-200 hover:border-red-200 hover:text-red-500' }}">
+                {{ $pos }}
             </button>
         @endforeach
     </div>
@@ -82,7 +75,7 @@
             </div>
 
             <div class="p-4 text-center">
-                <span class="inline-block px-2 py-0.5 bg-slate-100 text-[8px] font-black text-slate-500 uppercase tracking-[0.2em] rounded mb-2 border border-slate-200">#{{ $item->order }} • {{ $item->position_group }}</span>
+                <span class="inline-block px-2 py-0.5 bg-slate-100 text-[8px] font-black text-slate-500 uppercase tracking-[0.2em] rounded mb-2 border border-slate-200">#{{ $item->order }}</span>
                 <h3 class="font-extrabold text-slate-900 text-xs truncate leading-tight transition-colors group-hover:text-red-600">{{ $item->fullname }}</h3>
                 <p class="text-[10px] text-slate-400 font-bold mt-1 italic tracking-tight uppercase">{{ $item->position }}</p>
             </div>

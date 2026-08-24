@@ -22,19 +22,13 @@ class Index extends Component
         'group' => ['except' => ''],
     ];
 
-    public function mount(): void
-    {
-        $this->group = $this->normalizeGroupFilter($this->group);
-    }
-
     public function updatingSearch()
     {
         $this->resetPage();
     }
 
-    public function updatingGroup(string $value): void
+    public function updatingGroup(): void
     {
-        $this->group = $this->normalizeGroupFilter($value);
         $this->resetPage();
     }
 
@@ -55,8 +49,6 @@ class Index extends Component
 
     public function render()
     {
-        $groupFilterValues = $this->groupFilterValues($this->group);
-
         $members = Member::query()
             ->when($this->search, function ($query) {
                 $query->where(function($q) {
@@ -64,42 +56,18 @@ class Index extends Component
                       ->orWhere('nip', 'like', '%' . $this->search . '%');
                 });
             })
-            ->when(!empty($groupFilterValues), function ($query) use ($groupFilterValues) {
-                $query->whereIn('position_group', $groupFilterValues);
+            ->when($this->group, function ($query) {
+                $query->where('position', $this->group);
             })
             ->orderBy('order')
             ->orderBy('fullname')
             ->paginate(12);
 
-        $groups = Member::select('position_group')->distinct()->pluck('position_group');
+        $groups = Member::query()->select('position')->distinct()->orderBy('position')->pluck('position');
 
         return view('livewire.admin.members.index', [
             'members' => $members,
             'groups' => $groups,
         ]);
-    }
-
-    private function normalizeGroupFilter(string $group): string
-    {
-        return match ($group) {
-            'pimpinan' => 'direktur',
-            'pengelola' => 'kasubdit',
-            'staff' => 'tim-helpdesk',
-            'teknisi' => 'tim-programmer',
-            default => $group,
-        };
-    }
-
-    private function groupFilterValues(string $group): array
-    {
-        return match ($group) {
-            'direktur' => ['direktur', 'pimpinan'],
-            'kasubdit' => ['kasubdit', 'pengelola'],
-            'kepala-seksi' => ['kepala-seksi'],
-            'tim-jaringan' => ['tim-jaringan'],
-            'tim-helpdesk' => ['tim-helpdesk', 'staff'],
-            'tim-programmer' => ['tim-programmer', 'teknisi'],
-            default => [],
-        };
     }
 }

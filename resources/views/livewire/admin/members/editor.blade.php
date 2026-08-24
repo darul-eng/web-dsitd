@@ -88,22 +88,11 @@
                         @error('nip') <p class="text-[10px] font-bold text-rose-500 italic">{{ $message }}</p> @enderror
                     </div>
 
-                    <div class="space-y-1.5">
+                    <div class="space-y-1.5 md:col-span-2">
                         <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Jabatan</label>
                         <input wire:model="position" type="text" class="w-full px-4 py-2.5 text-sm font-bold bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-red-500" placeholder="Mis: Kepala Bagian IT">
                         @error('position') <p class="text-[10px] font-bold text-rose-500 italic">{{ $message }}</p> @enderror
-                    </div>
-
-                    <div class="space-y-1.5">
-                        <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Grup Struktur</label>
-                        <select wire:model="position_group" class="w-full px-4 py-2.5 text-sm font-bold bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-red-500">
-                            <option value="direktur">Direktur</option>
-                            <option value="kasubdit">Kasubdit</option>
-                            <option value="kepala-seksi">Kepala Seksi</option>
-                            <option value="tim-jaringan">Tim Jaringan</option>
-                            <option value="tim-helpdesk">Tim Helpdesk</option>
-                            <option value="tim-programmer">Tim Programmer</option>
-                        </select>
+                        <p class="text-[9px] text-slate-400 font-medium italic">Grup struktur pada halaman Tim Kami mengikuti teks jabatan ini secara otomatis.</p>
                     </div>
                 </div>
 

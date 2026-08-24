@@ -6,7 +6,6 @@ namespace App\Livewire\Public;
 
 use App\Models\Member;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -70,87 +69,6 @@ class ProfileOrganization extends Component
             'group'    => $member->position_group,
             'image'    => $this->memberImage($member),
             'children' => $children->map(fn (Member $child) => $this->buildTree($child))->all(),
-        ];
-    }
-
-    private function buildTreeFromPositionGroup(Collection $members): array
-    {
-        $groupLevel = [
-            'direktur'  => 0, 'pimpinan' => 0,
-            'kasubdit'  => 1, 'pengelola' => 1,
-            'kepala-seksi' => 2,
-            'tim-jaringan' => 3, 'tim-helpdesk' => 3, 'tim-programmer' => 3,
-            'staff' => 3, 'teknisi' => 3,
-        ];
-
-        $buckets = [];
-        foreach ($members as $member) {
-            $level = $groupLevel[$member->position_group] ?? 99;
-            $buckets[$level][] = $this->mapMemberNode($member);
-        }
-        ksort($buckets);
-
-        $levels = array_values($buckets);
-
-        if (empty($levels)) {
-            return $this->mapMemberNode($members->first());
-        }
-
-        $topNodes = $levels[0];
-        $root = array_shift($topNodes);
-
-        if (!empty($topNodes)) {
-            $root['children'] = $topNodes;
-        }
-
-        $parentNodes = [&$root];
-        if (!empty($root['children'])) {
-            $parentNodes = [];
-            foreach ($root['children'] as &$child) {
-                $parentNodes[] = &$child;
-            }
-            unset($child);
-        }
-
-        for ($i = 1; $i < count($levels); $i++) {
-            $currentLevel = $levels[$i];
-
-            if (empty($parentNodes)) {
-                $root['children'] = array_merge($root['children'] ?? [], $currentLevel);
-                continue;
-            }
-
-            $parentCount = count($parentNodes);
-            $chunkSize = max(1, (int) ceil(count($currentLevel) / $parentCount));
-            $chunks = array_chunk($currentLevel, $chunkSize);
-
-            $nextParents = [];
-            foreach ($parentNodes as $idx => &$parent) {
-                if (isset($chunks[$idx])) {
-                    $parent['children'] = array_merge($parent['children'] ?? [], $chunks[$idx]);
-                    foreach ($parent['children'] as &$newChild) {
-                        $nextParents[] = &$newChild;
-                    }
-                    unset($newChild);
-                }
-            }
-            unset($parent);
-
-            $parentNodes = $nextParents;
-        }
-
-        return $root;
-    }
-
-    private function mapMemberNode(Member $member): array
-    {
-        return [
-            'id'       => $member->id,
-            'name'     => $member->fullname,
-            'position' => $member->position,
-            'group'    => $member->position_group,
-            'image'    => $this->memberImage($member),
-            'children' => [],
         ];
     }
 
