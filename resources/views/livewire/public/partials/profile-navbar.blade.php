@@ -1,20 +1,14 @@
-<header x-data="{ scrolled: false, profileOpen: false, mobileMenuOpen: false, mobileProfileOpen: false }" 
+<header x-data="{ scrolled: false, profileOpen: false, mobileMenuOpen: false, mobileProfileOpen: false }"
     @scroll.window="scrolled = (window.pageYOffset > 20)"
     :class="scrolled ? 'glass h-16 border-white/40' : 'bg-transparent h-24 border-transparent'"
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out border-b">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
     <div class="flex items-center gap-10">
         <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-3 group">
-            <img :src="scrolled ? '{{ asset('img/logo-dark.png') }}' : '{{ asset('img/logo.png') }}'" 
-                alt="Logo DSITD UNHAS" 
-                class="h-8 md:h-10 transition-all duration-500 group-hover:scale-105" 
+            <img :src="scrolled ? '{{ asset('img/logo-dark.png') }}' : '{{ asset('img/logo.png') }}'"
+                alt="Logo Lembaga Transformasi Digital & Kecerdasan Artifisial"
+                class="h-9 md:h-11 transition-all duration-500 group-hover:scale-105"
                 loading="lazy">
-
-            <div class="flex flex-col">
-                <span :class="scrolled ? 'text-slate-900' : 'text-white'"
-                    class="text-sm font-black tracking-tighter leading-none transition-colors duration-500">DSITD</span>
-                <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest leading-none mt-0.5">UNHAS</span>
-            </div>
         </a>
 
         <nav class="hidden md:flex items-center gap-8">
@@ -26,7 +20,7 @@
                 @php
                     $isProfileRoute = request()->routeIs('profile.*');
                 @endphp
-                <button @click="profileOpen = !profileOpen" 
+                <button @click="profileOpen = !profileOpen"
                     :class="scrolled ? '{{ $isProfileRoute ? 'text-red-600' : 'text-slate-500 hover:text-red-600' }}' : 'text-slate-300 hover:text-white'"
                     class="inline-flex items-center gap-1 text-[11px] font-bold transition-all uppercase tracking-widest">
                     Profil
@@ -76,9 +70,9 @@
             </span>
         </div>
         <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="hidden sm:inline-flex px-5 py-2 bg-red-600 border border-red-500 text-white text-[10px] font-black rounded-lg hover:bg-red-700 transition-all uppercase tracking-widest shadow-xl shadow-red-600/20">Tanya IT Helpdesk</a>
-        
+
         <!-- Mobile Menu Toggle -->
-        <button @click="mobileMenuOpen = !mobileMenuOpen" 
+        <button @click="mobileMenuOpen = !mobileMenuOpen"
             :class="scrolled ? 'text-slate-900' : 'text-white'"
             class="flex md:hidden p-2 rounded-xl transition-colors hover:bg-white/10">
             <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
@@ -99,17 +93,17 @@
         class="absolute top-16 sm:top-20 left-3 right-3 sm:left-6 sm:right-6 bg-white rounded-2xl sm:rounded-[2rem] shadow-2xl border border-slate-100 p-5 sm:p-8 md:hidden z-50">
         <nav class="flex flex-col gap-4 sm:gap-6">
             <a @click="mobileMenuOpen = false" href="{{ route('services.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Layanan</a>
-            
+
             <div class="space-y-3">
-                <button @click="mobileProfileOpen = !mobileProfileOpen" 
+                <button @click="mobileProfileOpen = !mobileProfileOpen"
                     class="flex items-center justify-between w-full text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">
                     Profil
                     <svg class="w-3 h-3 transition-transform" :class="mobileProfileOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
-                
-                <div x-show="mobileProfileOpen" x-cloak 
+
+                <div x-show="mobileProfileOpen" x-cloak
                     x-transition:enter="transition ease-out duration-200"
                     x-transition:enter-start="opacity-0 -translate-y-2"
                     x-transition:enter-end="opacity-100 translate-y-0"
@@ -123,7 +117,7 @@
             <a @click="mobileMenuOpen = false" href="{{ route('documents.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Dokumen</a>
             <a @click="mobileMenuOpen = false" href="{{ route('news.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Warta</a>
             <a @click="mobileMenuOpen = false" href="{{ route('gallery.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Galeri</a>
-            
+
             <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="w-full py-4 bg-red-600 text-white text-center text-xs font-black rounded-xl uppercase tracking-widest shadow-xl shadow-red-600/20 mt-4">Tanya IT Helpdesk</a>
         </nav>
     </div>

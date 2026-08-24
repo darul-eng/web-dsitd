@@ -3,14 +3,10 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-10 mb-8 sm:mb-16">
             <div class="md:col-span-4">
                 <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-3 mb-4 sm:mb-6">
-                    <img src="{{ asset('img/logo-dark.png') }}" alt="Logo DSITD UNHAS" class="h-10" loading="lazy">
-                    <div class="flex flex-col">
-                        <span class="text-base font-black tracking-tighter leading-none">DSITD</span>
-                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mt-1">Universitas Hasanuddin</span>
-                    </div>
+                    <img src="{{ asset('img/logo-dark.png') }}" alt="Logo Lembaga Transformasi Digital & Kecerdasan Artifisial" class="h-10" loading="lazy">
                 </a>
                 <p class="text-sm text-slate-500 font-medium leading-relaxed mb-4 sm:mb-6 max-w-xs">
-                    Direktorat Sistem Teknologi Informasi dan Digitalisasi adalah unit pengelola TIK di lingkungan Universitas Hasanuddin.
+                    Lembaga Transformasi Digital dan Kecerdasan Artifisial adalah unit pengelola transformasi digital dan AI di lingkungan Universitas Hasanuddin.
                 </p>
                 <div class="flex items-center gap-4">
                     <a href="#" class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all">
@@ -53,7 +49,7 @@
         </div>
 
         <div class="flex flex-col md:flex-row items-center justify-between gap-3 border-t border-slate-100 pt-5 sm:pt-8">
-            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">© 2024 DSITD Universitas Hasanuddin. All rights reserved.</p>
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">© 2024 TransDiKA Universitas Hasanuddin. All rights reserved.</p>
             <div class="flex items-center gap-8">
                 <a href="#" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-slate-600 transition-colors">Term of Service</a>
                 <a href="#" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hover:text-slate-600 transition-colors">Digital Guidelines</a>
