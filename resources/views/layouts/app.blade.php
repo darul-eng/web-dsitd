@@ -70,7 +70,7 @@
         .delay-300 { animation-delay: 300ms; }
 
         .text-glow {
-            text-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+            text-shadow: 0 0 30px rgba(73, 104, 197, 0.5);
         }
     </style>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>

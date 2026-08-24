@@ -3,39 +3,21 @@
 
     <div class="bg-white min-h-screen relative overflow-hidden text-slate-900">
         {{-- Navbar --}}
-        @include('livewire.public.partials.profile-navbar')
+        @include('livewire.public.partials.profile-navbar', ['forceLight' => true])
 
-        {{-- Hero Header Section --}}
-        <section class="relative pt-20 sm:pt-24 pb-6 sm:pb-14 overflow-hidden mesh-gradient">
-            <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
-                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                    <defs><pattern id="grid-vision" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/></pattern></defs>
-                    <rect width="100%" height="100%" fill="url(#grid-vision)" />
-                </svg>
-            </div>
-            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none z-10"></div>
-
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <nav class="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 sm:mb-6">
-                    <a href="{{ route('home') }}" wire:navigate class="hover:text-white transition-colors">Home</a>
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    <a href="{{ route('profile.vision-mission') }}" wire:navigate class="hover:text-white transition-colors">Profil</a>
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    <span class="text-white">Visi & Misi</span>
-                </nav>
-                <h1 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tighter leading-tight sm:leading-[0.95] mb-2 sm:mb-4">
-                    Visi &<br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-orange-400">Misi Kami.</span>
-                </h1>
-                <p class="max-w-xl text-xs sm:text-sm lg:text-base text-slate-300/80 font-medium leading-relaxed">
-                    Mengakselerasi masa depan digital Universitas Hasanuddin melalui inovasi dan integrasi teknologi yang berkelanjutan.
-                </p>
-            </div>
-        </section>
-
-        <main class="relative z-10 py-5 sm:py-12">
+        <main class="relative z-10 pt-24 pb-5 sm:pt-28 sm:pb-12">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+                <nav class="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 sm:mb-6">
+                    <a href="{{ route('home') }}" wire:navigate class="hover:text-red-600 transition-colors">Home</a>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <a href="{{ route('profile.vision-mission') }}" wire:navigate class="hover:text-red-600 transition-colors">Profil</a>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <span class="text-slate-700">Visi & Misi</span>
+                </nav>
+                <h1 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tighter leading-tight sm:leading-[0.95] mb-8 sm:mb-12">
+                    Visi & <span class="text-red-600">Misi Kami.</span>
+                </h1>
 
                 {{-- Stable 2-Column Grid --}}
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
