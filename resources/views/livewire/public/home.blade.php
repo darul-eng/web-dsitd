@@ -7,15 +7,9 @@
             <a href="/" wire:navigate class="flex items-center gap-3 group">
                 <!-- Smart Logo Switching -->
                 <img :src="scrolled ? '{{ asset('img/logo-dark.png') }}' : '{{ asset('img/logo.png') }}'"
-                    alt="Logo DSITD UNHAS"
-                    class="h-8 md:h-10 transition-all duration-500 group-hover:scale-105"
+                    alt="Logo Lembaga Transformasi Digital & Kecerdasan Artifisial"
+                    class="h-9 md:h-11 transition-all duration-500 group-hover:scale-105"
                     loading="lazy">
-
-                <div class="flex flex-col">
-                    <span :class="scrolled ? 'text-slate-900' : 'text-white'"
-                        class="text-sm font-black tracking-tighter leading-none transition-colors duration-500">DSITD</span>
-                    <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest leading-none mt-0.5">UNHAS</span>
-                </div>
             </a>
 
             <nav class="hidden md:flex items-center gap-8">
@@ -51,7 +45,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <div :class="scrolled ? 'bg-slate-100/50 border-slate-200/50' : 'bg-white/5 border-white/10'" 
+            <div :class="scrolled ? 'bg-slate-100/50 border-slate-200/50' : 'bg-white/5 border-white/10'"
                 class="hidden lg:flex items-center gap-2 px-3 py-1.5 border rounded-full backdrop-blur-md transition-colors duration-500">
                 <div class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
@@ -65,9 +59,9 @@
                 </span>
             </div>
             <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="hidden sm:inline-flex px-5 py-2 bg-red-600 border border-red-500 text-white text-[10px] font-black rounded-lg hover:bg-red-700 transition-all uppercase tracking-widest shadow-xl shadow-red-600/20">Tanya IT Helpdesk</a>
-            
+
             <!-- Mobile Menu Toggle -->
-            <button @click="mobileMenuOpen = !mobileMenuOpen" 
+            <button @click="mobileMenuOpen = !mobileMenuOpen"
                 :class="scrolled ? 'text-slate-900' : 'text-white'"
                 class="flex md:hidden p-2 rounded-xl transition-colors hover:bg-white/10">
                 <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
@@ -87,17 +81,17 @@
             class="absolute top-20 left-4 right-4 sm:left-6 sm:right-6 bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-8 md:hidden z-50">
             <nav class="flex flex-col gap-6">
                 <a @click="mobileMenuOpen = false" href="{{ route('services.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Layanan</a>
-                
+
                 <div class="space-y-3">
-                    <button @click="mobileProfileOpen = !mobileProfileOpen" 
+                    <button @click="mobileProfileOpen = !mobileProfileOpen"
                         class="flex items-center justify-between w-full text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">
                         Profile
                         <svg class="w-3 h-3 transition-transform" :class="mobileProfileOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    
-                    <div x-show="mobileProfileOpen" x-cloak 
+
+                    <div x-show="mobileProfileOpen" x-cloak
                         x-transition:enter="transition ease-out duration-200"
                         x-transition:enter-start="opacity-0 -translate-y-2"
                         x-transition:enter-end="opacity-100 translate-y-0"
@@ -112,7 +106,7 @@
                 <a @click="mobileMenuOpen = false" href="{{ route('news.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Warta</a>
                 <a @click="mobileMenuOpen = false" href="{{ route('gallery.index') }}" wire:navigate class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Galeri</a>
                 <a @click="mobileMenuOpen = false" href="#kontak" class="text-[11px] font-black text-slate-900 uppercase tracking-[0.2em]">Kontak</a>
-                
+
                 <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="w-full py-4 bg-red-600 text-white text-center text-xs font-black rounded-xl uppercase tracking-widest shadow-xl shadow-red-600/20 mt-4">Tanya IT Helpdesk</a>
             </nav>
         </div>
@@ -157,6 +151,7 @@
 
         <!-- Stats Section: Floating Cards -->
         <div class="mt-8 sm:mt-16 w-full container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+            {{--
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 <!-- Stat Card 1 -->
                 <div class="group relative">
@@ -200,9 +195,10 @@
                     </div>
                 </div>
             </div>
+            --}}
         </div>
     </section>
-    {{-- 
+    {{--
     <!-- Services Grid -->
     <section id="layanan" class="py-14 sm:py-32 bg-white relative overflow-hidden">
         <div class="container mx-auto px-6">
@@ -259,7 +255,7 @@
     </section>
     --}}
 
-    {{-- 
+    {{--
     <!-- News & Blog -->
     <section id="berita" class="py-14 sm:py-32 bg-white">
         <div class="container mx-auto px-6">
@@ -375,7 +371,7 @@
                     </div>
 
                     <!-- Stats with Counter -->
-                    <div x-data="{ count1: 0, count2: 0 }" 
+                    <div x-data="{ count1: 0, count2: 0 }"
                          x-init="
                             let observer = new IntersectionObserver((entries) => {
                                 if(entries[0].isIntersecting) {
@@ -416,7 +412,7 @@
                 <div data-aos="fade-left" class="relative">
                     <!-- Soft Glow behind the globe -->
                     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-red-600/10 via-transparent to-blue-600/10 filter blur-[80px] rounded-full pointer-events-none"></div>
-                    
+
                     <div class="relative z-10 flex flex-col items-center">
                         <!-- 3D Network Globe Animation with floating effect -->
                         <div class="animate-bounce-slow w-full max-w-[420px] aspect-square relative" wire:ignore>
@@ -429,6 +425,7 @@
     </section>
 
 
+    {{--
     <!-- CTA Section -->
     <section class="py-12 sm:py-24 bg-slate-50 px-6 border-t border-slate-100">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -445,6 +442,7 @@
             </div>
         </div>
     </section>
+    --}}
 
     <script data-navigate-once>
         function initGlobeNetwork() {
@@ -673,7 +671,7 @@
                     renderer.setSize(container.clientWidth, container.clientHeight);
                 };
                 window.addEventListener('resize', resizeHandler, false);
-                
+
                 document.addEventListener('livewire:navigating', () => {
                     cancelAnimationFrame(animationFrameId);
                     window.removeEventListener('resize', resizeHandler);
@@ -696,7 +694,7 @@
         document.addEventListener('livewire:navigated', () => {
             initGlobeNetwork();
         });
-        
+
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initGlobeNetwork);
         } else {

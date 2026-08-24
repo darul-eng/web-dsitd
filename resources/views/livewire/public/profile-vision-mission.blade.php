@@ -1,5 +1,5 @@
 <div>
-    @section('title', 'Visi & Misi DSITD')
+    @section('title', 'Visi & Misi LTDKA')
 
     <div class="bg-white min-h-screen relative overflow-hidden text-slate-900">
         {{-- Navbar --}}

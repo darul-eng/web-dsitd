@@ -7,7 +7,7 @@
             <div class="relative z-10 max-w-2xl">
                 <h2 class="text-3xl font-bold mb-2 text-white">Selamat Datang kembali, {{ auth()->user()->name }}!</h2>
                 <p class="text-primary-100/90 text-sm font-medium leading-relaxed">
-                    Panel kendali DSITD UNHAS siap digunakan. Kelola konten, pengguna, dan aset digital universitas dengan mudah melalui dashboard terpadu ini.
+                    Panel kendali LTDKA UNHAS siap digunakan. Kelola konten, pengguna, dan aset digital universitas dengan mudah melalui dashboard terpadu ini.
                 </p>
                 <div class="mt-6 flex space-x-3">
                     <a href="#" class="inline-flex items-center px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-xl text-xs font-bold transition-all">

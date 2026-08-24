@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo-dark.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Dashboard') | {{ config('app.name', 'DSITD UNHAS') }}</title>
+    <title>@yield('title', 'Dashboard') | {{ config('app.name') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
- 
+
      <!-- Scripts -->
      @vite(['resources/css/app.css', 'resources/js/app.js'])
      <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js" referrerpolicy="origin"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      @livewireStyles
- 
+
      <style>
          body {
              font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
@@ -43,9 +43,9 @@
     </style>
 </head>
 
-<body class="h-full antialiased text-slate-900 overflow-hidden" 
-    x-data="{ 
-        sidebarOpen: true, 
+<body class="h-full antialiased text-slate-900 overflow-hidden"
+    x-data="{
+        sidebarOpen: true,
         mobileOpen: false,
         isMobile: window.innerWidth < 1024,
         init() {
@@ -93,7 +93,7 @@
                     </button>
                     <div class="w-px h-6 bg-slate-200 mx-2"></div>
                     <div class="flex items-center space-x-3 relative" x-data="{ userMenuOpen: false }">
-                        <div @click="userMenuOpen = !userMenuOpen" 
+                        <div @click="userMenuOpen = !userMenuOpen"
                             class="flex items-center space-x-3 cursor-pointer hover:bg-slate-50 p-1.5 rounded-xl transition-colors">
                             <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +107,7 @@
                         </div>
 
                         <!-- User Dropdown Menu -->
-                        <div x-show="userMenuOpen" 
+                        <div x-show="userMenuOpen"
                             @click.away="userMenuOpen = false"
                             x-transition:enter="transition ease-out duration-100"
                             x-transition:enter-start="transform opacity-0 scale-95"

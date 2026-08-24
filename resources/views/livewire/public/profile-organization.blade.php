@@ -142,7 +142,7 @@
                             $bgClass = 'bg-red-50';
                             $textClass = 'text-red-700';
                             $badgeClass = 'bg-red-100';
-                            
+
                             if (Str::contains($member->position_group, ['jaringan', 'infra', 'network'])) {
                                 $bgClass = 'bg-amber-50';
                                 $textClass = 'text-amber-700';
@@ -172,7 +172,7 @@
                             </div>
                             <p class="text-xs text-slate-500 leading-relaxed mb-4 line-clamp-2">{{ $member->position }}</p>
                             <div class="flex justify-between items-center pt-2 border-t border-slate-50">
-                                <span class="text-[10px] font-semibold text-slate-400">{{ $member->nip ?? 'DSITD UNHAS' }}</span>
+                                <span class="text-[10px] font-semibold text-slate-400">{{ $member->nip ?? 'LTDKA UNHAS' }}</span>
                                 <i class="fas fa-arrow-right text-red-700 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                             </div>
                         </div>
@@ -208,7 +208,7 @@
                     const name = card.querySelector('h4').textContent.toLowerCase();
                     const squad = card.getAttribute('data-squad').toLowerCase();
                     const position = card.querySelector('p').textContent.toLowerCase();
-                    
+
                     if (name.includes(query) || squad.includes(query) || position.includes(query)) {
                         card.style.display = 'block';
                     } else {

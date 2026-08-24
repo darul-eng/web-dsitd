@@ -18,7 +18,7 @@ class NewsCategorySeeder extends Seeder
         $categories = [
             [
                 'name' => 'Berita Utama',
-                'description' => 'Kumpulan berita utama dan terkini dari DSITD.',
+                'description' => 'Kumpulan berita utama dan terkini dari LTDKA.',
             ],
             [
                 'name' => 'Pengumuman',

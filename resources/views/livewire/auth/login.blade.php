@@ -6,7 +6,7 @@
                 <img src="{{ asset('img/logo-dark.png') }}" alt="Logo" class="w-full h-auto object-contain">
             </div>
             <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Selamat Datang</h2>
-            <p class="mt-2 text-sm text-slate-500 font-medium">Silakan masuk ke akun admin DSITD Anda</p>
+            <p class="mt-2 text-sm text-slate-500 font-medium">Silakan masuk ke akun admin LTDKA Anda</p>
         </div>
 
         <!-- Login Card -->
@@ -89,11 +89,11 @@
                     class="w-full py-4 px-6 bg-red-600 hover:bg-red-700 text-white font-bold rounded-2xl shadow-lg shadow-red-600/30 transition-all transform hover:-translate-y-0.5 active:scale-[0.98] flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed">
                     <span wire:loading.remove wire:target="login">Masuk ke Dashboard</span>
                     <span wire:loading wire:target="login">Memproses...</span>
-                    
+
                     <svg wire:loading.remove wire:target="login" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
-                    
+
                     <!-- Loading Spinner -->
                     <svg wire:loading wire:target="login" class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -104,7 +104,7 @@
         </div>
 
         <p class="mt-8 text-center text-xs text-slate-400 font-medium tracking-wide">
-            &copy; 2026 DSITD Universitas Hasanuddin. All rights reserved.
+            &copy; 2026 TransDiKA Universitas Hasanuddin. All rights reserved.
         </p>
     </div>
 </div>

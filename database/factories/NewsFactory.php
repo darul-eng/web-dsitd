@@ -29,7 +29,7 @@ class NewsFactory extends Factory
             'views_count' => mt_rand(50, 2500),
             'meta_title' => $title,
             'meta_description' => $this->faker->sentence(20),
-            'meta_keywords' => 'unhas, dsitd, berita, ' . $this->faker->word(),
+            'meta_keywords' => 'unhas, ltdka, berita, ' . $this->faker->word(),
         ];
     }
 }

@@ -26,7 +26,7 @@
                             <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-orange-400">& Panduan.</span>
                         </h1>
                         <p class="max-w-xl text-xs sm:text-sm lg:text-base text-slate-300/80 font-medium leading-relaxed">
-                            Akses dan unduh dokumen resmi, panduan teknis, dan regulasi yang diterbitkan oleh DSITD Universitas Hasanuddin.
+                            Akses dan unduh dokumen resmi, panduan teknis, dan regulasi yang diterbitkan oleh TransDiKA Universitas Hasanuddin.
                         </p>
                     </div>
                     <div class="hidden lg:flex flex-col items-end gap-4">
@@ -50,14 +50,14 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                         </button>
                         <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none hidden lg:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                        
+
                         <input type="text" wire:model.live.debounce.400ms="search"
                             placeholder="Cari judul atau deskripsi dokumen..."
                             class="w-full rounded-2xl border border-slate-200 bg-slate-50 pl-10 lg:pl-11 pr-4 py-2.5 sm:py-3.5 text-xs sm:text-sm font-medium text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-300 focus:bg-white transition">
                     </div>
 
                     {{-- Search Icon Button (Mobile only) --}}
-                    <button @click="searchOpen = true" 
+                    <button @click="searchOpen = true"
                             type="button"
                             class="lg:hidden shrink-0 flex items-center justify-center w-[40px] h-[40px] sm:w-[46px] sm:h-[46px] rounded-2xl border border-slate-200 bg-slate-50 text-slate-500 hover:bg-slate-100 transition"
                             :class="searchOpen ? 'hidden' : 'flex'">

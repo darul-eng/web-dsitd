@@ -57,7 +57,7 @@
                     <aside class="lg:col-span-4 flex flex-col justify-end">
                         <div class="rounded-[1.5rem] border border-slate-100 bg-slate-50 p-6">
                             <h3 class="text-[10px] font-black text-slate-600 uppercase tracking-widest mb-3">Butuh Pendampingan?</h3>
-                            <p class="text-sm text-slate-500 leading-relaxed">Tim DSITD siap membantu implementasi layanan untuk unit kerja Anda.</p>
+                            <p class="text-sm text-slate-500 leading-relaxed">Tim LTDKA siap membantu implementasi layanan untuk unit kerja Anda.</p>
                             <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="mt-5 inline-flex items-center gap-2 text-[10px] font-black text-red-600 uppercase tracking-widest hover:text-red-700 transition-colors">
                                 Hubungi IT Helpdesk
                             </a>

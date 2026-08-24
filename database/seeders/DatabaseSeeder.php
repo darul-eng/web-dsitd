@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
 
         // 4. Create Default Superadmin User
         $adminUser = User::factory()->create([
-            'name' => 'Superadmin DSITD',
+            'name' => 'Superadmin LTDKA',
             'email' => 'admin@unhas.ac.id',
             'password' => Hash::make('password'),
         ]);

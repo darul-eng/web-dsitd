@@ -1,5 +1,5 @@
 <div>
-    @section('title', 'Sejarah DSITD')
+    @section('title', 'Sejarah LTDKA')
 
     <style>
         .timeline-line {
@@ -32,7 +32,7 @@
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-orange-400">Sejarah Kami.</span>
                 </h1>
                 <p class="max-w-xl text-xs sm:text-sm lg:text-base text-slate-300/80 font-medium leading-relaxed">
-                    Melihat kembali langkah-langkah inovasi yang telah membentuk DSITD menjadi tulang punggung digital Universitas Hasanuddin.
+                    Melihat kembali langkah-langkah inovasi yang telah membentuk LTDKA menjadi motor transformasi digital dan kecerdasan artifisial Universitas Hasanuddin.
                 </p>
             </div>
         </section>

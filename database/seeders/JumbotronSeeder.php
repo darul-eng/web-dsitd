@@ -11,7 +11,7 @@ class JumbotronSeeder extends Seeder
     {
         Jumbotron::create([
             'title' => 'Transformasi Digital Menuju World Class University',
-            'description' => 'DSITD berkomitmen menyediakan infrastruktur teknologi terbaik untuk mendukung visi Universitas Hasanuddin.',
+            'description' => 'LTDKA berkomitmen menyediakan infrastruktur teknologi terbaik untuk mendukung visi Universitas Hasanuddin.',
             'image_path' => null, // Simplified for seeder
             'order' => 1,
             'is_active' => true,
