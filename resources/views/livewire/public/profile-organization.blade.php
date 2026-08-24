@@ -69,7 +69,8 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     @php
-                        $coordinators = $members->filter(fn ($m) => Str::contains($m->position, ['Direktur', 'Kasubdit'], true));
+                        $leadershipKeywords = ['Direktur', 'Kasubdit', 'Kepala', 'Sekretaris'];
+                        $coordinators = $members->filter(fn ($m) => Str::contains($m->position, $leadershipKeywords, true));
                     @endphp
 
                     @foreach($coordinators as $coord)
@@ -107,7 +108,7 @@
                     </h2>
                     <div class="flex items-center overflow-x-auto pb-4 md:pb-0 no-scrollbar -mx-6 px-6 md:mx-0 md:px-0 gap-2">
                         @php
-                            $squad = $members->reject(fn ($m) => Str::contains($m->position, ['Direktur', 'Kasubdit'], true));
+                            $squad = $members->reject(fn ($m) => Str::contains($m->position, $leadershipKeywords, true));
                             $positions = $squad->pluck('position')->unique();
                         @endphp
                         <button class="filter-btn active text-[10px] font-bold px-4 py-2 rounded-full transition-all uppercase tracking-wider whitespace-nowrap">Semua</button>
