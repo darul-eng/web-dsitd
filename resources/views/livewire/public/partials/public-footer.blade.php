@@ -40,7 +40,7 @@
             <div class="md:col-span-4">
                 <h4 class="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-4 sm:mb-6">Lokasi Kami</h4>
                 <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 italic text-xs text-slate-600 font-medium leading-loose">
-                    Lantai 1, Gedung Perpustakaan Pusat,<br/>
+                    Lantai 4, Gedung Rektorat,<br/>
                     Kampus UNHAS Tamalanrea,<br/>
                     Jl. Perintis Kemerdekaan KM.10,<br/>
                     Makassar, Sulawesi Selatan.
