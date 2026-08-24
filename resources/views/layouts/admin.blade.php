@@ -31,9 +31,9 @@
 
         /* Force SweetAlert2 Button Styles */
         .swal2-styled.swal2-confirm {
-            background-color: #e11d48 !important;
+            background-color: #3857b2 !important;
             color: #fff !important;
-            box-shadow: 0 4px 6px -1px rgba(225, 29, 72, 0.2) !important;
+            box-shadow: 0 4px 6px -1px rgba(56, 87, 178, 0.2) !important;
         }
 
         .swal2-styled.swal2-cancel {
