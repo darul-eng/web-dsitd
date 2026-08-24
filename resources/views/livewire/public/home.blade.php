@@ -45,19 +45,6 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <div :class="scrolled ? 'bg-slate-100/50 border-slate-200/50' : 'bg-white/5 border-white/10'"
-                class="hidden lg:flex items-center gap-2 px-3 py-1.5 border rounded-full backdrop-blur-md transition-colors duration-500">
-                <div class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-                        :class="scrolled ? '{{ ($systemOperational ?? true) ? 'bg-emerald-500' : 'bg-rose-500' }}' : '{{ ($systemOperational ?? true) ? 'bg-emerald-400' : 'bg-rose-400' }}'"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2"
-                        :class="scrolled ? '{{ ($systemOperational ?? true) ? 'bg-emerald-600' : 'bg-rose-600' }}' : '{{ ($systemOperational ?? true) ? 'bg-emerald-500' : 'bg-rose-500' }}'"></span>
-                </div>
-                <span class="text-[9px] font-black uppercase tracking-tighter transition-colors duration-500"
-                    :class="scrolled ? '{{ ($systemOperational ?? true) ? 'text-emerald-600' : 'text-rose-600' }}' : '{{ ($systemOperational ?? true) ? 'text-emerald-400' : 'text-rose-400' }}'">
-                    {{ ($systemOperational ?? true) ? 'System Operational' : 'Under Maintenance' }}
-                </span>
-            </div>
             <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="hidden sm:inline-flex px-5 py-2 bg-red-600 border border-red-500 text-white text-[10px] font-black rounded-lg hover:bg-red-700 transition-all uppercase tracking-widest shadow-xl shadow-red-600/20">Tanya IT Helpdesk</a>
 
             <!-- Mobile Menu Toggle -->
@@ -123,17 +110,9 @@
         </div>
 
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/20 to-rose-500/20 text-red-500 border border-red-500/30 mb-10 backdrop-blur-xl">
-                <span class="relative flex h-2.5 w-2.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
-                </span>
-                <span class="text-[11px] font-black uppercase tracking-[0.2em] text-white">Modern Digital Infrastructure 2.0</span>
-            </div>
-
             <h1 class="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter leading-[0.9] mb-10">
                 Transformasi Digital<br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-orange-400 filter drop-shadow-[0_0_15px_rgba(239,68,68,0.3)]">Tanpa Batas.</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-orange-400 filter drop-shadow-[0_0_15px_rgba(73,104,197,0.3)]">Tanpa Batas.</span>
             </h1>
 
             <p class="max-w-2xl mx-auto text-base md:text-xl text-slate-300/80 font-medium leading-relaxed mb-14">
@@ -141,7 +120,7 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-                <a href="{{ route('services.index') }}" wire:navigate class="group relative px-12 py-5 bg-red-600 text-white text-xs font-black rounded-2xl hover:bg-red-700 transition-all shadow-[0_20px_50px_rgba(239,68,68,0.4)] uppercase tracking-widest overflow-hidden">
+                <a href="{{ route('services.index') }}" wire:navigate class="group relative px-12 py-5 bg-red-600 text-white text-xs font-black rounded-2xl hover:bg-red-700 transition-all shadow-[0_20px_50px_rgba(73,104,197,0.4)] uppercase tracking-widest overflow-hidden">
                     <span class="relative z-10">Eksplorasi Layanan</span>
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </a>

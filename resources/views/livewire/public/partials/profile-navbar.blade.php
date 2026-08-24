@@ -1,5 +1,5 @@
-<header x-data="{ scrolled: false, profileOpen: false, mobileMenuOpen: false, mobileProfileOpen: false }"
-    @scroll.window="scrolled = (window.pageYOffset > 20)"
+<header x-data="{ scrolled: {{ ($forceLight ?? false) ? 'true' : 'false' }}, profileOpen: false, mobileMenuOpen: false, mobileProfileOpen: false }"
+    @scroll.window="scrolled = {{ ($forceLight ?? false) ? 'true' : '(window.pageYOffset > 20)' }}"
     :class="scrolled ? 'glass h-16 border-white/40' : 'bg-transparent h-24 border-transparent'"
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out border-b">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
@@ -58,17 +58,6 @@
     </div>
 
     <div class="flex items-center gap-4">
-        <div :class="scrolled ? 'bg-slate-100/50 border-slate-200/50' : 'bg-white/5 border-white/10'"
-            class="hidden lg:flex items-center gap-2 px-3 py-1.5 border rounded-full backdrop-blur-md transition-colors duration-500">
-            <div class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full {{ ($systemOperational ?? true) ? 'bg-emerald-500' : 'bg-rose-500' }} opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 {{ ($systemOperational ?? true) ? 'bg-emerald-600' : 'bg-rose-600' }}"></span>
-            </div>
-            <span :class="scrolled ? '{{ ($systemOperational ?? true) ? 'text-emerald-600' : 'text-rose-600' }}' : '{{ ($systemOperational ?? true) ? 'text-emerald-400' : 'text-rose-400' }}'"
-                class="text-[9px] font-black uppercase tracking-tighter transition-colors duration-500">
-                {{ ($systemOperational ?? true) ? 'System Operational' : 'Under Maintenance' }}
-            </span>
-        </div>
         <a href="https://helpdesk.unhas.ac.id/" target="_blank" class="hidden sm:inline-flex px-5 py-2 bg-red-600 border border-red-500 text-white text-[10px] font-black rounded-lg hover:bg-red-700 transition-all uppercase tracking-widest shadow-xl shadow-red-600/20">Tanya IT Helpdesk</a>
 
         <!-- Mobile Menu Toggle -->

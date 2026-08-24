@@ -1,47 +1,24 @@
 <div>
     <div class="bg-white min-h-screen">
-        @include('livewire.public.partials.profile-navbar')
-
-        {{-- Hero Header --}}
-        <section class="relative pt-20 sm:pt-24 pb-6 sm:pb-14 overflow-hidden mesh-gradient">
-            <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
-                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                    <defs><pattern id="grid-warta" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/></pattern></defs>
-                    <rect width="100%" height="100%" fill="url(#grid-warta)" />
-                </svg>
-            </div>
-            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-            <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-slate-50 to-transparent pointer-events-none z-10"></div>
-
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
-                    <div class="flex-1">
-                        <nav class="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 sm:mb-6">
-                            <a href="{{ route('home') }}" wire:navigate class="hover:text-white transition-colors">Home</a>
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            <span class="text-white">Warta</span>
-                        </nav>
-                        <h1 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tighter leading-tight sm:leading-[0.95] mb-2 sm:mb-4">
-                            Warta Transformasi<br/>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-orange-400">Digital.</span>
-                        </h1>
-                        <p class="max-w-xl text-xs sm:text-sm lg:text-base text-slate-300/80 font-medium leading-relaxed">
-                            Informasi terkini seputar perkembangan, kegiatan, dan inovasi teknologi di lingkungan Universitas Hasanuddin.
-                        </p>
-                    </div>
-                    <div class="hidden lg:flex flex-col items-end gap-4">
-                        <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 text-right min-w-[120px] sm:min-w-[160px]">
-                            <div class="text-3xl sm:text-4xl font-black text-white tracking-tighter leading-none">{{ $news->total() }}</div>
-                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2">Artikel Tersedia</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        @include('livewire.public.partials.profile-navbar', ['forceLight' => true])
 
         {{-- Filter Section --}}
-        <section class="py-4 sm:py-8 bg-white border-y border-slate-100">
+        <section class="pt-24 pb-4 sm:pt-28 sm:pb-8 bg-white border-b border-slate-100">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">
+                    <a href="{{ route('home') }}" wire:navigate class="hover:text-red-600 transition-colors">Home</a>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <span class="text-slate-700">Warta</span>
+                </nav>
+                <div class="flex items-center justify-between gap-4 mb-4 sm:mb-6">
+                    <h1 class="text-lg sm:text-2xl md:text-3xl font-black text-slate-900 tracking-tighter">
+                        Warta Transformasi <span class="text-red-600">Digital.</span>
+                    </h1>
+                    <div class="hidden sm:block text-right shrink-0">
+                        <div class="text-2xl font-black text-slate-900 tracking-tighter leading-none">{{ $news->total() }}</div>
+                        <div class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Artikel Tersedia</div>
+                    </div>
+                </div>
                 <div x-data="{ searchOpen: false }" class="flex items-center gap-2 sm:gap-5 w-full">
                     {{-- Search Input (Expanded Mobile & Desktop) --}}
                     <div class="relative lg:w-2/3 lg:block transition-all duration-300"
