@@ -23,7 +23,7 @@ class FaqSeeder extends Seeder
                 Faq::create([
                     'faq_category_id' => $category->id,
                     'question' => 'Bagaimana cara reset password email UNHAS?',
-                    'answer' => 'Anda dapat melakukan reset password secara mandiri melalui laman SSO atau mendatangi loket layanan DSITD dengan membawa kartu identitas.',
+                    'answer' => 'Anda dapat melakukan reset password secara mandiri melalui laman SSO atau mendatangi loket layanan LTDKA dengan membawa kartu identitas.',
                     'order' => 1,
                     'is_published' => true,
                 ]);

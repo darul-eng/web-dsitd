@@ -18,9 +18,9 @@ class PageSeeder extends Seeder
 
         Page::create([
             'page_category_id' => $category->id,
-            'title' => 'Sejarah DSITD',
-            'slug' => 'sejarah-dsitd',
-            'content' => '<p>Direktorat Sistem Teknologi Informasi dan Digitalisasi (DSITD) Universitas Hasanuddin didirikan untuk mengelola seluruh ekosistem TI...</p>',
+            'title' => 'Sejarah LTDKA',
+            'slug' => 'sejarah-ltdka',
+            'content' => '<p>Lembaga Transformasi Digital dan Kecerdasan Artifisial (LTDKA) Universitas Hasanuddin didirikan untuk mengelola seluruh ekosistem digital dan inovasi AI...</p>',
             'is_published' => true,
         ]);
 

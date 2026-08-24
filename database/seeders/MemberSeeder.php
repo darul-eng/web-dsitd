@@ -13,7 +13,7 @@ class MemberSeeder extends Seeder
         $faker = Faker::create('id_ID');
 
         // Helper function for dummy images
-        $getImg = fn($id) => "https://i.pravatar.cc/150?u=dsitd_{$id}";
+        $getImg = fn($id) => "https://i.pravatar.cc/150?u=ltdka_{$id}";
 
         // ── Level 0: Direktur (Sun) ──────────────────────────
         $direktur = Member::create([

@@ -20,6 +20,7 @@ class ProfileHistory extends Component
             ->where('is_published', true)
             ->where(function ($query): void {
                 $query->where('slug', 'sejarah')
+                    ->orWhere('slug', 'sejarah-ltdka')
                     ->orWhere('slug', 'sejarah-dsitd')
                     ->orWhere('title', 'like', '%sejarah%');
             })
