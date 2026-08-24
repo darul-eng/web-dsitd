@@ -82,7 +82,7 @@
                                     text: 'Semua foto di dalamnya akan terhapus juga.',
                                     icon: 'warning',
                                     showCancelButton: true,
-                                    confirmButtonColor: '#e11d48',
+                                    confirmButtonColor: '#3857b2',
                                     confirmButtonText: 'Ya, Hapus'
                                 }).then((r) => r.isConfirmed && $wire.delete('{{ $gallery->uuid }}'))"
                                 class="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">

@@ -405,7 +405,7 @@
     <section class="py-12 sm:py-24 bg-slate-50 px-6 border-t border-slate-100">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div data-aos="zoom-in" class="bg-slate-900 rounded-[3rem] p-7 sm:p-12 md:p-24 text-center relative overflow-hidden group">
-                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,rgba(225,29,72,0.15),transparent_50%)]"></div>
+                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,rgba(50,77,159,0.15),transparent_50%)]"></div>
                 <div class="relative z-10 max-w-3xl mx-auto">
                     <h1 class="text-2xl sm:text-4xl md:text-6xl font-black text-white tracking-tighter leading-none mb-8">Siap Memulai Transformasi?</h1>
                     <p class="text-slate-400 font-medium md:text-lg mb-12">Konsultasikan kebutuhan infrastruktur dan pengembangan platform digital unit kerja Anda bersama tim ahli kami.</p>

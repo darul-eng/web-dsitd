@@ -52,7 +52,7 @@
                                             title: 'Hapus FAQ?',
                                             icon: 'warning',
                                             showCancelButton: true,
-                                            confirmButtonColor: '#e11d48',
+                                            confirmButtonColor: '#3857b2',
                                             confirmButtonText: 'Hapus'
                                         }).then((r) => r.isConfirmed && $wire.delete({{ $faq->id }}))"
                                         class="p-1.5 text-slate-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-all">

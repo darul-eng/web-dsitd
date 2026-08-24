@@ -127,7 +127,7 @@
                                     title: 'Hapus Banner?',
                                     icon: 'warning',
                                     showCancelButton: true,
-                                    confirmButtonColor: '#e11d48',
+                                    confirmButtonColor: '#3857b2',
                                     confirmButtonText: 'Hapus'
                                 }).then((r) => r.isConfirmed && $wire.delete({{ $item->id }}))"
                                 class="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all">

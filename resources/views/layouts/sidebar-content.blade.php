@@ -38,7 +38,7 @@
         </div>
 
         <a href="{{ route('admin.news.index') }}"
-            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.news.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.news.*') ? 'bg-red-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
             :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
             title="Berita & Info">
             <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,7 +48,7 @@
         </a>
 
         <a href="{{ route('admin.services.index') }}"
-            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.services.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.services.*') ? 'bg-red-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
             :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
             title="Layanan">
             <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,7 +60,7 @@
         </a>
 
         <a href="{{ route('admin.documents.index') }}"
-            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.documents.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.documents.*') ? 'bg-red-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
             :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
             title="Dokumen">
             <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,7 +70,7 @@
         </a>
 
         <a href="{{ route('admin.galleries.index') }}"
-            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.galleries.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.galleries.*') ? 'bg-red-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
             :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
             title="Galeri">
             <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,7 +80,7 @@
         </a>
 
         <a href="{{ route('admin.faqs.index') }}"
-            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.faqs.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.faqs.*') ? 'bg-red-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
             :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
             title="FAQ">
             <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@
         </a>
 
         <a href="{{ route('admin.members.index') }}"
-            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.members.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.members.*') ? 'bg-red-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
             :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
             title="Personnel">
             <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,7 +100,7 @@
         </a>
 
         <a href="{{ route('admin.pages.index') }}"
-            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.pages.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.pages.*') ? 'bg-red-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
             :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
             title="Halaman">
             <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,7 +110,7 @@
         </a>
 
         <a href="{{ route('admin.jumbotrons.index') }}"
-            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.jumbotrons.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.jumbotrons.*') ? 'bg-red-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
             :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
             title="Banner Utama">
             <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,7 +120,7 @@
         </a>
 
         <a href="{{ route('admin.links.index') }}"
-            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.links.*') ? 'bg-rose-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+            class="flex items-center text-sm font-semibold transition-colors rounded-xl {{ request()->routeIs('admin.links.*') ? 'bg-red-50 text-red-600' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
             :class="sidebarOpen || isMobile ? 'px-4 py-3' : 'justify-center py-3 px-0'"
             title="Tautan Terkait">
             <svg class="w-6 h-6 shrink-0" :class="sidebarOpen || isMobile ? 'mr-3' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">

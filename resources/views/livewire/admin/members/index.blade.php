@@ -56,7 +56,7 @@
                             title: 'Hapus Personnel?',
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#e11d48',
+                            confirmButtonColor: '#3857b2',
                             confirmButtonText: 'Hapus'
                         }).then((r) => r.isConfirmed && $wire.delete('{{ $item->uuid }}'))"
                         class="p-1.5 bg-white/90 backdrop-blur shadow-sm rounded-lg text-slate-600 hover:text-red-600 transition-colors">
