@@ -43,8 +43,8 @@
                         <span class="text-slate-700">Tim Kami</span>
                     </nav>
                     <h1 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 tracking-tighter leading-tight sm:leading-[0.95] mb-6">
-                        Direktorat Sistem Informasi<br/>
-                        <span class="text-red-600">Transformasi Digital.</span>
+                        Lembaga Transformasi Digital<br/>
+                        <span class="text-red-600">& Kecerdasan Artifisial.</span>
                     </h1>
                     {{-- Search --}}
                     <div class="flex items-center bg-slate-50 p-1.5 rounded-xl border border-slate-200 w-full md:w-72">
