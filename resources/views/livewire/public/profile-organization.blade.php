@@ -2,23 +2,9 @@
     @section('title', 'Tim Kami')
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ asset('css/profile-modal.css') }}" rel="stylesheet">
 
     <style>
-        .card-shimmer {
-            position: relative;
-            overflow: hidden;
-        }
-        .card-shimmer::before {
-            content: "";
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-            transform: scale(0);
-            transition: transform 0.6s ease-out;
-            pointer-events: none;
-        }
-        .card-shimmer:hover::before { transform: scale(1); }
         .filter-btn.active {
             background-color: #213369;
             color: white;
@@ -28,7 +14,7 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 
-    <div class="bg-white min-h-screen">
+    <div class="bg-white min-h-screen" x-data="{ showModal: false, activeHotspot: null }">
         {{-- Navbar --}}
         @include('livewire.public.partials.profile-navbar', ['forceLight' => true])
 
@@ -67,36 +53,101 @@
                     <div class="w-1.5 h-6 bg-[#213369] rounded-full"></div>
                     <h2 class="text-xl font-bold text-slate-800">Pimpinan</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    @php
-                        $leadershipKeywords = ['Direktur', 'Kasubdit', 'Kepala', 'Sekretaris', 'Ketua'];
-                        $coordinators = $members->filter(fn ($m) => Str::contains($m->position, $leadershipKeywords, true));
-                    @endphp
+                @php
+                    $leadershipKeywords = ['Direktur', 'Kasubdit', 'Kepala', 'Sekretaris', 'Ketua'];
+                    $coordinators = $members->filter(fn ($m) => Str::contains($m->position, $leadershipKeywords, true));
 
-                    @foreach($coordinators as $coord)
-                        <div class="card-shimmer bg-white p-4 sm:p-6 rounded-xl sm:rounded-[1.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group">
-                            <div class="relative w-24 h-24 mb-6 group-hover:scale-110 transition-transform duration-500">
-                                <div class="absolute inset-0 {{ Str::contains($coord->position, 'Direktur', true) ? 'bg-[#213369]' : 'bg-slate-800' }} rounded-3xl rotate-6 group-hover:rotate-12 transition-transform opacity-10">
+                    // Drop a custom backdrop graphic at public/img/leader-bg.png to replace
+                    // this fallback vignette (member photos should be transparent PNGs so
+                    // the backdrop shows through around the head/shoulders).
+                    $leaderBackdrop = file_exists(public_path('img/leader-bg.png'))
+                        ? "background-image: url('" . asset('img/leader-bg.png') . "'); background-size: cover; background-position: center;"
+                        : 'background: radial-gradient(ellipse at 50% 20%, #7d8697 0%, #3b4258 45%, #10152a 100%);';
+
+                    // Fixed row grouping requested for the leadership grid: row 1 is the
+                    // Ketua/Sekretaris pair, row 2 is the four Kepala Pusat, row 3 is the
+                    // Kepala Bagian/Subbagian trio. Anyone not matching a listed position
+                    // still shows up, appended in a trailing row, so nobody gets dropped.
+                    $rowPositions = [
+                        [
+                            'Ketua Lembaga Transformasi Digital dan Kecerdasan Artifisial',
+                            'Sekretaris Lembaga Transformasi Digital dan Kecerdasan Artifisial',
+                        ],
+                        [
+                            'Kepala Pusat Kecerdasan Artifisial (Unhas AI Center)',
+                            'Kepala Pusat Infrastruktur Digital',
+                            'Kepala Pusat Data dan Sistem Informasi',
+                            'Kepala Pusat Pembelajaran dan Pengembangan Talenta Digital',
+                        ],
+                        [
+                            'Kepala Bagian Tata Usaha',
+                            'Kepala Subbagian Infrastruktur Teknologi Informasi',
+                            'Kepala Subbagian Integrasi Sistem Informasi',
+                        ],
+                    ];
+
+                    $assigned = collect();
+                    $rows = collect($rowPositions)->map(function ($positions) use ($coordinators, &$assigned) {
+                        $row = collect($positions)
+                            ->map(fn ($position) => $coordinators->first(fn ($m) => Str::contains($m->position, $position, true)))
+                            ->filter();
+                        $assigned = $assigned->merge($row);
+                        return $row;
+                    });
+
+                    $leftover = $coordinators->reject(fn ($m) => $assigned->contains($m));
+                    if ($leftover->isNotEmpty()) {
+                        $rows->push($leftover);
+                    }
+                @endphp
+
+                @foreach($rows as $row)
+                    @continue($row->isEmpty())
+                    <div class="flex flex-wrap justify-center gap-x-5 gap-y-10 sm:gap-x-6 sm:gap-y-12 {{ $loop->first ? '' : 'mt-10 sm:mt-12' }}">
+                        @foreach($row as $coord)
+                            @php
+                                $coordData = [
+                                    'image' => $this->memberImage($coord),
+                                    'name' => $coord->fullname,
+                                    'role' => $coord->position,
+                                    'nip' => $coord->nip,
+                                    'email' => $coord->email,
+                                    'phone' => $coord->phone,
+                                ];
+                            @endphp
+                            {{-- Pop-out card: the card panel starts lower than the wrapper so the
+                                transparent-cutout photo's head/shoulders can overflow above it. --}}
+                            <div class="relative aspect-[4/4.5] w-[calc(50%-0.625rem)] sm:w-[calc(33.3333%-1rem)] lg:w-[calc(25%-1.125rem)] cursor-pointer group"
+                                @click="activeHotspot = {{ Illuminate\Support\Js::from($coordData) }}; showModal = true">
+
+                                {{-- Card panel: full width of the card, static — no resize/scale effect on hover.
+                                    Fixed height anchored to the bottom (not derived from a top offset), so it stays
+                                    a constant size regardless of the wrapper's height. --}}
+                                <div class="absolute inset-x-0 bottom-0 h-[230px] rounded-2xl overflow-hidden shadow-sm group-hover:shadow-2xl transition-shadow duration-500 z-0"
+                                    style="{{ $leaderBackdrop }}">
                                 </div>
-                                <img src="{{ $this->memberImage($coord) }}"
-                                    alt="{{ $coord->fullname }}" class="relative z-10 w-full h-full rounded-3xl object-cover shadow-md">
+
+                                {{-- Member photo: 84% of the card width, unclipped, positioned to overflow (pop out of) the
+                                    panel above, behind the name. Height follows the photo's own aspect ratio (aspect-[3/4])
+                                    instead of being stretched to the wrapper's full height, so no empty letterboxed gap
+                                    appears above the photo. On hover its actual width grows to 90% of the card width. --}}
+                                <img src="{{ $this->memberImage($coord) }}" alt="{{ $coord->fullname }}"
+                                    class="absolute inset-x-[8%] bottom-0 w-[84%] aspect-[3/4] object-cover z-10 drop-shadow-2xl group-hover:inset-x-[5%] group-hover:w-[90%] transition-all duration-500">
+
+                                {{-- Caption gradient + text overlay: sits above the photo so the name stays readable, full width, static. --}}
+                                <div class="absolute inset-x-0 bottom-0 h-[230px] rounded-2xl overflow-hidden pointer-events-none z-20">
+                                    <div class="absolute inset-x-0 bottom-0 h-1/2"
+                                        style="background: linear-gradient(to top, #b91c1c 0%, rgba(33,51,105,.88) 40%, rgba(33,51,105,0) 100%);">
+                                    </div>
+                                    <div class="absolute inset-x-0 bottom-0 p-3 sm:p-4">
+                                        <h3 class="text-white font-bold text-sm sm:text-base leading-tight drop-shadow-sm">{{ $coord->fullname }}</h3>
+                                        <p class="text-white/90 font-semibold text-[11px] sm:text-xs mt-1">{{ $coord->position }}</p>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 class="text-2xl font-bold text-slate-800">{{ $coord->fullname }}</h3>
-                            <p class="{{ Str::contains($coord->position, 'Direktur', true) ? 'text-red-700' : 'text-slate-600' }} font-semibold text-sm mb-4">{{ $coord->position }}</p>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-6">{{ $coord->nip ?? '' }}</p>
-                            <div class="flex space-x-3">
-                                @if($coord->email)
-                                    <a href="mailto:{{ $coord->email }}" class="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-red-700 hover:text-white transition-all">
-                                        <i class="far fa-envelope"></i>
-                                    </a>
-                                @endif
-                                <a href="#" class="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-800 hover:text-white transition-all">
-                                    <i class="fas fa-id-badge"></i>
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
+                @endforeach
             </section>
 
             <!-- Squad Grid Section -->
@@ -166,6 +217,9 @@
 
         {{-- Footer --}}
         @include('livewire.public.partials.public-footer')
+
+        {{-- Pimpinan profile detail modal --}}
+        @include('livewire.public.partials.profile-modal')
     </div>
 
     <script>

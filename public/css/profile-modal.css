@@ -115,17 +115,17 @@
     margin-bottom: 15px;
     display: block;
 }
-h2 {
+.modal-card h2 {
     font-size: 42px;
     font-weight: 800;
     color: white;
     line-height: 1.1;
     margin-bottom: 10px;
 }
-h2 span {
+.modal-card h2 span {
     opacity: 0.4;
 }
-.role {
+.modal-card .role {
     font-size: 18px;
     color: var(--text-dim);
     margin-bottom: 40px;
