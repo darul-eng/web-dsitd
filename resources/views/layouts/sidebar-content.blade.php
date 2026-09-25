@@ -2,7 +2,7 @@
     <!-- Sidebar Header -->
     <div class="flex items-center justify-between h-20 border-b border-slate-100 px-6 shrink-0 transition-all duration-300" :class="!sidebarOpen && !isMobile && 'justify-center px-0'">
         <div class="flex items-center justify-center">
-            <img src="{{ asset('img/logo-dark.png') }}" alt="Logo"
+            <img src="{{ asset('img/logo-v1.png') }}" alt="Logo"
                 class="transition-all duration-300 object-contain"
                 :class="sidebarOpen || isMobile ? 'h-10 w-auto' : 'h-6 w-12'">
         </div>

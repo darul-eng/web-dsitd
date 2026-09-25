@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-10 mb-8 sm:mb-16">
             <div class="md:col-span-4">
                 <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-3 mb-4 sm:mb-6">
-                    <img src="{{ asset('img/logo-dark.png') }}" alt="Logo Lembaga Transformasi Digital & Kecerdasan Artifisial" class="h-10" loading="lazy">
+                    <img src="{{ asset('img/logo-v1.png') }}" alt="Logo Lembaga Transformasi Digital & Kecerdasan Artifisial" class="h-10" loading="lazy">
                 </a>
                 <p class="text-sm text-slate-500 font-medium leading-relaxed mb-4 sm:mb-6 max-w-xs">
                     Lembaga Transformasi Digital dan Kecerdasan Artifisial adalah unit pengelola transformasi digital dan AI di lingkungan Universitas Hasanuddin.

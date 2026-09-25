@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="{{ asset('img/logo-dark.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/logo-v1.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

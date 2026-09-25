@@ -6,7 +6,7 @@
         <div class="flex items-center gap-12">
             <a href="/" wire:navigate class="flex items-center gap-3 group">
                 <!-- Smart Logo Switching -->
-                <img :src="scrolled ? '{{ asset('img/logo-dark.png') }}' : '{{ asset('img/logo.png') }}'"
+                <img :src="scrolled ? '{{ asset('img/logo-v1.png') }}' : '{{ asset('img/logo-v1-white.png') }}'"
                     alt="Logo Lembaga Transformasi Digital & Kecerdasan Artifisial"
                     class="h-9 md:h-11 transition-all duration-500 group-hover:scale-105"
                     loading="lazy">
