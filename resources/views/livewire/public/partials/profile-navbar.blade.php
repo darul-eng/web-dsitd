@@ -5,7 +5,7 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
     <div class="flex items-center gap-10">
         <a href="{{ route('home') }}" wire:navigate class="flex items-center gap-3 group">
-            <img :src="scrolled ? '{{ asset('img/logo-dark.png') }}' : '{{ asset('img/logo.png') }}'"
+            <img :src="scrolled ? '{{ asset('img/logo-v1.png') }}' : '{{ asset('img/logo-v1-white.png') }}'"
                 alt="Logo Lembaga Transformasi Digital & Kecerdasan Artifisial"
                 class="h-9 md:h-11 transition-all duration-500 group-hover:scale-105"
                 loading="lazy">

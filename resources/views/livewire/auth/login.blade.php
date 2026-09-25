@@ -3,7 +3,7 @@
         <!-- Logo/Header -->
         <div class="text-center mb-10">
             <div class="inline-flex items-center justify-center w-32 h-20 bg-white rounded-3xl shadow-xl shadow-slate-200/50 mb-6 group transition-transform hover:scale-105 duration-300 border border-slate-100 p-4">
-                <img src="{{ asset('img/logo-dark.png') }}" alt="Logo" class="w-full h-auto object-contain">
+                <img src="{{ asset('img/logo-v1.png') }}" alt="Logo" class="w-full h-auto object-contain">
             </div>
             <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Selamat Datang</h2>
             <p class="mt-2 text-sm text-slate-500 font-medium">Silakan masuk ke akun admin LTDKA Anda</p>
