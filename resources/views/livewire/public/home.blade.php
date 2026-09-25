@@ -8,7 +8,7 @@
                 <!-- Smart Logo Switching -->
                 <img :src="scrolled ? '{{ asset('img/logo-v1.png') }}' : '{{ asset('img/logo-v1-white.png') }}'"
                     alt="Logo Lembaga Transformasi Digital & Kecerdasan Artifisial"
-                    class="h-9 md:h-11 transition-all duration-500 group-hover:scale-105"
+                    class="h-11 md:h-14 transition-all duration-500 group-hover:scale-105"
                     loading="lazy">
             </a>
 
